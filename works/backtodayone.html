@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>back to day one | maja braumberger</title>
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+ <script src="../navigation.js" defer></script>
+  <style>
+    html { scrollbar-gutter: stable; overflow-y: scroll; }
+    body {
+      margin: 0; padding: 0;
+      background-color: #000;
+      color: #aaa;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      font-family: 'Roboto Mono', monospace;
+      overflow-x: hidden;
+      padding-top: 5vh;
+    }
+
+    #preloader { 
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+      background-color: black; display: flex; justify-content: center; align-items: center; 
+      z-index: 9999; transition: opacity 1s ease, visibility 1s; 
+    }
+    #preloader.hidden { opacity: 0; visibility: hidden; }
+    
+    .loader-container { 
+      width: 90vw; max-width: 600px; height: 2px; 
+      background-color: rgba(255, 255, 255, 0.1); 
+      margin-top: 40px; position: relative; 
+    }
+    .loader-bar { 
+      width: 0%; height: 2px; background-color: white; 
+      transition: width 0.4s ease-out; 
+    }
+    
+    .loading-text {
+      margin-top: 15px;
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: #444;
+      text-transform: uppercase;
+    }
+  
+    .blink { animation: blinker 1.5s linear infinite; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes blinker { 50% { opacity: 0; } }
+
+    .content-wrapper { 
+      width: 90%; max-width: 1200px; margin: 0 auto; flex: 1; padding-bottom: 60px; animation: fadeIn 2s ease;
+    }
+
+    .project-header { margin: 60px 0 40px; }
+    .project-header h1 { font-size: 36px; font-weight: 500; color: #fff; margin: 0; text-transform: lowercase; }
+    .project-meta { font-size: 14px; letter-spacing: 2px; color: #555; text-transform: uppercase; margin-top: 10px; }
+
+    .hero-image-container img { width: 100%; height: auto; display: block; filter: grayscale(0.3); transition: 0.8s; }
+    .hero-image-container img:hover { filter: grayscale(0); }
+
+    .project-info-row { display: flex; justify-content: space-between; align-items: flex-start; margin: 60px 0 80px; gap: 40px; }
+    .project-description { max-width: 600px; font-size: 14px; line-height: 1.8; color: #888; text-align: justify; }
+    .project-credits { font-size: 13px; color: #555; max-width: 400px; }
+    .project-credits a { color: #777; text-decoration: underline; transition: color 0.3s; }
+    .project-credits a:hover { color: #fff; }
+
+    .curated-section { display: flex; flex-direction: column; align-items: center; margin: 80px 0 40px; gap: 15px; }
+    .curated-label { font-size: 12px; letter-spacing: 3px; color: #a3a3a3; text-transform: uppercase; }
+    .curated-logo { width: 60px; height: 60px; filter: grayscale(0) brightness(1); transition: 0.4s; mix-blend-mode: screen; }
+
+    .back-nav { text-align: center; margin-bottom: 60px; }
+    .back-btn { display: inline-block; text-decoration: none; color: #555; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border: 1px solid #222; padding: 10px 20px; transition: 0.3s; }
+    .back-btn:hover { color: #fff; border-color: #555; background: #080808; }
+
+    .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0px; }
+    .photo-grid img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; filter: grayscale(1); transition: 0.5s ease; cursor: crosshair; }
+    .photo-grid img:hover { filter: grayscale(0); transform: scale(1.02); z-index: 2; }
+
+    footer { width: 100%; text-align: center; font-size: 11px; color: #333; padding: 30px 0; background: #000; font-family: monospace; border-top: 1px solid rgba(255, 255, 255, 0.03); }
+
+    @media (max-width: 900px) { .photo-grid { grid-template-columns: repeat(2, 1fr); } .project-info-row { flex-direction: column; gap: 30px; } }
+    @media (max-width: 600px) { .project-header h1 { font-size: 24px; } }
+
+    html, body { scrollbar-width: thin; scrollbar-color: #333 #000; }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #000; }
+    ::-webkit-scrollbar-thumb { background-color: #333; border-radius: 5px; border: 2px solid #000; }
+  </style>
+</head>
+<body>
+
+  <div id="preloader">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <img src="../images/logo/logo-mb.jpg" alt="Logo" style="width: 140px; opacity: 0; animation: fadeIn 1.5s ease forwards;">
+      <div class="loader-container">
+        <div id="bar" class="loader-bar"></div>
+      </div>
+      <div class="loading-text blink">Loading</div>
+    </div>
+  </div>
+
+  <div class="content-wrapper">
+    <header class="project-header">
+      <h1>back to day one</h1>
+      <div class="project-meta">2024 • Conceptual Photography</div>
+    </header>
+
+    <div class="hero-image-container">
+      <img src="../images/projects/backtodayone/8.webp" alt="back to day one 01">
+    </div>
+
+    <div class="photo-grid" style="grid-template-columns: repeat(2, 1fr); margin-top: 0px; gap: 0px;">
+      <img src="../images/projects/backtodayone/2.webp" alt="back to day one 02" style="aspect-ratio: 3/2;">
+      <img src="../images/projects/backtodayone/3.webp" alt="back to day one 03" style="aspect-ratio: 3/2;">
+    </div>
+
+    <div class="project-info-row">
+      <div class="project-description">
+        Alienation, identity crisis, fear of all the inevitable processes occurring in nature - these are the results of a distorted perception of reality. The digital era has become a bridge for highlighting extremities and an alternate realm conducive to fixations on one's persona.<br>"Back to Day One" is a proposition to stop for a moment and try to reconstruct our personal definitions of the reality we're surrounded by - the reality from which the majority of people have cut ties. We live in artificially created worlds, almost not acknowledging the existence of the one that dictates whether we are able to exist or not. We actively attribute the highest priority to anguish, whose presence is dependent only on one's mind. Currently, it seems like society is in constant search of things that make a person stand out, completely overlooking the beauty that lies in oneness with the rest of the world (or it remains intentionally ignored).<br><br>who are we, really?
+      </div>
+      <div class="project-credits">
+        This project was made possible thanks to the immeasureable support of 
+        <a href="https://www.facebook.com/imageworkspoland" target="_blank" style="color: #777; text-decoration: underline;">ImageWorks Anita Andrzejewska & Andrzej Pilichowski-Ragno.</a> 
+      </div>
+    </div>
+
+    <div class="photo-grid" style="grid-template-columns: repeat(2, 1fr); gap: 0px; margin-bottom: 0px;">
+      <img src="../images/projects/backtodayone/4.webp" alt="back to day one 04" style="aspect-ratio: 3/2;">
+      <img src="../images/projects/backtodayone/5.webp" alt="back to day one 05" style="aspect-ratio: 3/2;">
+    </div>
+ 
+    <div class="photo-grid" style="grid-template-columns: repeat(3, 1fr); gap: 0px; margin-bottom: 0px;">
+      <img src="../images/projects/backtodayone/6.webp" alt="back to day one 06" style="aspect-ratio: 2/3;">
+      <div style="background-color: #000; aspect-ratio: 2/3;"></div>
+      <img src="../images/projects/backtodayone/7.webp" alt="back to day one 07" style="aspect-ratio: 2/3;">
+    </div>
+
+    <div class="photo-grid" style="grid-template-columns: repeat(2, 1fr); gap: 0px; margin-bottom: 0px;">
+      <img src="../images/projects/backtodayone/9.webp" alt="back to day one 04" style="aspect-ratio: 1/1;">
+      <img src="../images/projects/backtodayone/1.webp" alt="back to day one 05" style="aspect-ratio: 1/1;">
+    </div>
+    
+    <div class="curated-section">
+      <span class="curated-label">curated by</span>
+      <a href="https://www.facebook.com/imageworkspoland" target="_blank">
+        <img src="../images/logo/imageworks.png" alt="imageworks" class="curated-logo">
+      </a>
+    </div>
+  </div>
+
+  <div class="back-nav">
+    <a href="../works.html" class="back-btn">← Back to Works</a>
+  </div>
+ <navigation-menu></navigation-menu>
+  <footer>© 2026 maja braumberger. all rights reserved.</footer>
+
+  <script>
+    const images = document.querySelectorAll('img');
+    const bar = document.getElementById('bar');
+    const preloader = document.getElementById('preloader');
+    let loadedCount = 0;
+    const totalImages = images.length;
+    const safetyTimeout = setTimeout(hidePreloader, 3000);
+
+    function updateProgress() {
+      loadedCount++;
+      if (totalImages > 0) {
+        const percentage = (loadedCount / totalImages) * 100;
+        if (bar) bar.style.width = percentage + '%';
+        if (loadedCount >= totalImages) {
+          clearTimeout(safetyTimeout);
+          setTimeout(hidePreloader, 500);
+        }
+      }
+    }
+
+    function hidePreloader() {
+      if (preloader) preloader.classList.add('hidden');
+    }
+
+    if (totalImages === 0) {
+      hidePreloader();
+    } else {
+      images.forEach(img => {
+        if (img.complete) {
+          updateProgress();
+        } else {
+          img.addEventListener('load', updateProgress);
+          img.addEventListener('error', updateProgress);
+        }
+      });
+    }
+    window.addEventListener('load', hidePreloader);
+  </script>
+</body>
+</html>
