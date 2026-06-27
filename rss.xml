@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" href="rss-style.xsl"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+
+<channel>
+    <title>maja braumberger</title>
+    <link>https://majabraumberger.com</link>
+    <description>a poke in the eye with a light beam</description>
+    <language>en-us</language>
+    <atom:link href="https://majabraumberger.com/rss.xml" rel="self" type="application/rss+xml" />
+
+
+    <item>
+        <title>✎ | reverie</title>
+        <link>https://majabraumberger.com/writings/reverie.html</link>
+        <description>a collection of words</description>
+        <pubDate>Mon, 04 May 2026 00:00:00 +0200</pubDate>
+        <guid>https://majabraumberger.com/writings/reverie.html</guid>
+    </item>
+
+
+
+</channel>
+</rss>

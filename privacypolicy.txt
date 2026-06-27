@@ -1,0 +1,28 @@
+Privacy Policy
+Last updated: 11 August 2025
+
+This Privacy Policy explains how I collect, use, and protect your personal information when you sign up for my newsletter.
+
+1. Information I Collect
+When you subscribe to my newsletter, I collect your email address. 
+I do not collect any other personal information.
+
+2. How I Use Your Information
+Your email address will only be used to send you updates about my artwork, exhibitions, writings, and related news.
+I will never sell, rent, or share your email address with anyone.
+
+3. How I Store Your Information
+Your email address is stored securely and accessed only by me through an encrypted environment provided by an open-source Cryptpad project. (https://cryptpad.fr).
+
+4. Your Rights
+You can unsubscribe from the newsletter at any time by requesting to have your email removed from my records. 
+Contact me directly at contact@majabraumberger.com
+
+5. Analytics
+This website uses GoatCounter to understand visitor traffic. 
+This tool does not collect personally identifiable information.
+
+6. Contact
+If you have any questions about this Privacy Policy, you can contact me at:
+
+contact@majabraumberger.com

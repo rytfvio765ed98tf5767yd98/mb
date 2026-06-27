@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script data-goatcounter="https://annoise.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js">
+  </script>
+  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <meta name="description" content="sitemap">
+  <meta name="author" content="Maja Braumberger">
+  <meta http-equiv="refresh" content="180">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <title>sitemap | maja braumberger</title>
+<style>
+    body {
+      margin: 0;
+      background: #0a0a0a; 
+      height: 100dvh; 
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    
+    main {
+      display: flex;
+      width: 100%;
+      height: 100dvh;
+    }
+
+    
+    .sitemap-visual {
+      flex: 1;
+      background: url('images/website/sitemap.webp') no-repeat center center;
+      background-size: cover;
+      height: 100%;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+   
+    .sitemap-content {
+      flex: 1;
+      height: 100%;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 60px 10% 30px 10%;
+      box-sizing: border-box;
+      background: linear-gradient(to right, rgba(20, 20, 20, 0.8), rgba(10, 10, 10, 0.9));
+    }
+
+    
+    .sitemap-inner {
+      margin-top: auto;
+      margin-bottom: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-grow: 1;
+    }
+
+    .sitemap-header {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 16px;
+      letter-spacing: 8px;
+      color: #b0b0b0;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding-bottom: 12px;
+      font-weight: 500;
+    }
+
+
+    .sitemap-tree {
+      font-family: 'Roboto Mono', monospace;
+      font-size: 16px;
+      line-height: 1.2;
+      color: #b8b8b8;
+      user-select: none;
+    }
+
+    .tree-root {
+      color: #ffffff;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .tree-node {
+      display: flex;
+      align-items: baseline;
+      white-space: pre;
+    }
+
+    .tree-branch {
+      color: rgba(255, 255, 255, 0.35); 
+      transition: color 0.2s ease;
+    }
+
+    .tree-folder {
+      color: #d1d1d1; 
+      text-transform: uppercase;
+      font-size: 13px;
+      letter-spacing: 2px;
+      font-weight: 500;
+    }
+
+    .sitemap-link {
+      color: #e0e0e0; 
+      text-decoration: none;
+      opacity: 0.8; 
+      transition: opacity 0.2s, color 0.2s, padding-left 0.2s;
+      padding-left: 2px;
+    }
+
+ 
+    .tree-node:hover .sitemap-link {
+      opacity: 1;
+      color: rgb(255, 209, 209);
+      padding-left: 8px;
+    }
+
+    .tree-node:hover .tree-branch {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+
+    footer { 
+      width: 100%; 
+      text-align: center; 
+      color: #777; 
+      font-family: 'Roboto Mono', monospace; 
+      font-size: 11px; 
+      margin-top: 40px;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    footer p { margin: 0; }
+
+  
+    #preloader { 
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+      background-color: #050505; display: flex; justify-content: center; align-items: center; 
+      z-index: 999999 !important; 
+      transition: opacity 1.5s ease, visibility 1.5s; 
+    }
+    #preloader.hidden { opacity: 0; visibility: hidden; }
+    .loader-bar { width: 0%; height: 2px; background-color: white; animation: loading 2s ease-in-out forwards 0.5s; }
+    .loader-container { width: 90vw; max-width: 600px; height: 2px; background-color: rgba(255, 255, 255, 0.1); margin-top: 40px; }
+    
+    @keyframes loading { 0% { width: 0%; } 100% { width: 100%; } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  
+    #ascii-fade-overlay {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: transparent; z-index: 9999999; pointer-events: none; overflow: hidden; display: none; transition: background-color 0.3s ease; 
+    }
+    #ascii-canvas {
+      margin: 0; padding: 0; width: 100%; height: 100%; background: transparent; color: #000000; font-family: 'Roboto Mono', 'Courier New', monospace; font-size: 16px; line-height: 16px; letter-spacing: 0px; white-space: pre; user-select: none;
+    }
+
+    .mobile-top-bar { display: none; }
+
+
+ @media (max-width: 768px) {
+    body {
+      overflow-y: auto;
+      height: auto;
+    }
+
+    main {
+      flex-direction: column;
+      height: auto;
+    }
+
+    .sitemap-visual {
+      display: block;
+      flex: none;
+      width: 100%;
+      height: 0;
+      padding-top: 40vw; 
+      background: url('images/website/sitemap.webp') no-repeat top center;
+      background-size: cover;
+      border-right: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .sitemap-content {
+      flex: none;
+      width: 100%;
+      height: auto;
+      padding: 20px 15px 30px 15px;
+      background: #0a0a0a;
+    }
+
+   
+    .sitemap-tree {
+      font-size: 11px; 
+      letter-spacing: 0.5px; 
+    }
+
+    .sitemap-header {
+      font-size: 14px;
+      letter-spacing: 4px;
+    }
+
+    .tree-folder {
+      font-size: 11px;
+      letter-spacing: 1px;
+    }
+
+    
+    .tree-node {
+      white-space: pre; 
+    }
+ 
+    .mobile-top-bar {
+      display: flex; 
+      position: fixed; 
+      top: 20px; 
+      right: 20px; 
+      z-index: 9999;
+    }
+    
+    
+    footer {
+      margin-top: 40px;
+      font-size: 9px;
+    }
+  }
+      
+  html, body {
+    scrollbar-width: thin;
+    scrollbar-color: #555 #111;
+  }
+
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: #111; }
+  ::-webkit-scrollbar-thumb { background-color: #444; border-radius: 5px; border: 2px solid #111; }
+</style>
+</head>
+<body>
+
+<div id="ascii-fade-overlay"><pre id="ascii-canvas"></pre></div>
+
+<div id="preloader">
+  <div style="display: flex; flex-direction: column; align-items: center; position: relative;">
+    <img src="images/logo/logo-intro-mb.jpg" alt="Logo" style="width: 140px; opacity: 0; animation: fadeIn 1s ease forwards;">
+    <div class="loader-container"><div class="loader-bar"></div></div>
+  </div>
+</div>
+
+  <main>
+    <div class="sitemap-visual"></div>
+    
+    <div class="sitemap-content">
+      <div class="sitemap-inner">
+        <div class="sitemap-header">SITEMAP</div>
+        
+        <div class="sitemap-tree">
+        
+          
+          <div class="tree-node"><span class="tree-branch">├── </span><a href="index.html" class="sitemap-link">HOME</a></div>
+          <div class="tree-node"><span class="tree-branch">│   │ </span></div>
+          <div class="tree-node"><span class="tree-branch">│   ├── </span><a href="gallery.html" class="sitemap-link">gallery</a></div>
+          <div class="tree-node"><span class="tree-branch">│   │ </span></div>
+        
+          <div class="tree-node"><span class="tree-branch">│   ├── </span><a href="works.html" class="sitemap-link">works</a></div>
+          <div class="tree-node"><span class="tree-branch">│   │   ├───── </span><a href="works/2025.html" class="sitemap-link">a look back at 2025 </a></div>
+          <div class="tree-node"><span class="tree-branch">│   │   ├───── </span><a href="works/survivalmachines.html" class="sitemap-link">survival machines</a></div>
+          <div class="tree-node"><span class="tree-branch">│   │   └───── </span><a href="works/backtodayone.html" class="sitemap-link">back to day one</a></div>
+          <div class="tree-node"><span class="tree-branch">│   │ </span></div>
+          <div class="tree-node"><span class="tree-branch">│   ├── </span><a href="writings.html" class="sitemap-link">writings</a></div>
+          <div class="tree-node"><span class="tree-branch">│   │ </span></div>
+        
+          <div class="tree-node"><span class="tree-branch">│   ├── </span><a href="about.html" class="sitemap-link">about</a></div>
+          <div class="tree-node"><span class="tree-branch">│   │ </span></div>
+          <div class="tree-node"><span class="tree-branch">│   ├── </span><a href="contact.html" class="sitemap-link">contact</a></div>
+          <div class="tree-node"><span class="tree-branch">│   │ </span></div>
+          <div class="tree-node"><span class="tree-branch">│   └── </span><a href="directory.html" class="sitemap-link">directory</a></div>
+          <div class="tree-node"><span class="tree-branch">│    </span></div>
+          <div class="tree-node"><span class="tree-branch">├── </span><span class="tree-folder">[feed]</span></div>
+          <div class="tree-node"><span class="tree-branch">│   │ </span></div>
+          <div class="tree-node"><span class="tree-branch">│   ├── </span><a href="rss.xml" class="sitemap-link">rss</a></div>
+          <div class="tree-node"><span class="tree-branch">│   ├── </span><a href="https://cryptpad.fr/form/#/2/form/view/C2ukZNnK6qTpK9XuBO7gC47rdX4H3Omjf61tXxl4QT4/" target="_blank" class="sitemap-link">newsletter</a></div>
+          <div class="tree-node"><span class="tree-branch">│   └── </span><a href="https://annoise.atabook.org" target="_blank" class="sitemap-link">guestbook</a></div>
+          <div class="tree-node"><span class="tree-branch">│    </span></div>
+          <div class="tree-node"><span class="tree-branch">└── </span><span class="tree-folder">[webrings]</span></div>
+          <div class="tree-node"><span class="tree-branch">    │ </span></div>
+          <div class="tree-node"><span class="tree-branch">    ├── </span><a href="https://neocreatives.neocities.org/" target="_blank" class="sitemap-link">neocreatives webring</a></div>
+          <div class="tree-node"><span class="tree-branch">    ├── </span><a href="https://baccyflap.com/noai" target="_blank" class="sitemap-link">no ai webring</a></div>
+          <div class="tree-node"><span class="tree-branch">    └── </span><a href="https://lunar-webring.neocities.org" target="_blank" class="sitemap-link">lunar webring</a></div>   
+          
+          
+          
+          
+          
+          <br><br><br><br><br><br><br>
+                    <div class="tree-node"><span class="tree-branch">           - </span><a href="/lichen.html" target="_blank" class="sitemap-link">???</a></div>
+        </div>
+      </div> 
+
+      <footer>
+        <p>© 2026 maja braumberger. all rights reserved.</p>
+      </footer>
+    </div>
+  </main>
+
+
+  <script>
+    function initAsciiFade() {
+      const links = document.querySelectorAll('.sitemap-link');
+      const overlay = document.getElementById('ascii-fade-overlay');
+      const canvas = document.getElementById('ascii-canvas');
+      const asciiShades = [" ", "░", "▒", "▓", "█"];
+      
+      links.forEach(link => {
+        if (link.getAttribute('target') === '_blank') return;
+
+        link.addEventListener('click', function(e) {
+          e.preventDefault(); 
+          const targetUrl = this.getAttribute('href');
+          if (!targetUrl || targetUrl === '#') return;
+
+          overlay.style.display = 'block';
+          overlay.style.pointerEvents = 'auto';
+
+          const charWidth = 9.6; 
+          const charHeight = 16;
+          const cols = Math.ceil(window.innerWidth / charWidth);
+          const rows = Math.ceil(window.innerHeight / charHeight);
+          let matrix = Array.from({ length: rows }, () => new Array(cols).fill(0));
+
+          function render() {
+            let text = "";
+            for (let r = 0; r < rows; r++) {
+              text += matrix[r].map(val => asciiShades[val]).join("") + "\n";
+            }
+            canvas.textContent = text;
+          }
+
+          const totalCells = cols * rows;
+          let cellsFinished = 0;
+          
+          const fadeInterval = setInterval(() => {
+            const changesPerTick = Math.ceil(totalCells * 0.15); 
+            for (let i = 0; i < changesPerTick; i++) {
+              const r = Math.floor(Math.random() * rows);
+              const c = Math.floor(Math.random() * cols);
+              if (matrix[r][c] < asciiShades.length - 1) {
+                matrix[r][c]++;
+                if (matrix[r][c] === asciiShades.length - 1) cellsFinished++;
+              }
+            }
+            render();
+
+            if (cellsFinished >= totalCells * 0.95) {
+              clearInterval(fadeInterval);
+              overlay.style.backgroundColor = '#000000';
+              setTimeout(() => { window.location.href = targetUrl; }, 50);
+            }
+          }, 30);
+        });
+      });
+    }
+        
+    window.addEventListener('load', function() {
+      const preloader = document.getElementById('preloader');
+      initAsciiFade();
+      setTimeout(() => { if(preloader) preloader.classList.add('hidden'); }, 1500);
+    });
+  </script>
+</body>
+</html>

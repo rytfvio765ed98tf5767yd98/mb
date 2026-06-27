@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1024, user-scalable=no">
+    <meta name="description" content="the unveiling of light's feverish dreams">
+    <meta name="author" content="Maja Braumberger">
+    <meta http-equiv="refresh" content="180">
+    <title>:(</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 69px;
+            padding: 0;
+            height: 100vh;
+            background-color: black;
+            display: flex;
+            flex-direction: column; 
+            
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .container {
+            position: relative;
+            width: 800px;  
+            height: 600px; 
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            background-color: black;  
+        }
+
+        .strip {
+            width: 100%; 
+            height: 5px;
+            background-size: cover; 
+            background-repeat: no-repeat;
+            background-position: center;
+            transform: scaleX(1); 
+        }
+
+        .home-link {
+            margin-top: 30px; 
+            font-family: 'Roboto Mono', monospace;
+            color: #b0b0b0;
+            text-decoration: none;
+            font-size: 18px;
+            letter-spacing: 2px;
+            border-bottom: 1px solid #b0b0b0;
+            padding-bottom: 4px;
+            transition: color 0.3s, border-color 0.3s;
+            opacity: 0;
+            animation: fadeInLink 1.5s ease forwards 2s;
+        }
+
+        .home-link:hover {
+            color: #ffffff;
+            border-color: #ffffff;
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: scaleX(0);
+                transform-origin: left;
+            }
+            100% {
+                transform: scaleX(1); 
+            }
+        }
+
+        @keyframes fadeInLink {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="imageContainer"></div>
+
+    <a href="/index.html" class="home-link">TAKE ME BACK HOME</a>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const container = document.getElementById("imageContainer");
+            const imgSrc = "/rip.webp";  
+            const stripHeight = 10;  
+            
+            container.style.backgroundImage = `url(${imgSrc})`;
+            container.style.backgroundPosition = 'center center';  
+            container.style.backgroundSize = 'cover'; 
+
+            const strips = Math.ceil(container.offsetHeight / stripHeight); 
+
+            for (let i = 0; i < strips; i++) {
+                let strip = document.createElement("div");
+                strip.classList.add("strip");
+                strip.style.height = stripHeight + "px"; 
+                strip.style.backgroundImage = `url(${imgSrc})`;  
+                strip.style.backgroundPosition = `0 -${i * stripHeight}px`;  
+                strip.style.animation = `slideIn 0.7s steps(1) ${i * 0.05}s forwards`;  
+                container.appendChild(strip);
+            }
+        });
+    </script>
+</body>
+
+</html>
+

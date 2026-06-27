@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>writings | maja braumberger</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <meta name="description" content="the unveiling of light's feverish dreams">
+  <meta name="author" content="Maja Braumberger">
+  <meta http-equiv="refresh" content="180">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+  
+  <script src="navigation.js" defer></script>
+  <style>
+    html { scrollbar-gutter: stable; overflow-y: scroll; }
+
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Roboto Mono', monospace;
+      background-color: #000;
+      color: #aaa;
+      padding-top: 10vh;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .filter-links {
+      width: 90%; max-width: 800px; margin: 32px auto 20px;
+      display: flex; justify-content: center; align-items: center; gap: 15px; font-size: 18px;
+    }
+    .filter-links a { color: #555; text-decoration: none; transition: 0.3s; font-weight: bold; }
+    .filter-links a:hover, .filter-links a.active-filter { color: #fff; }
+    .filter-links .dot { color: #222; font-weight: bold; }
+
+    .page-header {
+      text-align: center; width: 90%; max-width: 800px; margin: 40px auto 20px auto;
+      letter-spacing: 0.3em; color: rgba(255, 255, 255, 0.9); font-size: 14px;
+      text-transform: uppercase; font-weight: 300; border-bottom: 1px solid rgba(255, 255, 255, 0.03); padding-bottom: 15px;
+    }
+
+    #articles { width: 90%; max-width: 800px; margin: 0 auto; }
+    .article-link { display: block; text-decoration: none; color: inherit; margin-bottom: 15px; }
+    .article-item { padding: 20px; background-color: rgba(17, 17, 17, 0.4); border-left: 1px solid #222; transition: all 0.3s ease; }
+    .article-link:hover .article-item { background-color: #0a0a0a; border-left: 1px solid #fff; padding-left: 25px; }
+    .article-item h3 { margin: 0; font-size: 22px; color: #eee; transition: 0.3s; font-weight: normal; }
+    .article-link:hover h3 { color: #fff; }
+    .article-meta-row { display: flex; align-items: center; gap: 12px; margin: 6px 0; font-size: 14px; color: #555; text-transform: uppercase; }
+    .tag { color: #444; border: 1px solid #222; padding: 0px 5px; }
+    .article-description { margin-top: 8px; font-size: 16px; color: #888; line-height: 1.5; }
+
+    footer { width: 90%; max-width: 800px; text-align: center; font-size: 12px; color: #444; margin: 32px auto 12px; font-family: monospace; }
+
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #000; }
+    ::-webkit-scrollbar-thumb { background-color: #333; border-radius: 5px; border: 2px solid #000; }
+
+    @media (max-width: 768px) {
+      .filter-links { flex-wrap: wrap; justify-content: center; gap: 10px; font-size: 15px; width: 95%; }
+      .filter-links .dot { display: none; }
+      .filter-links a { padding: 5px 10px; background: rgba(255, 255, 255, 0.05); border-radius: 4px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="filter-links">
+  <a href="#" class="active-filter" onclick="filterArticles('all', this); return false;">all</a>
+  <span class="dot">•</span>
+  <a href="#" onclick="filterArticles('posts', this); return false;">posts</a>
+  <span class="dot">•</span>
+  <a href="#" onclick="filterArticles('prose', this); return false;">prose</a>
+  <span class="dot">•</span>
+  <a href="#" onclick="filterArticles('poem', this); return false;">poems</a>
+  <span class="dot">•</span>
+  <a href="#" onclick="filterArticles('journal entry', this); return false;">journal</a>
+</div>
+
+<div id="articles">
+
+    <a href="writings/secondi.html" class="article-link">
+    <div class="article-item" data-category="journal entry">
+      <h3>Second i</h3>
+      <div class="article-meta-row"><span>10.06.2026</span><span class="tag">journal</span></div>
+      <div class="article-description">Sometimes it takes burning out your vision to learn it's best not to look at the Sun.</div>
+    </div>
+  </a>
+
+  
+  <a href="writings/reverie.html" class="article-link">
+    <div class="article-item" data-category="poem">
+      <h3>reverie</h3>
+      <div class="article-meta-row"><span>01.02.2026</span><span class="tag">poem</span></div>
+      <div class="article-description"></div>
+    </div>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    farewell, 2025!
+  </a>
+
+  <a href="writings/20steps.html" class="article-link">
+    <div class="article-item" data-category="journal entry">
+      <h3>20 steps</h3>
+      <div class="article-meta-row"><span>09.09.2025</span><span class="tag">journal</span></div>
+      <div class="article-description">now it's something</div>
+    </div>
+  </a>
+  
+  <a href="writings/needtime.html" class="article-link">
+    <div class="article-item" data-category="poem">
+      <h3>Need Time In No Time</h3>
+      <div class="article-meta-row"><span>05.09.2025</span><span class="tag">poem</span></div>
+      <div class="article-description">i can feel it leaking through</div>
+    </div>
+  </a>
+  
+  <a href="writings/first.html" class="article-link">
+    <div class="article-item" data-category="prose">
+      <h3>First</h3>
+      <div class="article-meta-row"><span>29.08.2025</span><span class="tag">prose</span></div>
+      <div class="article-description">The first day of this particular month, for most of history up until now, stands out from...</div>
+    </div>
+  </a>
+
+  <a href="writings/gardenoverlook.html" class="article-link">
+    <div class="article-item" data-category="journal entry">
+      <h3>garden overlook</h3>
+      <div class="article-meta-row"><span>24.08.2025</span><span class="tag">journal</span></div>
+      <div class="article-description">so long!</div>
+    </div>
+  </a>
+
+  <a href="writings/themoon.html" class="article-link">
+    <div class="article-item" data-category="poem">
+      <h3>the moon has now eclipsed the sun</h3>
+      <div class="article-meta-row"><span>24.08.2025</span><span class="tag">poem</span></div>
+      <div class="article-description">a light beam poked me and burned this hole</div>
+    </div>
+  </a>
+
+  <a href="writings/lockedroom.html" class="article-link">
+    <div class="article-item" data-category="poem">
+      <h3>Locked Room</h3>
+      <div class="article-meta-row"><span>17.08.2025</span><span class="tag">poem</span></div>
+      <div class="article-description">my ark</div>
+    </div>
+  </a>
+
+  <a href="writings/littlecreatures.html" class="article-link">
+    <div class="article-item" data-category="journal entry">
+      <h3>little creatures</h3>
+      <div class="article-meta-row"><span>17.08.2025</span><span class="tag">journal</span></div>
+      <div class="article-description">this is (not) a test</div>
+    </div>
+  </a>
+</div>
+
+<footer>© 2026 maja braumberger. all rights reserved.</footer>
+<navigation-menu></navigation-menu>
+<script>
+function filterArticles(category, clickedLink) {
+  const articles = document.querySelectorAll(".article-item");
+  articles.forEach(article => {
+    const artCat = article.getAttribute("data-category");
+    const isVisible = (category === 'all' || artCat === category);
+    article.parentElement.style.display = isVisible ? "block" : "none";
+  });
+  document.querySelectorAll('.filter-links a').forEach(link => link.classList.remove('active-filter'));
+  clickedLink.classList.add('active-filter');
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("articles");
+  const articleLinks = Array.from(container.querySelectorAll('.article-link'));
+  articleLinks.sort((a, b) => {
+    const dateA = new Date(a.querySelector('.article-meta-row span').textContent.trim().split('.').reverse().join('-'));
+    const dateB = new Date(b.querySelector('.article-meta-row span').textContent.trim().split('.').reverse().join('-'));
+    return dateB - dateA;
+  });
+  container.innerHTML = '';
+  articleLinks.forEach(link => container.appendChild(link));
+});
+</script>
+
+</body>
+</html>

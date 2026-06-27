@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>???</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body { margin: 0; background: #000; overflow: hidden; }
+    canvas { display: block; }
+  </style>
+</head>
+<body>
+<canvas id="canvas"></canvas>
+
+<script>
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d', { alpha: false });
+
+  const cellSize = 10;
+  let cols, rows, grid, activePoints = [], tileset;
+  const chars = ['░', '▒', '▓', '█', '.', ':', '+', '*', '#'];
+
+  function createTileset() {
+    const ts = document.createElement('canvas');
+    const tctx = ts.getContext('2d');
+    ts.width = cellSize * chars.length;
+    ts.height = cellSize;
+    tctx.font = `${cellSize - 1}px monospace`;
+    tctx.textAlign = 'center';
+    tctx.textBaseline = 'middle';
+    tctx.fillStyle = 'white';
+    chars.forEach((char, i) => {
+      tctx.fillText(char, i * cellSize + cellSize / 2, cellSize / 2);
+    });
+    return ts;
+  }
+
+  function init() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    cols = Math.floor(canvas.width / cellSize);
+    rows = Math.floor(canvas.height / cellSize);
+    
+
+    grid = new Float32Array(cols * rows);
+    activePoints = [];
+    tileset = createTileset();
+
+    const midX = Math.floor(cols / 2);
+    const midY = Math.floor(rows / 2);
+    const startIdx = midY * cols + midX;
+    
+    grid[startIdx] = 1;
+    activePoints.push(startIdx);
+    
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+
+  function spread() {
+
+    ctx.globalAlpha = 0.08;
+    ctx.fillStyle = '#000';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.globalAlpha = 1.0;
+
+    const nextPoints = [];
+
+    for (let i = activePoints.length - 1; i >= 0; i--) {
+      const idx = activePoints[i];
+      const age = grid[idx];
+      
+
+      if (age < 40 && Math.random() < 0.02) {
+        const x = idx % cols;
+        const y = Math.floor(idx / cols);
+        const neighbors = [idx - 1, idx + 1, idx - cols, idx + cols];
+        
+        neighbors.forEach(nIdx => {
+          if (nIdx >= 0 && nIdx < grid.length && grid[nIdx] === 0) {
+            const nx = nIdx % cols;
+            if (Math.abs(nx - x) <= 1) {
+              grid[nIdx] = 1;
+              nextPoints.push(nIdx);
+            }
+          }
+        });
+      }
+
+  
+      const charIdx = Math.floor(Math.random() * chars.length);
+      const fade = Math.pow(Math.max(0, 1 - (age - 1) * 0.004), 2);
+      
+      if (fade > 0.01) {
+        const x = idx % cols;
+        const y = Math.floor(idx / cols);
+        ctx.globalAlpha = fade;
+        ctx.drawImage(tileset, charIdx * cellSize, 0, cellSize, cellSize, x * cellSize, y * cellSize, cellSize, cellSize);
+        grid[idx] += 0.4; 
+      } else {
+      
+        activePoints.splice(i, 1);
+      }
+    }
+
+    if (nextPoints.length > 0) {
+      activePoints.push(...nextPoints);
+    }
+
+    requestAnimationFrame(spread);
+  }
+
+  window.addEventListener('resize', init);
+  init();
+  spread();
+</script>
+</body>
+</html>

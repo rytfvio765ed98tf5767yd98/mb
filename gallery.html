@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>gallery | maja braumberger</title>
+  <link rel="icon" href="favicon.png" type="image/png" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+<script src="navigation.js" defer></script>
+  <style>
+    html { scrollbar-gutter: stable; overflow-y: scroll; }
+
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Roboto Mono', monospace;
+      background-color: #000;
+      color: #aaa;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; 
+      padding-top: 7vh; 
+      overflow-x: hidden;
+    }
+
+    #preloader { 
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+      background-color: black; display: flex; justify-content: center; align-items: center; 
+      z-index: 9999; transition: opacity 1.5s ease, visibility 1.5s; 
+    }
+    #preloader.hidden { opacity: 0; visibility: hidden; }
+
+    .loader-container { width: 90vw; max-width: 600px; height: 2px; background-color: rgba(255, 255, 255, 0.1); margin-top: 40px; position: relative; }
+    .loader-bar { width: 0%; height: 2px; background-color: white; transition: width 0.4s ease-out; }
+
+    .loading-text { margin-top: 15px; font-size: 10px; letter-spacing: 4px; color: #444; text-transform: uppercase; }
+    .blink { animation: blinker 1.5s linear infinite; }
+    @keyframes blinker { 50% { opacity: 0; } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .content-wrapper { width: 100%; padding-bottom: 40px; animation: fadeIn 2s ease; flex: 1; }
+    
+    .header-container { padding: 60px 5% 15px 5%; text-align: left; position: relative; }
+    .main-title { 
+      font-family: 'Roboto', sans-serif; 
+      font-size: clamp(1.5rem, 5vw, 3rem); 
+      font-weight: 700; color: #fff; text-transform: uppercase; 
+      margin: 0; letter-spacing: -1px; 
+    }
+
+    .hero-strip {
+      text-decoration: none; position: relative; width: 100%; height: 25vh;
+      background-color: transparent; border-top: 1px solid rgba(255,255,255,0.05); 
+      border-bottom: 1px solid rgba(255,255,255,0.05); overflow: hidden; 
+      display: flex; align-items: center; margin-bottom: 10px;
+    }
+
+    .marquee-content {
+      display: flex; align-items: center; width: max-content; height: 80%;
+      animation: scroll 35s linear infinite; gap: 17px; padding-right: 32px; 
+    }
+
+    @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    .media-frame { height: 100%; object-fit: cover; border-radius: 4px; flex-shrink: 0; }
+    .photo-frame { aspect-ratio: 16 / 9; }
+    .video-frame { height: 100% !important; width: 30%; max-width: 30%; aspect-ratio: 16 / 9; object-fit: contain; flex-shrink: 1; }
+
+    .hero-strip::after {
+      content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0); color: rgba(255, 255, 255, 0);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; letter-spacing: 4px; text-transform: uppercase;
+      font-family: 'Roboto Mono', monospace; transition: all 0.5s ease-in-out; z-index: 5;
+    }
+    .hero-strip:hover::after { background-color: rgba(0, 0, 0, 0.7); color: rgba(255, 255, 255, 1); backdrop-filter: blur(5px); }
+    .hero-strip:hover .marquee-content { animation-play-state: paused; }
+
+    .strip-photography::after { content: "CLICK TO SEE MORE"; }
+    .strip-montage::after { content: "MY BAND MAKAO | WATCH ON YOUTUBE"; }
+
+    .graphic-container {
+      display: flex; justify-content: flex-start; align-items: flex-start;
+      padding: 0 5% 80px 5%; gap: 30px;
+    }
+
+    .art-slot {
+      position: relative; background-color: #080808; border: 1px solid rgba(255, 255, 255, 0.1);
+      overflow: hidden; transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      max-height: 50vh; aspect-ratio: 297 / 420; flex: 0 1 300px; 
+    }
+
+    .art-slot img { width: 100%; height: 100%; object-fit: cover; transition: all 0.8s ease; }
+    .art-slot:hover { border-color: #fff; z-index: 10; }
+    .art-meta { position: absolute; bottom: 0; right: 0; font-size: 9px; letter-spacing: 2px; color: #fff; text-transform: uppercase; z-index: 2; background: #000; padding: 4px 8px; }
+
+    #art-overlay {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background-color: rgba(0, 0, 0, 0.9); backdrop-filter: blur(8px);
+        z-index: 2000; display: none; justify-content: center; align-items: center;
+        animation: fadeIn 0.4s ease;
+    }
+    .overlay-content { display: flex; width: 90vw; height: 85vh; max-width: 1300px; gap: 5%; position: relative; align-items: center; }
+    .overlay-image-container { flex: 1.5; height: 100%; display: flex; justify-content: flex-end; align-items: center; }
+    .overlay-image-container img { max-height: 100%; max-width: 100%; object-fit: contain; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 0 40px rgba(0,0,0,0.8); }
+    .overlay-info { flex: 1; color: #fff; text-align: left; max-width: 400px; }
+    .overlay-info h2 { font-family: 'Roboto', sans-serif; font-size: 28px; letter-spacing: -1px; margin-bottom: 20px; text-transform: uppercase; border-bottom: 1px solid #333; padding-bottom: 10px; }
+    .overlay-info p { font-size: 14px; line-height: 1.8; color: #999; }
+    .close-overlay { position: fixed; top: 30px; right: 40px; font-size: 35px; color: #fff; cursor: pointer; z-index: 2001; transition: transform 0.3s, color 0.3s; }
+    .close-overlay:hover { transform: rotate(90deg); color: #ff0000; }
+
+    .rss-link-gallery { position: absolute; right: 5%; top: 65px; opacity: 0.6; transition: all 0.3s ease; display: flex; align-items: center; }
+    .rss-link-gallery:hover { opacity: 1; transform: scale(1.2); }
+
+    .click-hint { font-size: 14px; color: #6d6d6d; text-transform: uppercase; margin-left: 15px; font-weight: 300; }
+
+    footer { width: 100%; text-align: center; font-size: 11px; color: #444; padding: 30px 0; font-family: monospace; }
+
+    @media (max-width: 768px) {
+      .hero-strip { height: 15vh; }
+      .graphic-container { flex-direction: row; gap: 15px; padding-bottom: 40px; }
+      .art-slot { flex: 1; max-width: 45%; }
+      
+      .overlay-content { flex-direction: column; justify-content: flex-start; padding-top: 60px; height: auto; }
+      .overlay-image-container { flex: none; width: 100%; height: 60vh; justify-content: center; }
+      .overlay-info { flex: none; width: 100%; text-align: center; padding-top: 20px; }
+      .close-overlay { top: 15px; right: 20px; }
+      .rss-link-gallery { top: 55px; }
+      .click-hint { display: block; margin-left: 0; margin-top: 5px; }
+    }
+    
+    html, body {
+      scrollbar-width: thin;
+      scrollbar-color: #333 #000;
+    }
+
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #000; }
+    ::-webkit-scrollbar-thumb { background-color: #333; border-radius: 5px; border: 2px solid #000; }
+    
+    .full-width-container-video video {
+      width: 100%;
+      display: block;
+      object-fit: cover;
+      overflow: hidden;
+      aspect-ratio: 12 / 1
+    }
+  </style>
+</head>
+<body>
+
+<div id="art-overlay">
+    <span class="close-overlay" onclick="closeArt()">&times;</span>
+    <div class="overlay-content">
+        <div class="overlay-image-container">
+            <img id="overlay-img" src="" alt="Zoomed art">
+        </div>
+        <div class="overlay-info">
+            <h2 id="overlay-title">POSTER TITLE</h2>
+            <p id="overlay-desc">Informacje o projekcie...</p>
+        </div>
+    </div>
+</div>
+  
+<div id="preloader">
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <img src="images/logo/logo-intro-mb.jpg" alt="Logo" style="width: 140px; opacity: 0; animation: fadeIn 1.5s ease forwards;">
+    <div class="loader-container">
+      <div id="bar" class="loader-bar"></div>
+    </div>
+    <div class="loading-text blink">Loading</div>
+  </div>
+</div>
+
+<div class="full-width-container-video">
+  <video src="../images/projects/saw/saw.mp4" autoplay loop muted playsinline></video>
+</div>
+  
+<div class="content-wrapper">
+  <header class="header-container">
+    <h1 class="main-title">PHOTOGRAPHY</h1>
+    <a href="rss.xml" class="rss-link-gallery" title="RSS Feed">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 11a9 9 0 0 1 9 9"></path>
+        <path d="M4 4a16 16 0 0 1 16 16"></path>
+        <circle cx="5" cy="19" r="1"></circle>
+      </svg>
+    </a>
+  </header>
+  
+  <a href="works.html" class="hero-strip strip-photography">
+    <div class="marquee-content">
+      <img src="images/website/gallery1.webp" class="media-frame photo-frame">
+      <img src="images/website/gallery2.webp" class="media-frame photo-frame">
+      <img src="images/website/gallery3.webp" class="media-frame photo-frame">
+      <img src="images/website/gallery4.webp" class="media-frame photo-frame">
+      <img src="images/website/gallery5.webp" class="media-frame photo-frame">
+      <img src="images/website/gallery6.webp" class="media-frame photo-frame">
+      <img src="images/website/gallery7.webp" class="media-frame photo-frame">
+      <img src="images/website/gallery8.webp" class="media-frame photo-frame">
+      <img src="images/website/gallery1.webp" class="media-frame photo-frame">
+      <img src="images/website/gallery2.webp" class="media-frame photo-frame">
+      <img src="images/website/gallery3.webp" class="media-frame photo-frame">
+      <img src="images/website/gallery4.webp" class="media-frame photo-frame">
+      <img src="images/website/gallery5.webp" class="media-frame photo-frame">
+      <img src="images/website/gallery6.webp" class="media-frame photo-frame">
+      <img src="images/website/gallery7.webp" class="media-frame photo-frame">
+      <img src="images/website/gallery8.webp" class="media-frame photo-frame">
+    </div>
+  </a>
+
+  <header class="header-container">
+    <h1 class="main-title">
+      GRAPHIC ARTS <span class="click-hint">// click to see more</span>
+    </h1>
+  </header>
+
+  <div class="graphic-container">
+    <div class="art-slot" style="cursor: pointer;" onclick="openArt('images/website/art1.webp', 'POSTER #01', 'Music increases the risk of hearing loss. Concert poster. Inspired by cigarette pack design.')">
+      <div class="art-meta">POSTER #01</div>
+      <img src="images/website/art1.webp" alt="Art 1">
+    </div>
+    <div class="art-slot" style="cursor: pointer;" onclick="openArt('images/website/art2.webp', 'POSTER #02', 'Layout design: Kazimierz Walczak • Concert poster. Hand-drawn, classic technique.')">
+      <div class="art-meta">POSTER #02</div>
+      <img src="images/website/art2.webp" alt="Art 2">
+    </div>
+    
+    <div class="art-slot" style="cursor: pointer;" onclick="openArt('images/website/art3.webp', 'POSTER #03', 'Layout design: Kazimierz Walczak • Concert poster. Digital painting.')">
+      <div class="art-meta">POSTER #03</div>
+      <img src="images/website/art3.webp" alt="Art 3">
+    </div>
+  </div>
+  
+  <header class="header-container">
+    <h1 class="main-title">MONTAGE</h1>
+  </header>
+  
+  <a href="https://www.youtube.com/@makaoband" target="_blank" class="hero-strip strip-montage">
+    <div class="static-content" style="display: flex; align-items: center; justify-content: center; width: 100%; height: 80%; gap: 2%;">
+      <video class="media-frame video-frame" autoplay loop muted playsinline><source src="images/website/makao2.mp4" type="video/mp4"></video>
+      <video class="media-frame video-frame" autoplay loop muted playsinline><source src="images/website/makao1.mp4" type="video/mp4"></video>
+      <video class="media-frame video-frame" autoplay loop muted playsinline><source src="images/website/makao3.mp4" type="video/mp4"></video>
+    </div>
+  </a>
+</div>
+
+<footer>© 2026 maja braumberger. all rights reserved.</footer>
+<navigation-menu></navigation-menu>
+<script>
+  function openArt(imgSrc, title, desc) {
+    const overlay = document.getElementById('art-overlay');
+    const overlayImg = document.getElementById('overlay-img');
+    const overlayTitle = document.getElementById('overlay-title');
+    const overlayDesc = document.getElementById('overlay-desc');
+
+    overlayImg.src = imgSrc;
+    overlayTitle.innerText = title;
+    overlayDesc.innerText = desc;
+
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden'; 
+  }
+
+  function closeArt() {
+    const overlay = document.getElementById('art-overlay');
+    overlay.style.display = 'none';
+    document.body.style.overflow = 'auto'; 
+  }
+
+  document.getElementById('art-overlay').addEventListener('click', function(e) {
+    if (e.target === this) closeArt();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === "Escape") closeArt();
+  });
+
+  const mediaElements = document.querySelectorAll('img, video');
+  const bar = document.getElementById('bar');
+  const preloader = document.getElementById('preloader');
+  let loadedCount = 0;
+  const totalMedia = mediaElements.length;
+
+  function hidePreloader() {
+    if (preloader && !preloader.classList.contains('hidden')) {
+      if (bar) bar.style.width = '100%';
+      setTimeout(() => preloader.classList.add('hidden'), 500);
+    }
+  }
+
+  function updateProgress() {
+    loadedCount++;
+    if (totalMedia > 0) {
+      const percentage = (loadedCount / totalMedia) * 100;
+      if (bar) bar.style.width = percentage + '%';
+      if (loadedCount >= totalMedia) hidePreloader();
+    }
+  }
+
+  if (totalMedia === 0) {
+    hidePreloader();
+  } else {
+    mediaElements.forEach(media => {
+      if (media.tagName.toLowerCase() === 'img') {
+        if (media.complete) updateProgress();
+        else {
+          media.addEventListener('load', updateProgress);
+          media.addEventListener('error', updateProgress);
+        }
+      } else if (media.tagName.toLowerCase() === 'video') {
+        if (media.readyState >= 3) updateProgress();
+        else {
+          media.addEventListener('canplaythrough', updateProgress);
+          media.addEventListener('error', updateProgress);
+        }
+      }
+    });
+  }
+
+  window.addEventListener('load', hidePreloader);
+  setTimeout(hidePreloader, 4000); 
+</script>
+</body>
+</html>

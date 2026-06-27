@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>about | maja braumberger</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.png" type="image/png" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+
+  <script src="navigation.js" defer></script>
+
+  <style>
+    html { scrollbar-gutter: stable; overflow-y: scroll; }
+
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Roboto Mono', monospace;
+      background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.92)), 
+                  url('ab.webp');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed; 
+      background-color: #000; 
+      color: #aaa;
+      padding-top: 15vh;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+  
+    .about-container {
+      width: 100%;
+      max-width: 400px; 
+      margin: 60px auto;
+      text-align: center;
+    }
+
+    .about-container h1 {
+      letter-spacing: 0.6em;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 20px;
+
+      text-transform: uppercase;
+      font-weight: 300;
+      margin-bottom: 4vh;
+      text-shadow: 0 0 10px rgba(0,0,0,0.8);
+    }
+
+    .about-container p {
+      line-height: 2.0;
+      font-size: 17px;
+      color: #eee;
+      margin: 0;
+      text-shadow: 0 0 10px rgba(0,0,0,0.8);
+    }
+
+    .section-label {
+      display: block;
+      margin: 6vh 0 2vh 0;
+      letter-spacing: 0.4em;
+      font-size: 14px;
+      color: #888;
+      text-transform: uppercase;
+      border-bottom: 1px solid #222; 
+      padding-bottom: 10px;
+    }
+
+    .exhibition-link {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      border-bottom: 1px solid #444;
+      transition: 0.3s;
+    }
+    .exhibition-link:hover {
+      border-bottom: 1px solid #fff;
+    }
+
+    .rip-image {
+      width: 20vh;
+      margin: 4vh auto;
+      display: block;
+    }
+
+    .entry {
+      display: block;
+      margin-bottom: 15px;
+      font-size: 14px;
+      color: #999;
+      line-height: 1.6;
+    }
+
+    footer { width: 90%; max-width: 800px; text-align: center; font-size: 12px; color: #444; margin: 64px auto 32px; font-family: monospace; }
+
+    @media (max-width: 768px) {
+      .about-container p { font-size: 15px; }
+    }
+    
+    html, body {
+      scrollbar-width: thin;
+      scrollbar-color: #333 #000;
+    }
+
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #000; }
+    ::-webkit-scrollbar-thumb { background-color: #333; border-radius: 5px; border: 2px solid #000; }
+  </style>
+</head>
+  
+<body>
+      <navigation-menu></navigation-menu>
+
+<div class="about-container">
+  <h1>&nbsp;About</h1>
+  
+  <p>
+    Jack of all trades, master of none.<br><br>
+    I'm a screwdriverist in 
+    <a href="https://www.instagram.com/makaoband" target="_blank" class="exhibition-link">Makao</a> 
+    [Cracow, PL]. I shoot photos, write music & various texts, draw since childhood, try to make films <br>
+    and sense of all these things. 
+    <br><br>
+    ...and I enjoy playing around with makeshift HTML code.
+  </p>
+
+  <img src="rip2.webp" alt="RIP" class="rip-image">
+
+  <span class="section-label">EXHIBITIONS</span>
+  
+  <span class="entry">[2026] ???</span>
+  
+  <span class="entry">
+    [2024] "<a href="works/survivalmachines.html" class="exhibition-link">survival machines</a>" 
+    | first personal exhibition | Cracow, PL
+  </span>
+  
+  <span class="entry">
+    [2024] "<a href="works/backtodayone.html" class="exhibition-link">back to day one</a>" 
+    | Group exhibition of Masterclass ImageWorks | Cracow, PL
+  </span>
+  
+  <span class="section-label">PHOTOGRAPHIC EDUCATION</span>
+  <span class="entry">[2024] Masterclass Mentorship Program by ImageWorks Anita Andrzejewska & Andrzej Pilichowski-Ragno</span>
+  <span class="entry">[2023] Photographic Studies, Cracow University of Technology</span>
+</div>
+
+<footer>© 2026 maja braumberger. all rights reserved.</footer>
+  
+
+</body>
+</html>
