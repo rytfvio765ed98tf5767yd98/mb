@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="../favicon.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0; padding: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: 'Roboto Mono', monospace;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .poem-container {
+      text-align: center;
+      max-width: 600px;
+      padding: 20px;
+    }
+
+    .title {
+      font-size: 13px;
+      letter-spacing: 5px;
+     
+      color: #333;
+      margin-bottom: 60px;
+      display: block;
+      animation: fadeInTitle 2s forwards;
+    }
+
+    @keyframes fadeInTitle { from { opacity: 0; } to { opacity: 1; } }
+
+    .line {
+      display: block;
+      font-size: 14px;
+      line-height: 2.5;
+      font-weight: 300;
+      letter-spacing: 1px;
+      opacity: 0;
+      transform: translateY(5px);
+      animation: fadeInUp 1.2s forwards;
+    }
+
+   
+    .line:nth-child(2) { animation-delay: 1.5s; }
+    .line:nth-child(3) { animation-delay: 3.0s; }
+    .line:nth-child(4) { animation-delay: 4.5s; }
+    .line:nth-child(5) { animation-delay: 6.0s; }
+    .line:nth-child(6) { animation-delay: 7.5s; }
+    .line:nth-child(7) { animation-delay: 9.0s; }
+    .line:nth-child(8) { animation-delay: 10.5s; }
+    .line:nth-child(9) { animation-delay: 12.0s; }
+    
+ 
+    .line:nth-child(10) { 
+      animation-delay: 13.5s; 
+      font-size: 16px; 
+      color: #666; 
+    }
+
+    .line:nth-child(12) { 
+      animation-delay: 15.0s; 
+      font-size: 12px; 
+      letter-spacing: 5px; 
+      color: #737373; 
+    }
+
+    @keyframes fadeInUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .back-nav {
+      position: fixed;
+      bottom: 40px;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-decoration: none;
+      color: #636363;
+      transition: 1s;
+      text-transform: uppercase;
+      opacity: 0;
+      animation: fadeInTitle 2s forwards;
+      animation-delay: 20s;
+    }
+
+    .back-nav:hover { color: rgba(85, 85, 85, 0.63); }
+
+  </style>
+</head>
+<body>
+
+  <div class="poem-container">
+    <span class="title">reverie</span>
+    
+    <span class="line">is there more to life</span>
+    <span class="line">than a mere visual</span>
+    <span class="line">of a passing knife</span>
+    <span class="line">flying by, unlivable</span>
+    <span class="line">glimpse of time</span>
+    <span class="line">you know you've lived through</span>
+    <span class="line">when you hear steel chime</span>
+    <span class="line">but your fear only grew</span>
+    <span class="line">more</span>
+    <br>
+    <span class="line">what for?</span>
+  </div>
+
+  <a href="../writings.html" class="back-nav">back to writings</a>
+
+</body>
+</html>

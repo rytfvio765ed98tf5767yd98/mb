@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>inside of a locked room</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100dvh;
+      background-color: #000;
+      color: #cecece;
+      font-family: monospace;
+      overflow-x: hidden;
+    }
+
+
+    body {
+      display: flex;
+      justify-content: center; 
+      align-items: center;    
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('sm3.webp');
+      background-size: cover;
+      background-position: center;
+      filter: blur(3px) brightness(0.3);
+      z-index: 0;
+      animation: flicker 5s infinite;
+    }
+
+    @keyframes flicker {
+      0%   { filter: blur(3px) brightness(0.3); }
+      5%   { filter: blur(3px) brightness(0.32); }
+      10%  { filter: blur(3px) brightness(0.28); }
+      15%  { filter: blur(2px) brightness(2.4); }
+      20%  { filter: blur(3px) brightness(0.31); }
+      100% { filter: blur(3px) brightness(0.3); }
+    }
+
+    .text {
+      padding: 20px;
+      max-width: 800px;
+      line-height: 1.7;
+      z-index: 1;
+      position: relative;
+      mix-blend-mode: difference;
+      text-align: center; 
+    }
+
+    html, body {
+      scrollbar-width: thin;
+      scrollbar-color: #333 #000;
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #000;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #333;
+      border-radius: 5px;
+      border: 2px solid #000;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background-color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="text">
+    i'm lying here, lifeless<br>
+    in the corner of my cell,<br>
+    rotting in the mess<br>
+    i've made and known so well.<br>
+    <br>
+    0ne time a storm came, one of many,<br>
+    along with the mind getting bleak and weary.<br>
+    i witnessed a thunder pierce right through the window -<br>
+    the wind rushed inside and whispered: "Flee, flee to the meadow!"<br>
+    <br>
+    i crawled outside through the broken glass,<br>
+    in the middle of the field I fell and let the hours pass.<br>
+    Remains of the transparent wall tore up all the closed cuts,<br>
+    and through them, the acid rain poured inside, dissolving my guts.<br>
+    <br>
+    And i waited for the goddamn Sun,<br>
+    for it to reveal my overcoming; that i won.<br>
+    Then i stood up, nearly blind and sore,<br>
+    only to realise there's no one around, anymore.<br>
+    <br>
+    The triumph was never meant to last long;<br>
+    i got striked by the wind that came back so strong.<br>
+    Knocked out, something dragged me back to the locked room,<br>
+    Then woke up to a familiar, filthy odor of doom.<br>
+    <br>
+    Now i'm one with the darkness<br>
+    in the corner of my cell,<br>
+    intertwined with the mess<br>
+    i've made and known so well.<br>
+    <br>
+    mb
+  </div>
+</body>
+</html>
