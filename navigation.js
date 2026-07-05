@@ -2,6 +2,8 @@ class NavigationMenu extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
         .wide-strip {
           position: absolute;
           top: 0; left: 0; width: 100%; height: 6vh;
@@ -14,13 +16,13 @@ class NavigationMenu extends HTMLElement {
         .logo-island a { display: block; height: 111%; }
         .logo-island img { height: 100%; filter: grayscale(1) brightness(2); }
         
-        .tile { flex: 1; display: flex; justify-content: center; align-items: center; color: white; text-decoration: none; font-family: 'Roboto Mono', monospace; font-size: 1.3vh; letter-spacing: 2px; transition: background-color 0.4s; border-right: 1px solid rgba(255, 255, 255, 0.1); mix-blend-mode: difference; }
+        .tile { flex: 1; display: flex; justify-content: center; align-items: center; color: white; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 1.3vh; letter-spacing: 2px; transition: background-color 0.4s; border-right: 1px solid rgba(255, 255, 255, 0.1); mix-blend-mode: difference; }
         .tile:hover { background-color: white; color: black; }
 
         .secondary-anchors { position: absolute; right: 0; top: 100%; width: 33.33%; display: flex; flex-direction: column; align-items: center; pointer-events: none; }
         .guestbook-tab { pointer-events: auto; text-decoration: none; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); border-top: none; padding: 10px 20px; width: fit-content; min-width: 140px; border-radius: 0; mix-blend-mode: difference; transition: background 0.3s, transform 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; }
         .guestbook-tab:hover { background: rgba(255, 255, 255, 0.15); transform: translateY(2px); }
-        .guestbook-tab .label-part { font-family: 'Roboto Mono', monospace; font-size: 11px; letter-spacing: 2px; color: white; text-transform: uppercase; opacity: 0.8; }
+        .guestbook-tab .label-part { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; color: white; text-transform: uppercase; opacity: 0.8; }
 
         .mobile-menu-checkbox, .mobile-top-bar, .mobile-nav-overlay { display: none; }
 
@@ -30,9 +32,9 @@ class NavigationMenu extends HTMLElement {
           .mobile-logo-left { height: 100%; display: flex; align-items: center; justify-content: center; background-color: #000; padding: 0 20px; }
           .mobile-logo-left img { height: 80px; filter: grayscale(1) brightness(2); }
           .mobile-actions-right { display: flex; align-items: stretch; }
-          .sitemap-btn { display: flex; align-items: center; color: rgba(255, 255, 255, 0.85); text-decoration: none; font-family: 'Roboto Mono', monospace; font-size: 12px; padding: 0 16px; background-color: #000; border-left: 1px solid rgba(255, 255, 255, 0.1); }
+          .sitemap-btn { display: flex; align-items: center; color: rgba(255, 255, 255, 0.85); text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 0 16px; background-color: #000; border-left: 1px solid rgba(255, 255, 255, 0.1); }
           .hamburger-btn { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; height: 100%; padding: 0 20px; background-color: #000; border-left: 1px solid rgba(255, 255, 255, 0.1); }
-          .hamburger-text-left, .hamburger-text-right { color: #fff; font-family: 'Roboto Mono', monospace; font-size: 16px; font-weight: 700; transition: 0.25s; }
+          .hamburger-text-left, .hamburger-text-right { color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 700; transition: 0.25s; }
           .hamburger-icon { width: 14px; height: 12px; position: relative; }
           .hamburger-icon span { display: block; width: 100%; height: 2px; background: white; position: absolute; transition: 0.3s; }
           .hamburger-icon span:nth-child(1) { top: 0px; } .hamburger-icon span:nth-child(2) { top: 5px; } .hamburger-icon span:nth-child(3) { top: 10px; }
@@ -50,15 +52,15 @@ class NavigationMenu extends HTMLElement {
           .mobile-menu-checkbox:checked ~ .mobile-nav-overlay { opacity: 1; pointer-events: auto; }
           
           .mobile-primary-links { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%; }
-          .mobile-primary-links a { color: #fff; text-decoration: none; font-family: 'Roboto Mono', monospace; font-size: 18px; opacity: 0.7; }
+          .mobile-primary-links a { color: #fff; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 18px; opacity: 0.7; }
           .nav-ascii { color: #333; font-size: 8px; margin: 2px 0; }
           
-          .mobile-guestbook { margin-top: 25px; padding: 10px 20px; border: 1px solid rgba(255, 255, 255, 0.23); color: white; font-family: 'Roboto Mono'; text-decoration: none; font-size: 14px; }
-          .mobile-bonus { margin-top: 25px; font-family: 'Roboto Mono'; font-size: 12px; color: #949494; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; margin-bottom: 40px; }
+          .mobile-guestbook { margin-top: 25px; padding: 10px 20px; border: 1px solid rgba(255, 255, 255, 0.23); color: white; font-family: 'JetBrains Mono', monospace; text-decoration: none; font-size: 14px; }
+          .mobile-bonus { margin-top: 25px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #949494; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; margin-bottom: 40px; }
         }
       </style>
 
-     <div class="wide-strip">
+      <div class="wide-strip">
         <div class="nav-group">
           <a href="/writings.html" class="tile">WRITINGS</a>
           <a href="/works.html" class="tile">WORKS</a>
