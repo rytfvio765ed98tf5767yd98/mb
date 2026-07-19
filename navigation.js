@@ -16,8 +16,22 @@ class NavigationMenu extends HTMLElement {
         .logo-island a { display: block; height: 111%; }
         .logo-island img { height: 100%; filter: grayscale(1) brightness(2); }
         
-        .tile { flex: 1; display: flex; justify-content: center; align-items: center; color: white; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 1.3vh; letter-spacing: 2px; transition: background-color 0.4s; border-right: 1px solid rgba(255, 255, 255, 0.1); mix-blend-mode: difference; }
-        .tile:hover { background-color: white; color: black; }
+        
+        .tile { 
+          flex: 1; display: flex; justify-content: center; align-items: center; color: white; 
+          text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 1.3vh; 
+          letter-spacing: 2px; border-right: 1px solid rgba(255, 255, 255, 0.1); 
+          position: relative; overflow: hidden; transition: color 0.3s;
+        }
+        
+        .tile::before {
+          content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.9), transparent);
+          opacity: 0; transition: opacity 0.3s ease;
+        }
+        
+        .tile:hover::before { opacity: 1; }
+        .tile:hover { color: #fff; }
 
         .secondary-anchors { position: absolute; right: 0; top: 100%; width: 33.33%; display: flex; flex-direction: column; align-items: center; pointer-events: none; }
         .guestbook-tab { pointer-events: auto; text-decoration: none; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); border-top: none; padding: 10px 20px; width: fit-content; min-width: 140px; border-radius: 0; mix-blend-mode: difference; transition: background 0.3s, transform 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; }
