@@ -43,8 +43,23 @@
 
     #articles { width: 90%; max-width: 800px; margin: 0 auto; }
     .article-link { display: block; text-decoration: none; color: inherit; margin-bottom: 15px; }
-    .article-item { padding: 20px; background-color: rgba(17, 17, 17, 0.4); border-left: 1px solid #222; transition: all 0.3s ease; }
-    
+ .article-item { 
+  padding: 20px; 
+  background-color: #050505;
+  border-left: 1px solid #222; 
+  transition: all 0.5s ease; 
+  
+  background-image: 
+    linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.2) 60%, rgba(0,0,0,0) 100%);
+  background-size:auto;
+  background-position: center;
+}
+
+.article-link:hover .article-item { 
+  background-color: #0a0a0a; 
+  border-left: 1px solid #fff; 
+
+} 
 .article-link:hover .article-item { 
   background-color: #0a0a0a; 
   border-left: 1px solid #fff; 
@@ -89,7 +104,7 @@
 
 
   <a href="writings/20steps.html" class="article-link">
-    <div class="article-item" data-category="journal entry">
+<div class="article-item" data-category="journal" style="background-image: linear-gradient(to right, rgba(0,0,0,1) 50%, rgba(0,0,0,0.2) 95%, rgba(0,0,0,0) 100%), url('   ');">
       <h3>20 steps</h3>
       <div class="article-meta-row"><span>09.09.2025</span><span class="tag">journal</span></div>
       <div class="article-description">now it's something</div>
