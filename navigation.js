@@ -23,6 +23,14 @@ class NavigationMenu extends HTMLElement {
           letter-spacing: 2px; border-right: 1px solid rgba(255, 255, 255, 0.1); 
           position: relative; overflow: hidden; transition: color 0.3s;
         }
+
+        .tile img.sitemap-icon {
+          height: 3vh;
+          width: auto;
+          margin-right: 16px;
+          vertical-align: middle;
+          filter: grayscale(1) brightness(2);
+        }
         
         .tile::before {
           content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
@@ -47,6 +55,15 @@ class NavigationMenu extends HTMLElement {
           .mobile-logo-left img { height: 80px; filter: grayscale(1) brightness(2); }
           .mobile-actions-right { display: flex; align-items: stretch; }
           .sitemap-btn { display: flex; align-items: center; color: rgba(255, 255, 255, 0.85); text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 12px; padding: 0 16px; background-color: #000; border-left: 1px solid rgba(255, 255, 255, 0.1); }
+          
+          .sitemap-btn img.sitemap-icon {
+            height: 30px;
+            width: auto;
+            margin-right: 6px;
+            vertical-align: middle;
+            filter: grayscale(1) brightness(2);
+          }
+
           .hamburger-btn { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; height: 100%; padding: 0 20px; background-color: #000; border-left: 1px solid rgba(255, 255, 255, 0.1); }
           .hamburger-text-left, .hamburger-text-right { color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 700; transition: 0.25s; }
           .hamburger-icon { width: 14px; height: 12px; position: relative; }
@@ -75,16 +92,18 @@ class NavigationMenu extends HTMLElement {
       </style>
 
       <div class="wide-strip">
+          <div class="logo-island"><a href="/index.html"><img src="/images/logo/logo-mb.jpg" alt="MB"></a></div>
+      
+    
         <div class="nav-group">
-          <a href="/writings.html" class="tile">WRITINGS</a>
           <a href="/works.html" class="tile">WORKS</a>
-          <a href="/gallery.html" class="tile">GALLERY</a>
+          <a href="/writings.html" class="tile">WRITINGS</a>
+
         </div>
-        <div class="logo-island"><a href="/index.html"><img src="/images/logo/logo-mb.jpg" alt="MB"></a></div>
-        <div class="nav-group">
+          <div class="nav-group">
           <a href="/about.html" class="tile">ABOUT</a>
           <a href="/contact.html" class="tile">CONTACT</a>
-          <a href="/sitemap.html" class="tile">├─ sitemap</a>
+          <a href="/sitemap.html" class="tile"><img src="rip3.webp" alt="" class="sitemap-icon">sitemap</a>
           <div class="secondary-anchors">
             <a href="/directory.html" class="guestbook-tab">
               <span class="label-part">WEB DIRECTORY</span>
@@ -98,7 +117,7 @@ class NavigationMenu extends HTMLElement {
         <div class="mobile-logo-left"><a href="/index.html"><img src="/images/logo/logo-mb.jpg" alt="MB"></a></div>
         <div style="flex: 1;"></div>
         <div class="mobile-actions-right">
-          <a href="/sitemap.html" class="sitemap-btn">├─ sitemap</a>
+          <a href="/sitemap.html" class="sitemap-btn"><img src="rip3.webp" alt="" class="sitemap-icon">sitemap</a>
           <label for="menu-toggle" class="hamburger-btn">
             <span class="hamburger-text-left">M</span>
             <div class="hamburger-icon"><span></span><span></span><span></span></div>
@@ -109,8 +128,6 @@ class NavigationMenu extends HTMLElement {
 
       <div class="mobile-nav-overlay">
         <nav class="mobile-primary-links">
-          <a href="/gallery.html">GALLERY</a>
-          <span class="nav-ascii">╌ ╌ ╌</span>
           <a href="/works.html">WORKS</a>
           <span class="nav-ascii">╌ ╌ ╌</span>
           <a href="/writings.html">WRITINGS</a>
