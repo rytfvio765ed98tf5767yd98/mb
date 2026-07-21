@@ -29,7 +29,7 @@
 
     .filter-links {
       width: 90%; max-width: 800px; margin: 32px auto 20px;
-      display: flex; justify-content: center; align-items: center; gap: 15px; font-size: 18px;
+      display: flex; justify-content: center; align-items: center; gap: 15px; font-size: 16px;
     }
     .filter-links a { color: #555; text-decoration: none; transition: 0.3s; font-weight: bold; }
     .filter-links a:hover, .filter-links a.active-filter { color: #fff; }
@@ -86,15 +86,15 @@
 <body>
 
 <div class="filter-links">
-  <a href="#" class="active-filter" onclick="filterArticles('all', this); return false;">all</a>
+  <a href="#" class="active-filter" onclick="filterArticles('all', this); return false;">ALL</a>
+  <span class="dot">||</span>
+  <a href="#" onclick="filterArticles('posts', this); return false;">POSTS</a>
   <span class="dot">•</span>
-  <a href="#" onclick="filterArticles('posts', this); return false;">posts</a>
+  <a href="#" onclick="filterArticles('prose', this); return false;">PROSE</a>
   <span class="dot">•</span>
-  <a href="#" onclick="filterArticles('prose', this); return false;">prose</a>
+  <a href="#" onclick="filterArticles('poem', this); return false;">POEMS</a>
   <span class="dot">•</span>
-  <a href="#" onclick="filterArticles('poem', this); return false;">poems</a>
-  <span class="dot">•</span>
-  <a href="#" onclick="filterArticles('journal entry', this); return false;">journal</a>
+  <a href="#" onclick="filterArticles('journal entry', this); return false;">JOURNAL</a>
 </div>
 
 <div id="articles">
