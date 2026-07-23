@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>first half of 2026 in posters | maja braumberger</title>
+  <link rel="icon" href="../favicon.png" type="image/png" />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
+
+  <script src="../navigation.js" defer></script>
+  
+  <style>
+    html { scrollbar-gutter: stable; overflow-y: scroll; }
+    body {
+      margin: 0; padding: 0;
+      background-color: #000;
+      color: #ddd;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      font-family: 'JetBrains Mono', monospace;
+      overflow-x: hidden;
+      padding-top: 10vh;
+    }
+
+    #preloader { 
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+      background-color: black; display: flex; justify-content: center; align-items: center; 
+      z-index: 9999; transition: opacity 0.8s ease, visibility 0.8s; 
+    }
+    #preloader.hidden { opacity: 0; visibility: hidden; }
+    .loader-container { width: 90vw; max-width: 600px; height: 2px; background-color: rgba(255, 255, 255, 0.1); margin-top: 40px; position: relative; }
+    .loader-bar { width: 0%; height: 2px; background-color: white; transition: width 0.3s ease-out; }
+    .loading-text { margin-top: 15px; font-size: 10px; letter-spacing: 4px; color: #444; text-transform: uppercase; }
+    .blink { animation: blinker 1.5s linear infinite; }
+    @keyframes blinker { 50% { opacity: 0; } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .content-wrapper { 
+      width: 90%; max-width: 1400px; margin: 0 auto; flex: 1; padding-bottom: 60px; animation: fadeIn 1.5s ease;
+    }
+
+    .project-header { margin: 60px 0 50px; text-align: left; border-bottom: 1px solid #1a1a1a; padding-bottom: 30px; }
+    .project-header h1 { font-size: 36px; font-weight: 500; color: #fff; margin: 0; text-transform: lowercase; letter-spacing: 1px; }
+    .project-header h5 { font-size: 15px; font-weight: normal; color: #ccc; margin: 15px 0 0 0; line-height: 1.6; }
+    .project-meta { font-size: 12px; letter-spacing: 1px; color: #999; text-transform: none; margin-top: 25px; line-height: 1.8; max-width: 800px; text-transform: uppercase; }
+    
+    /* Added styles for highlighted name and custom link colors */
+    .project-meta .highlight { color: #fff; font-weight: bold; }
+    .project-meta a { color: #fff; text-decoration: underline; text-underline-offset: 4px; transition: 0.3s; }
+    .project-meta a:hover { color: #888; }
+
+    .poster-showcase {
+      display: flex;
+      flex-direction: column;
+      gap: 120px;
+      margin-top: 60px;
+    }
+
+    .poster-item {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .poster-item:nth-child(even) {
+      direction: rtl;
+    }
+    .poster-item:nth-child(even) > * {
+      direction: ltr;
+    }
+
+    .poster-image-wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .poster-image-wrap img {
+      width: 100%;
+      height: auto;
+      max-height: 80vh;
+      object-fit: contain;
+      display: block;
+    }
+
+    .poster-info h3 {
+      font-size: 26px;
+      color: #fff;
+      margin: 0 0 20px 0;
+      letter-spacing: 0.5px;
+    }
+
+    .poster-info p {
+      font-size: 14px;
+      line-height: 2;
+      color: #ccc;
+      margin: 0;
+    }
+
+    .contact-banner {
+      margin: 120px 0 40px;
+      padding: 50px;
+      background-color: #111111;
+      text-align: center;
+    }
+
+    .contact-banner h2 {
+      font-size: 22px;
+      font-weight: 400;
+      color: #fff;
+      margin: 0;
+      text-transform: lowercase;
+      letter-spacing: 1px;
+    }
+
+    .contact-banner a {
+      color: #fff;
+      text-decoration: underline;
+      text-underline-offset: 6px;
+      transition: 0.3s;
+    }
+
+    .contact-banner a:hover {
+      color: #888;
+    }
+
+    .back-nav { text-align: center; margin: 60px 0; }
+    .back-btn { display: inline-block; text-decoration: none; color: #ccc; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border: 1px solid #444; padding: 14px 28px; transition: 0.3s; }
+    .back-btn:hover { color: #fff; border-color: #888; background: #080808; }
+
+    footer { width: 100%; text-align: center; font-size: 11px; color: #555; padding: 30px 0; background: #000; border-top: 1px solid rgba(255, 255, 255, 0.05); }
+
+    html, body { scrollbar-width: thin; scrollbar-color: #333 #000; }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #000; }
+    ::-webkit-scrollbar-thumb { background-color: #333; border-radius: 5px; border: 2px solid #000; }
+
+    @media (max-width: 900px) {
+      .poster-item, .poster-item:nth-child(even) {
+        grid-template-columns: 1fr;
+        direction: ltr;
+        gap: 30px;
+      }
+      .contact-banner { padding: 35px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="preloader">
+    <div style="display: flex; flex-direction: column; align-items: center;">
+      <img src="../images/logo/logo-mb.jpg" alt="Logo" style="width: 120px;" id="preloader-logo">
+      <div class="loader-container">
+        <div id="bar" class="loader-bar"></div>
+      </div>
+      <div class="loading-text blink">Loading</div>
+    </div>
+  </div>
+
+  <div class="content-wrapper">
+    <header class="project-header">
+      <h1>first half of 2026 in posters</h1>
+      <h5>this is my first collection of posters created for concert events on commission. screw ai, never surrender!</h5> 
+      <div class="project-meta">
+        Created with a significant help from <span class="highlight">Kazimierz Walczak</span> (<a href="https://www.instagram.com/kwbookings" target="_blank" rel="noopener noreferrer">KW BOOKINGS</a>)<br><br>
+        digital art | traditional art | mixed media
+      </div>
+    </header>
+
+    <div class="poster-showcase">
+      
+      <div class="poster-item">
+        <div class="poster-image-wrap">
+          <img src="../images/website/art3.webp" alt="Poster One" class="trackable-img" loading="lazy">
+        </div>
+        <div class="poster-info">
+          <h3>Dyskoteka Tańczących Nietoperzy vol. II</h3>
+          <p>A poster for my close friends' recurring concert series in Cracow, PL. Pure digital art.</p>
+        </div>
+      </div>
+
+      <div class="poster-item">
+        <div class="poster-image-wrap">
+          <img src="../images/website/art2.webp" alt="Poster Two" class="trackable-img" loading="lazy">
+        </div>
+        <div class="poster-info">
+          <h3>Dyskoteka Tańczących Nietoperzy vol. I</h3>
+          <p>A poster for my close friends' recurring concert series in Cracow, PL. Made by hand with a pencil on paper, with various digital manipulations in overall layout.</p>
+        </div>
+      </div>
+
+      <div class="poster-item">
+        <div class="poster-image-wrap">
+          <img src="../images/website/art1.webp" alt="Poster Three" class="trackable-img" loading="lazy">
+        </div>
+        <div class="poster-info">
+          <h3>Muzyka zwiększa ryzyko utraty słuchu</h3>
+          <p>My first poster ever created, for a gig in Warsaw, PL, that I also had the pleasure of playing at [as Makao]. Mixed media, hand-drawn band logos and a photograph mashed together.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="contact-banner">
+      <h2>interested? <a href="../contact.html">contact</a> me!</h2>
+    </div>
+
+    <div class="back-nav">
+      <a href="../works.html" class="back-btn">← Back to Works</a>
+    </div>
+  </div>
+
+  <footer>© 2026 maja braumberger. all rights reserved.</footer>
+  <navigation-menu></navigation-menu>
+
+  <script>
+    const trackableImages = document.querySelectorAll('#preloader-logo, .trackable-img');
+    const bar = document.getElementById('bar');
+    const preloader = document.getElementById('preloader');
+    let loadedCount = 0;
+
+    function hidePreloader() {
+      if (preloader && !preloader.classList.contains('hidden')) {
+        if (bar) bar.style.width = '100%';
+        setTimeout(() => preloader.classList.add('hidden'), 400);
+      }
+    }
+
+    function updateProgress() {
+      loadedCount++;
+      if (trackableImages.length > 0) {
+        const percentage = (loadedCount / trackableImages.length) * 100;
+        if (bar) bar.style.width = percentage + '%';
+        if (loadedCount >= trackableImages.length) hidePreloader();
+      }
+    }
+
+    trackableImages.forEach(img => {
+      if (img.complete) {
+        updateProgress();
+      } else {
+        img.addEventListener('load', updateProgress);
+        img.addEventListener('error', updateProgress);
+      }
+    });
+
+    setTimeout(hidePreloader, 1500);
+  </script>
+
+</body>
+</html>
