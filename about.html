@@ -1,154 +1,282 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>about | maja braumberger</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="favicon.png" type="image/png" />
+  <script data-goatcounter="https://annoise.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js">
+  </script>
   
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <meta name="description" content="about | maja braumberger">
+  <meta name="author" content="Maja Braumberger">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
-
-  <script src="navigation.js" defer></script>
-
-  <style>
-    html { scrollbar-gutter: stable; overflow-y: scroll; }
-
-    body {
-      margin: 0; padding: 0;
-      font-family: 'Roboto Mono', monospace;
-      background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.92)), 
-                  url('ab.webp');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed; 
-      background-color: #000; 
-      color: #aaa;
-      padding-top: 15vh;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&display=swap" rel="stylesheet">
   
-    .about-container {
-      width: 100%;
-      max-width: 400px; 
-      margin: 60px auto;
-      text-align: center;
-    }
-
-    .about-container h1 {
-      letter-spacing: 0.6em;
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 20px;
-
-      text-transform: uppercase;
-      font-weight: 300;
-      margin-bottom: 4vh;
-      text-shadow: 0 0 10px rgba(0,0,0,0.8);
-    }
-
-    .about-container p {
-      line-height: 2.0;
-      font-size: 17px;
-      color: #eee;
+  <title>about | maja braumberger</title>
+    <script src="navigation.js" defer></script>
+  <style>
+    body {
       margin: 0;
-      text-shadow: 0 0 10px rgba(0,0,0,0.8);
+      background: #0a0a0a; 
+      height: 100dvh; 
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      font-family: 'JetBrains Mono', 'Roboto Mono', monospace;
+    }
+
+    main {
+      display: flex;
+      width: 100%;
+      height: 100dvh;
+      position: relative;
+    }
+
+    .about-visual {
+      flex: 1;
+      background: url('images/website/ab.webp') no-repeat;
+      background-position: 30% center;
+      background-size: cover;
+      height: 100%;
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      opacity: 0.7;
+      overflow: hidden;
+    }
+
+    .about-content {
+      flex: 1;
+      height: 100%;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 100px 10% 30px 10%;
+      box-sizing: border-box;
+      background: linear-gradient(to right, rgba(10, 10, 10, 0.75), rgba(10, 10, 10, 0.95));
+      animation: fadeInContent 1s ease forwards;
+      z-index: 2;
+    }
+
+    .about-inner {
+      margin-top: auto;
+      margin-bottom: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex-grow: 1;
+    }
+
+    .about-header {
+      font-size: 16px;
+      letter-spacing: 8px;
+      color: #b0b0b0;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      padding-bottom: 12px;
+      font-weight: 500;
+    }
+
+    .about-description {
+      line-height: 2.0;
+      font-size: 15px;
+      color: #eee;
+      margin-bottom: 30px;
     }
 
     .section-label {
       display: block;
-      margin: 6vh 0 2vh 0;
+      margin: 40px 0 15px 0;
       letter-spacing: 0.4em;
-      font-size: 14px;
+      font-size: 13px;
       color: #888;
       text-transform: uppercase;
-      border-bottom: 1px solid #222; 
-      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08); 
+      padding-bottom: 8px;
     }
 
-    .exhibition-link {
+    .exhibition-link, .about-link {
       color: #fff;
       text-decoration: none;
       font-weight: 700;
       border-bottom: 1px solid #444;
-      transition: 0.3s;
+      transition: all 0.3s ease;
+      position: relative;
     }
-    .exhibition-link:hover {
+
+    .exhibition-link:hover, .about-link:hover {
       border-bottom: 1px solid #fff;
+      color: #ff4444;
+    }
+
+    .rip-container {
+      margin: 30px 0;
+      text-align: left;
     }
 
     .rip-image {
-      width: 20vh;
-      margin: 4vh auto;
-      display: block;
+      width: 18vh;
+    }
+
+    .rip-image:hover {
+      opacity: 1;
+      transform: scale(1.03);
     }
 
     .entry {
       display: block;
-      margin-bottom: 15px;
-      font-size: 14px;
+      margin-bottom: 12px;
+      font-size: 13px;
       color: #999;
       line-height: 1.6;
+      transition: color 0.2s ease;
     }
 
-    footer { width: 90%; max-width: 800px; text-align: center; font-size: 12px; color: #444; margin: 64px auto 32px; font-family: monospace; }
+    .entry:hover {
+      color: #ddd;
+    }
+
+    footer { 
+      width: 100%; 
+      text-align: center; 
+      color: #777; 
+      font-size: 11px; 
+      margin-top: 40px;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05); 
+    }
+    footer p { margin: 0; }
+
+    #preloader { 
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+      background-color: #050505; display: flex; justify-content: center; align-items: center; 
+      z-index: 999999 !important; 
+      transition: opacity 1.5s ease, visibility 1.5s; 
+    }
+    #preloader.hidden { opacity: 0; visibility: hidden; }
+    .loader-bar { width: 0%; height: 2px; background-color: white; animation: loading 2s ease-in-out forwards 0.5s; }
+    .loader-container { width: 90vw; max-width: 600px; height: 2px; background-color: rgba(255, 255, 255, 0.1); margin-top: 40px; }
+
+    @keyframes loading { 0% { width: 0%; } 100% { width: 100%; } }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeInContent { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
     @media (max-width: 768px) {
-      .about-container p { font-size: 15px; }
+      body {
+        overflow-y: auto;
+        height: auto;
+      }
+
+      main {
+        flex-direction: column;
+        height: auto;
+      }
+
+      .about-visual {
+        opacity: 0.7;
+        display: block;
+        flex: none;
+        width: 100%;
+        height: 0;
+        padding-top: 50vw; 
+        background: url('images/website/ab.webp') no-repeat 30% -45%;
+        background-size: cover;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      }
+
+      .about-content {
+        flex: none;
+        width: 100%;
+        height: auto;
+        padding: 30px 20px;
+        background: #0a0a0a;
+      }
+
+      .about-header {
+        font-size: 14px;
+        letter-spacing: 4px;
+      }
+      
+      footer {
+        margin-top: 40px;
+        font-size: 9px;
+      }
     }
-    
+
     html, body {
       scrollbar-width: thin;
-      scrollbar-color: #333 #000;
+      scrollbar-color: #555 #111;
     }
 
     ::-webkit-scrollbar { width: 10px; }
-    ::-webkit-scrollbar-track { background: #000; }
-    ::-webkit-scrollbar-thumb { background-color: #333; border-radius: 5px; border: 2px solid #000; }
+    ::-webkit-scrollbar-track { background: #111; }
+    ::-webkit-scrollbar-thumb { background-color: #444; border-radius: 5px; border: 2px solid #111; }
   </style>
 </head>
-  
 <body>
-      <navigation-menu></navigation-menu>
 
-<div class="about-container">
-  <h1>&nbsp;About</h1>
-  
-  <p>
-    Jack of all trades, master of none.<br><br>
-    I'm a screwdriverist in 
-    <a href="https://www.instagram.com/makaoband" target="_blank" class="exhibition-link">Makao</a> 
-    [Cracow, PL]. I shoot photos, write music & various texts, draw since childhood, try to make films <br>
-    and sense of all these things. 
-    <br><br>
-    ...and I enjoy playing around with makeshift HTML code.
-  </p>
-
-  <img src="rip2.webp" alt="RIP" class="rip-image">
-
-  <span class="section-label">EXHIBITIONS</span>
-  
-  <span class="entry">[2026] ???</span>
-  
-  <span class="entry">
-    [2024] "<a href="works/survivalmachines.html" class="exhibition-link">survival machines</a>" 
-    | first personal exhibition | Cracow, PL
-  </span>
-  
-  <span class="entry">
-    [2024] "<a href="works/backtodayone.html" class="exhibition-link">back to day one</a>" 
-    | Group exhibition of Masterclass ImageWorks | Cracow, PL
-  </span>
-  
-  <span class="section-label">PHOTOGRAPHIC EDUCATION</span>
-  <span class="entry">[2024] Masterclass Mentorship Program by ImageWorks Anita Andrzejewska & Andrzej Pilichowski-Ragno</span>
-  <span class="entry">[2023] Photographic Studies, Cracow University of Technology</span>
+<div id="preloader">
+  <div style="display: flex; flex-direction: column; align-items: center; position: relative;">
+    <img src="images/logo/logo-intro-mb.jpg" alt="Logo" style="width: 140px; opacity: 0; animation: fadeIn 1s ease forwards;">
+    <div class="loader-container"><div class="loader-bar"></div></div>
+  </div>
 </div>
 
-<footer>© 2026 maja braumberger. all rights reserved.</footer>
-  
+  <main>
+    <div class="about-visual"></div>
+    
+    <div class="about-content">
+      <div class="about-inner">
+        <div class="about-header">ABOUT</div>
+        
+        <div class="about-description">
+          Jack of all trades, master of none.<br><br>
+          ⊙ Screwdriverist in 
+          <a href="https://www.instagram.com/makaoband" target="_blank" class="about-link">Makao</a><BR>
+    ⊙ Ambassador of <a href="https://wytworniatematy.pl" target="_blank" class="about-link">Record Label Tematy</a>
+      
+        </div>
 
+        <div class="rip-container">
+          <img src="rip2.webp" alt="RIP" class="rip-image">
+        </div>
+
+        <span class="section-label">EXHIBITIONS</span>
+        
+        <span class="entry">[2026] ???</span>
+        
+        <span class="entry">
+          [2024] "<a href="works/survivalmachines.html" class="exhibition-link">survival machines</a>" 
+          | first personal exhibition | Cracow, PL
+        </span>
+        
+        <span class="entry">
+          [2024] "<a href="works/backtodayone.html" class="exhibition-link">back to day one</a>" 
+          | Group exhibition of Masterclass ImageWorks | Cracow, PL
+        </span>
+        
+        <span class="section-label">PHOTOGRAPHIC EDUCATION</span>
+        <span class="entry">[2024] Masterclass Mentorship Program by ImageWorks Anita Andrzejewska & Andrzej Pilichowski-Ragno</span>
+        <span class="entry">[2023] Photographic Studies, Cracow University of Technology</span>
+      </div>
+
+      <footer>
+        <p>© 2026 maja braumberger. all rights reserved.</p>
+      </footer>
+    </div>
+    
+     <navigation-menu></navigation-menu>
+  </main>
+
+  <script>
+    window.addEventListener('load', function() {
+      const preloader = document.getElementById('preloader');
+      setTimeout(() => { if(preloader) preloader.classList.add('hidden'); }, 1500);
+    });
+  </script>
 </body>
 </html>
