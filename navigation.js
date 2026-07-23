@@ -7,12 +7,12 @@ class NavigationMenu extends HTMLElement {
         .wide-strip {
           position: absolute;
           top: 0; left: 0; width: 100%; height: 6vh;
-          background-color: rgba(0, 0, 0, 0.7); z-index: 10;
+          background-color: rgb(0, 0, 0); z-index: 10;
           display: flex; align-items: stretch;
           border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         .nav-group { flex: 1; display: flex; position: relative; }
-        .logo-island { flex: 0 0 120px; display: flex; justify-content: center; align-items: center;  border-left: 1px solid rgba(255, 255, 255, 0.1); border-right: 1px solid rgba(255, 255, 255, 0.1); z-index: 11; }
+        .logo-island { flex: 0 0 120px; display: flex; justify-content: center; align-items: center; background-color: black; border-left: 1px solid rgba(255, 255, 255, 0.1); border-right: 1px solid rgba(255, 255, 255, 0.1); z-index: 11; }
         .logo-island a { display: block; height: 111%; }
         .logo-island img { height: 100%; filter: grayscale(1) brightness(2); }
         
