@@ -103,7 +103,7 @@ class NavigationMenu extends HTMLElement {
           <div class="nav-group">
           <a href="/about.html" class="tile">ABOUT</a>
           <a href="/contact.html" class="tile">CONTACT</a>
-          <a href="/sitemap.html" class="tile"><img src="rip3.webp" alt="" class="sitemap-icon">sitemap</a>
+          <a href="/sitemap.html" class="tile"><img src="../rip3.webp" alt="" class="sitemap-icon">sitemap</a>
           <div class="secondary-anchors">
             <a href="/directory.html" class="guestbook-tab">
               <span class="label-part">WEB DIRECTORY</span>
@@ -117,7 +117,7 @@ class NavigationMenu extends HTMLElement {
         <div class="mobile-logo-left"><a href="/index.html"><img src="/images/logo/logo-mb.jpg" alt="MB"></a></div>
         <div style="flex: 1;"></div>
         <div class="mobile-actions-right">
-          <a href="/sitemap.html" class="sitemap-btn"><img src="rip3.webp" alt="" class="sitemap-icon">sitemap</a>
+          <a href="/sitemap.html" class="sitemap-btn"><img src="../rip3.webp" alt="" class="sitemap-icon">sitemap</a>
           <label for="menu-toggle" class="hamburger-btn">
             <span class="hamburger-text-left">M</span>
             <div class="hamburger-icon"><span></span><span></span><span></span></div>
