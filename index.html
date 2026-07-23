@@ -328,6 +328,22 @@ margin-left: 30px;
   transform: scale(1.5);
   filter: grayscale(100%) ;
 }
+  
+  @keyframes pulseRed {
+  0% {
+    background-color: rgba(180, 50, 50, 0.10);
+  }
+  86% {
+    background-color: rgba(180, 50, 50, 0.21);
+  }
+  70% {
+    background-color: rgba(180, 50, 50, 0.10);
+  }
+}
+
+.widget-item.newest {
+  animation: pulseRed 1.5s infinite ease-in-out;
+}
 </style>
 </head>
 <body>
@@ -536,16 +552,19 @@ async function fetchRecentActivity() {
       return;
     }
 
-    sortedActivity.forEach(item => {
+sortedActivity.forEach((item, index) => {
       let prefix = '';
       if (item.type === 'work') { prefix = '⧉&nbsp;| '; } 
       else if (item.type === 'writing') { prefix = '✎&nbsp;| '; }
+      
+      const isNewest = index === 0 ? ' newest' : '';
+      
       widgetContent.innerHTML += `
-        <a href="${item.href}" class="widget-item">
+        <a href="${item.href}" class="widget-item${isNewest}">
           <span class="widget-title">${prefix}${item.title}</span>
           <span class="widget-date">${item.dateStr}</span>
         </a>`;
-      });
+    });
   } catch (e) { 
     console.error("Błąd fetch activity:", e);
     widgetContent.innerHTML = '<p style="font-size:10px; color:#555; padding:10px;">Unavailable</p>'; 
