@@ -19,7 +19,7 @@ class NavigationMenu extends HTMLElement {
         
         .tile { 
           flex: 1; display: flex; justify-content: center; align-items: center; color: white; 
-          text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 1.4vh; 
+          text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 1.3vh; 
           letter-spacing: 2px; border-right: 1px solid rgba(255, 255, 255, 0.1); 
           position: relative; overflow: hidden; transition: color 0.3s;
         }
