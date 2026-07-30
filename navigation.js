@@ -122,8 +122,8 @@ class NavigationMenu extends HTMLElement {
           }
 
           .tile-guestbook {
-            background: rgba(255, 255, 255, 0.14);
-            border: 1px solid rgba(255, 255, 255, 0.44);
+            background: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(255, 255, 255, 0.21);
             color: #b8b8b8;
             font-size: 13px;
             font-weight: 700;
@@ -131,8 +131,8 @@ class NavigationMenu extends HTMLElement {
           }
           
           .tile-guestbook:hover {
-            background: rgba(255, 255, 255, 0.48);
-            border-color: #ccc;
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(204, 204, 204, 0.59);
           }
 
           .tile-directory {
