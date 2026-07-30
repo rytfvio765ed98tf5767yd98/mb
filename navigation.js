@@ -77,17 +77,80 @@ class NavigationMenu extends HTMLElement {
           .mobile-nav-overlay { 
             display: flex; position: fixed; top: 80px; left: 0; right: 0; bottom: 0; 
             background: #050505; z-index: 9998; flex-direction: column; align-items: center; 
-            justify-content: flex-start; padding: 20px; opacity: 0; pointer-events: none; 
-            transition: 0.3s; overflow-y: auto; -webkit-overflow-scrolling: touch;
+            justify-content: center; 
+            padding: 20px; opacity: 0; pointer-events: none; 
+            transition: 0.3s;
           }
           .mobile-menu-checkbox:checked ~ .mobile-nav-overlay { opacity: 1; pointer-events: auto; }
           
-          .mobile-primary-links { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 100%; }
-          .mobile-primary-links a { color: #fff; text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 18px; opacity: 0.7; }
-          .nav-ascii { color: #333; font-size: 8px; margin: 2px 0; }
+
+          .mobile-primary-links { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 15px; 
+            width: 100%; 
+            max-width: 420px;
+            margin: 0 auto;
+          }
           
-          .mobile-guestbook { margin-top: 25px; padding: 10px 20px; border: 1px solid rgba(255, 255, 255, 0.23); color: white; font-family: 'JetBrains Mono', monospace; text-decoration: none; font-size: 14px; }
-          .mobile-bonus { margin-top: 25px; font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #949494; text-transform: uppercase; letter-spacing: 2px; text-decoration: none; margin-bottom: 40px; }
+         
+          .mobile-primary-links a { 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 1 / 1; 
+            font-family: 'JetBrains Mono', monospace; 
+            text-decoration: none; 
+            transition: all 0.2s;
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+          }
+
+    
+          .tile-main {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff; 
+            font-size: 14px; 
+            letter-spacing: 1px;
+          }
+          
+          .tile-main:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.3);
+          }
+
+          .tile-guestbook {
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.44);
+            color: #b8b8b8;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+          }
+          
+          .tile-guestbook:hover {
+            background: rgba(255, 255, 255, 0.48);
+            border-color: #ccc;
+          }
+
+          .tile-directory {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            color: #b3b3b3;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+          }
+
+          .tile-directory:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-style: solid;
+          }
+
+          .mobile-guestbook, .mobile-bonus { display: none; }
         }
       </style>
 
@@ -128,16 +191,15 @@ class NavigationMenu extends HTMLElement {
 
       <div class="mobile-nav-overlay">
         <nav class="mobile-primary-links">
-          <a href="/works.html">WORKS</a>
-          <span class="nav-ascii">╌ ╌ ╌</span>
-          <a href="/writings.html">WRITINGS</a>
-          <span class="nav-ascii">╌ ╌ ╌</span>
-          <a href="/about.html">ABOUT</a>
-          <span class="nav-ascii">╌ ╌ ╌</span>
-          <a href="/contact.html">CONTACT</a>
+          <!-- Zmieniona kolejność, aby pasowała do siatki 2x3 -->
+          <a href="/works.html" class="tile-main">WORKS</a>
+          <a href="/writings.html" class="tile-main">WRITINGS</a>
+          <a href="/about.html" class="tile-main">ABOUT</a>
+          <a href="/contact.html" class="tile-main">CONTACT</a>
+          <!-- Nowe, wystylizowane kafelki na dole siatki -->
+          <a href="https://annoise.atabook.org" target="_blank" class="tile-guestbook">✎ GUESTBOOK</a>
+          <a href="/directory.html" class="tile-directory">⟡ DIRECTORY</a>
         </nav>
-        <a href="https://annoise.atabook.org" target="_blank" class="mobile-guestbook">✎ GUESTBOOK</a>
-        <a href="/directory.html" class="mobile-bonus">⟡ WEB DIRECTORY ⟡</a>
       </div>
     `;
 
