@@ -191,10 +191,12 @@ class NavigationMenu extends HTMLElement {
 
       <div class="mobile-nav-overlay">
         <nav class="mobile-primary-links">
+          <!-- Zmieniona kolejność, aby pasowała do siatki 2x3 -->
           <a href="/works.html" class="tile-main">WORKS</a>
           <a href="/writings.html" class="tile-main">WRITINGS</a>
           <a href="/about.html" class="tile-main">ABOUT</a>
           <a href="/contact.html" class="tile-main">CONTACT</a>
+          <!-- Nowe, wystylizowane kafelki na dole siatki -->
           <a href="https://annoise.atabook.org" target="_blank" class="tile-guestbook">✎ GUESTBOOK</a>
           <a href="/directory.html" class="tile-directory">⟡ DIRECTORY</a>
         </nav>
