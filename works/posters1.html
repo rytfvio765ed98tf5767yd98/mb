@@ -16,39 +16,81 @@
     html { scrollbar-gutter: stable; overflow-y: scroll; }
     body {
       margin: 0; padding: 0;
-      background-color: #000;
-      color: #ddd;
+      background-color: #141414;
+      color: #d0d0d0;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
       font-family: 'JetBrains Mono', monospace;
       overflow-x: hidden;
-      padding-top: 10vh;
+      padding-top: 12vh;
     }
 
     #preloader { 
       position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-      background-color: black; display: flex; justify-content: center; align-items: center; 
+      background-color: #000000; display: flex; justify-content: center; align-items: center; 
       z-index: 9999; transition: opacity 0.8s ease, visibility 0.8s; 
     }
     #preloader.hidden { opacity: 0; visibility: hidden; }
-    .loader-container { width: 90vw; max-width: 600px; height: 2px; background-color: rgba(255, 255, 255, 0.1); margin-top: 40px; position: relative; }
+    .loader-container { width: 90vw; max-width: 600px; height: 2px; background-color: rgba(255, 255, 255, 0.2); margin-top: 40px; position: relative; }
     .loader-bar { width: 0%; height: 2px; background-color: white; transition: width 0.3s ease-out; }
-    .loading-text { margin-top: 15px; font-size: 10px; letter-spacing: 4px; color: #444; text-transform: uppercase; }
+    .loading-text { margin-top: 15px; font-size: 10px; letter-spacing: 4px; color: #888; text-transform: uppercase; }
     .blink { animation: blinker 1.5s linear infinite; }
     @keyframes blinker { 50% { opacity: 0; } }
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
     .content-wrapper { 
-      width: 90%; max-width: 1400px; margin: 0 auto; flex: 1; padding-bottom: 60px; animation: fadeIn 1.5s ease;
+      width: 90%; max-width: 1300px; margin: 0 auto; flex: 1; padding-bottom: 60px; animation: fadeIn 1.5s ease;
     }
 
-    .project-header { margin: 60px 0 50px; text-align: left; border-bottom: 1px solid #1a1a1a; padding-bottom: 30px; }
-    .project-header h1 {  background-color: #111111;font-size: 36px; font-weight: 500; color: #fff; margin: 0; text-transform: lowercase; letter-spacing: 1px; }
-    .project-header h5 { font-size: 15px; font-weight: normal; color: #ccc; margin: 15px 0 0 0; line-height: 1.6; }
-    .project-meta { font-size: 12px; letter-spacing: 1px; color: #999; text-transform: none; margin-top: 25px; line-height: 1.8; max-width: 800px; text-transform: uppercase; }
+    .blog-layout {
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .blog-main {
+      display: flex;
+      flex-direction: column;
+      max-width: 750px;
+      width: 100%;
+    }
+
+    .project-header { 
+      margin: 0 0 50px 0; 
+      text-align: left; 
+      width: 100%;
+      border-bottom: 1px solid #2a2a2a;
+      padding-bottom: 30px;
+    }
+    .project-header h1 { 
+      background-color: #222222; 
+      font-size: 24px; 
+      font-weight: 500; 
+      color: #fff; 
+      margin: 0; 
+      text-transform: lowercase; 
+      letter-spacing: 1px; 
+      padding: 6px 10px; 
+      display: inline-block; 
+    }
+    .project-header h5 { 
+      font-size: 13px; 
+      font-weight: normal; 
+      color: #ccc; 
+      margin: 15px 0 0 0; 
+      line-height: 1.6; 
+    }
+    .project-meta { 
+      font-size: 10px; 
+      letter-spacing: 1px; 
+      color: #888; 
+      margin-top: 20px; 
+      line-height: 1.8; 
+      text-transform: uppercase; 
+    }
     
- 
     .project-meta .highlight { color: #fff; font-weight: bold; }
     .project-meta a { color: #fff; text-decoration: underline; text-underline-offset: 4px; transition: 0.3s; }
     .project-meta a:hover { color: #888; }
@@ -56,34 +98,29 @@
     .poster-showcase {
       display: flex;
       flex-direction: column;
-      gap: 120px;
-      margin-top: 60px;
-    }
-
-    .poster-item {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .poster-item:nth-child(even) {
-      direction: rtl;
-    }
-    .poster-item:nth-child(even) > * {
-      direction: ltr;
-    }
-
-    .poster-image-wrap {
+      gap: 90px;
       width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      box-sizing: border-box;
     }
 
-    .poster-image-wrap img {
+    .poster-row {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 100%;
+    }
+
+    .poster-image-container {
+      width: 100%;
+      background: transparent;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0;
+      box-sizing: border-box;
+      border: none;
+    }
+
+    .poster-image-container img {
       width: 100%;
       height: auto;
       max-height: 80vh;
@@ -91,70 +128,165 @@
       display: block;
     }
 
-    .poster-info h3 {
-      font-size: 26px;
+    .poster-details {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-bottom: 1px solid #2a2a2a;
+      padding-bottom: 30px;
+      width: 100%;
+    }
+
+    .poster-details h3 {
+      font-size: 18px;
       color: #fff;
-      margin: 0 0 20px 0;
+      margin: 0;
       letter-spacing: 0.5px;
+
+      font-weight: 500;
     }
 
-    .poster-info p {
-      font-size: 14px;
-      line-height: 2;
-      color: #ccc;
+    .poster-details p {
+      font-size: 13px;
+      line-height: 1.75;
+      color: #b0b0b0;
       margin: 0;
+      width: 100%;
     }
 
-    .contact-banner {
-      margin: 120px 0 40px;
-      padding: 50px;
-      background-color: #111111;
-      text-align: center;
+    .back-nav { 
+      grid-column: 1 / -1;
+      display: flex; 
+      justify-content: center; 
+      margin: 60px 0 20px 0; 
+      width: 100%;
+    }
+    .back-btn { 
+      display: inline-block; 
+      text-decoration: none; 
+      color: #ddd; 
+      font-size: 11px; 
+      letter-spacing: 2px; 
+      text-transform: uppercase; 
+      border: 1px solid #3a3a3a; 
+      padding: 12px 28px; 
+      transition: 0.3s; 
+      background: #1a1a1a; 
+    }
+    .back-btn:hover { color: #fff; border-color: #aaa; background: #222222; }
+
+    .blog-sidebar {
+      position: sticky;
+      top: 14vh;
+      background: transparent;
+      border: none;
+      padding: 0;
     }
 
-    .contact-banner h2 {
-      font-size: 22px;
-      font-weight: 400;
+    .sidebar-section h4 {
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
       color: #fff;
-      margin: 0;
-      text-transform: lowercase;
-      letter-spacing: 1px;
+      margin: 0 0 22px 0;
+      border-bottom: 1px solid #333;
+      padding-bottom: 12px;
     }
 
-    .contact-banner a {
+    .sidebar-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .sidebar-item a {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .sidebar-media-container {
+      width: 60px;
+      height: 60px;
+      min-width: 60px;
+      background-color: #1f1f1f;
+      overflow: hidden;
+      border: 1px solid #333;
+      transition: border-color 0.4s ease;
+      position: relative;
+    }
+
+    .sidebar-item a:hover .sidebar-media-container {
+      border-color: #fff;
+    }
+
+    .sidebar-media {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(1);
+      transition: 0.6s ease;
+    }
+
+    .sidebar-item a:hover .sidebar-media {
+      filter: grayscale(0);
+    }
+
+    .sidebar-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .sidebar-info .meta {
+      font-size: 10px;
+      color: #888;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .sidebar-info h5 {
+      margin: 0;
+      font-size: 13px;
+      color: #eaeaea;
+      font-weight: 500;
+      transition: 0.3s;
+      line-height: 1.4;
+    }
+
+    .sidebar-item a:hover .sidebar-info h5 {
       color: #fff;
       text-decoration: underline;
-      text-underline-offset: 6px;
-      transition: 0.3s;
+      text-underline-offset: 3px;
     }
 
-    .contact-banner a:hover {
-      color: #888;
-    }
+    footer { width: 100%; text-align: center; font-size: 11px; color: #777; padding: 30px 0; background: #141414; border-top: 1px solid rgba(255, 255, 255, 0.08); }
 
-    .back-nav { text-align: center; margin: 60px 0; }
-    .back-btn { display: inline-block; text-decoration: none; color: #ccc; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border: 1px solid #444; padding: 14px 28px; transition: 0.3s; }
-    .back-btn:hover { color: #fff; border-color: #888; background: #080808; }
-
-    footer { width: 100%; text-align: center; font-size: 11px; color: #555; padding: 30px 0; background: #000; border-top: 1px solid rgba(255, 255, 255, 0.05); }
-
-    html, body { scrollbar-width: thin; scrollbar-color: #333 #000; }
+    html, body { scrollbar-width: thin; scrollbar-color: #555 #141414; }
     ::-webkit-scrollbar { width: 10px; }
-    ::-webkit-scrollbar-track { background: #000; }
-    ::-webkit-scrollbar-thumb { background-color: #333; border-radius: 5px; border: 2px solid #000; }
+    ::-webkit-scrollbar-track { background: #141414; }
+    ::-webkit-scrollbar-thumb { background-color: #555; border-radius: 5px; border: 2px solid #141414; }
 
-    @media (max-width: 900px) {
-      .poster-item, .poster-item:nth-child(even) {
+    @media (max-width: 992px) {
+      .blog-layout {
         grid-template-columns: 1fr;
-        direction: ltr;
-        gap: 30px;
+        gap: 40px;
       }
-      .contact-banner { padding: 35px 20px; }
+      .blog-sidebar {
+        position: static;
+      }
+      .blog-main {
+        max-width: 100%;
+      }
     }
   </style>
 </head>
 <body>
-  
 
   <div id="preloader">
     <div style="display: flex; flex-direction: column; align-items: center;">
@@ -167,58 +299,68 @@
   </div>
 
   <div class="content-wrapper">
-    <header class="project-header">
-      <h1>first half of 2026 in posters</h1>
-      <h5>this is my first collection of posters created for concert events on commission. screw ai, never surrender!</h5> 
-      <div class="project-meta">
-        Created with substantial help from <span class="highlight">Kazimierz Walczak</span> (<a href="https://www.instagram.com/kwbookings" target="_blank" rel="noopener noreferrer">KW BOOKINGS</a>)<br><br>
-        digital art | traditional art | mixed media<br>
-     </div>
-    </header>
+    <div class="blog-layout">
 
-    <div class="poster-showcase">
-      
-      
-            <div class="poster-item">
-        <div class="poster-image-wrap">
-          <img src="../images/website/art2.webp" alt="Poster Two" class="trackable-img" loading="lazy">
+      <main class="blog-main">
+        <header class="project-header">
+        
+          <h1>first half of 2026 in posters</h1>
+          <br><br>23.07.2026 | GRAPHIC ART<br><br>
+          <h5>this is my first collection of posters created for concert events on commission. screw ai, never surrender!</h5> 
+          <div class="project-meta">
+    
+            Created with substantial help from <span class="highlight">Kazimierz Walczak</span> (<a href="https://www.instagram.com/kwbookings" target="_blank" rel="noopener noreferrer">KW BOOKINGS</a>)
+          </div>
+        </header>
+
+        <div class="poster-showcase">
+          
+          <div class="poster-row">
+            <div class="poster-image-container">
+              <img src="../images/posters/art2.webp" alt="Dyskoteka Tańczących Nietoperzy vol. I" class="trackable-img" loading="lazy">
+            </div>
+            <div class="poster-details">
+              <h3>Dyskoteka Tańczących Nietoperzy vol. I</h3>
+              <p>A poster for my close friends' recurring concert series in Cracow, PL. Made by hand with a pencil on paper, with various digital manipulations in overall layout.</p>
+            </div>
+          </div>
+          
+          <div class="poster-row">
+            <div class="poster-image-container">
+              <img src="../images/posters/art3.webp" alt="Dyskoteka Tańczących Nietoperzy vol. II" class="trackable-img" loading="lazy">
+            </div>
+            <div class="poster-details">
+              <h3>Dyskoteka Tańczących Nietoperzy vol. II</h3>
+              <p>A poster for my close friends' recurring concert series in Cracow, PL. Pure digital art.</p>
+            </div>
+          </div>
+
+          <div class="poster-row">
+            <div class="poster-image-container">
+              <img src="../images/posters/art1.webp" alt="Muzyka zwiększa ryzyko utraty słuchu" class="trackable-img" loading="lazy">
+            </div>
+            <div class="poster-details">
+              <h3>Muzyka zwiększa ryzyko utraty słuchu</h3>
+              <p>My first poster ever created, for a gig in Warsaw, PL, that I also had the pleasure of playing at [as Makao]. Mixed media, hand-drawn band logos and a photograph mashed together.</p>
+            </div>
+          </div>
+
         </div>
-        <div class="poster-info">
-          <h3>Dyskoteka Tańczących Nietoperzy vol. I</h3>
-          <p>A poster for my close friends' recurring concert series in Cracow, PL. Made by hand with a pencil on paper, with various digital manipulations in overall layout.</p>
+      </main>
+
+      <aside class="blog-sidebar">
+        <div class="sidebar-section">
+          <h4>other posts</h4>
+          <div class="sidebar-list" id="sidebar-list">
+
+          </div>
         </div>
+      </aside>
+
+      <div class="back-nav">
+        <a href="../works.html" class="back-btn">← Back to Works</a>
       </div>
-      
-      <div class="poster-item">
-        <div class="poster-image-wrap">
-          <img src="../images/website/art3.webp" alt="Poster One" class="trackable-img" loading="lazy">
-        </div>
-        <div class="poster-info">
-          <h3>Dyskoteka Tańczących Nietoperzy vol. II</h3>
-          <p>A poster for my close friends' recurring concert series in Cracow, PL. Pure digital art.</p>
-        </div>
-      </div>
 
-
-
-      <div class="poster-item">
-        <div class="poster-image-wrap">
-          <img src="../images/website/art1.webp" alt="Poster Three" class="trackable-img" loading="lazy">
-        </div>
-        <div class="poster-info">
-          <h3>Muzyka zwiększa ryzyko utraty słuchu</h3>
-          <p>My first poster ever created, for a gig in Warsaw, PL, that I also had the pleasure of playing at [as Makao]. Mixed media, hand-drawn band logos and a photograph mashed together.</p>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="contact-banner">
-      <h2>interested? <a href="../contact.html">contact</a> me!</h2>
-    </div>
-
-    <div class="back-nav">
-      <a href="../works.html" class="back-btn">← Back to Works</a>
     </div>
   </div>
 
@@ -226,6 +368,57 @@
   <navigation-menu></navigation-menu>
 
   <script>
+    window.addEventListener('DOMContentLoaded', async () => {
+      const sidebarList = document.getElementById('sidebar-list');
+      if (!sidebarList) return;
+
+      try {
+        const response = await fetch('../works.html');
+        if (!response.ok) return;
+        const htmlText = await response.text();
+        
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlText, 'text/html');
+        const workLinks = doc.querySelectorAll('#works-grid .work-link');
+
+        const currentFileName = window.location.pathname.split('/').pop();
+        let itemsHtml = '';
+
+        workLinks.forEach(link => {
+          const href = link.getAttribute('href');
+
+          if (href && href.includes(currentFileName)) return;
+
+          const category = link.dataset.category ? link.dataset.category.replace(/-/g, ' ').toUpperCase() : '';
+          const date = link.dataset.date || '';
+          const titleEl = link.querySelector('h3');
+          const title = titleEl ? titleEl.textContent : '';
+          const imgSrc = link.querySelector('.work-media') ? link.querySelector('.work-media').getAttribute('src') : '';
+
+          const adjustedImgSrc = imgSrc.startsWith('../') ? imgSrc : '../' + imgSrc;
+          const adjustedHref = href.startsWith('works/') ? href.replace('works/', '') : href;
+
+          itemsHtml += `
+            <div class="sidebar-item">
+              <a href="${adjustedHref}">
+                <div class="sidebar-media-container">
+                  <img src="${adjustedImgSrc}" class="sidebar-media" loading="lazy">
+                </div>
+                <div class="sidebar-info">
+                  <div class="meta">${date} | ${category}</div>
+                  <h5>${title}</h5>
+                </div>
+              </a>
+            </div>
+          `;
+        });
+
+        sidebarList.innerHTML = itemsHtml;
+      } catch (error) {
+        console.error('Nie udało się pobrać listy wpisów z works.html:', error);
+      }
+    });
+
     const trackableImages = document.querySelectorAll('#preloader-logo, .trackable-img');
     const bar = document.getElementById('bar');
     const preloader = document.getElementById('preloader');
