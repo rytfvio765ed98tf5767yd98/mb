@@ -16,7 +16,7 @@
     html { scrollbar-gutter: stable; overflow-y: scroll; }
     body {
       margin: 0; padding: 0;
-      background-color: #000;
+      background-color: #0c0c0c;
       color: #ddd;
       display: flex;
       flex-direction: column;
@@ -52,59 +52,87 @@
     .project-meta a { color: #fff; text-decoration: underline; text-underline-offset: 4px; transition: 0.3s; }
     .project-meta a:hover { color: #888; }
 
-
     .photo-grid { 
       display: grid; 
       grid-template-columns: repeat(2, 1fr); 
-      gap: 30px; 
+      gap: 60px; 
       margin-top: 40px;
+    }
+
+    .film-strip-column {
+      display: flex;
+      flex-direction: column;
+      border-left: 1px solid rgba(255, 255, 255, 0.2);
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+      background-color: #000;
     }
 
     .photo-card {
       position: relative;
-      overflow: hidden;
-      background-color: #0a0a0a;
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background-color: #000;
+      border-bottom: 2px solid #111;
+      padding: 0 22px;
       cursor: pointer;
+      box-sizing: border-box;
+      transition: background-color 0.3s ease;
     }
 
-    .photo-grid img { 
+    .photo-card:hover {
+      background-color: #080808;
+    }
+
+    .photo-card::before,
+    .photo-card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 12px;
+      background-image: repeating-linear-gradient(
+        to bottom,
+        #111 0px,
+        #111 10px,
+        #000 10px,
+        #000 20px
+      );
+      z-index: 2;
+    }
+    .photo-card::before { left: 4px; }
+    .photo-card::after { right: 4px; }
+
+    .film-inner {
+      position: relative;
+      overflow: hidden;
+      background-color: #000;
+    }
+
+    .photo-card img { 
       width: 100%; 
       aspect-ratio: 16 / 9; 
       object-fit: cover; 
       display: block; 
       filter: grayscale(1); 
-      transition: filter 0.6s ease, transform 0.6s ease;
-    }
-
-    .photo-card:hover {
-      border-color: rgba(255, 255, 255, 0.25);
+      transition: filter 0.5s ease;
     }
 
     .photo-card:hover img { 
       filter: grayscale(0); 
-
     }
 
-    .photo-number {
-      position: absolute;
-      bottom: 12px;
-      right: 15px;
-      font-size: 10px;
+    .film-meta-top, .film-meta-bottom {
+      font-size: 9px;
+      color: #777;
       letter-spacing: 2px;
-      color: rgba(255, 255, 255, 0.4);
-      background: rgba(0, 0, 0, 0.7);
-      padding: 4px 8px;
-      pointer-events: none;
-      transition: 0.3s;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      padding: 5px 6px;
+      user-select: none;
+      background-color: #040404;
     }
+    .film-meta-top { border-bottom: 1px solid #1a1a1a; }
+    .film-meta-bottom { border-top: 1px solid #1a1a1a; }
 
-    .photo-card:hover .photo-number {
-      color: #fff;
-      background: rgba(0, 0, 0, 0.9);
-    }
-
-  
     #lightbox {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -162,7 +190,14 @@
     ::-webkit-scrollbar-thumb { background-color: #333; border-radius: 5px; border: 2px solid #000; }
 
     @media (max-width: 900px) {
-      .photo-grid { grid-template-columns: 1fr; gap: 20px; }
+      .photo-grid { 
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+      }
+      .film-strip-column {
+        display: contents;
+      }
     }
   </style>
 </head>
@@ -188,7 +223,10 @@
       </div>
     </header>
 
-    <div class="photo-grid" id="main-gallery"></div>
+    <div class="photo-grid" id="main-gallery">
+      <div class="film-strip-column" id="column-1"></div>
+      <div class="film-strip-column" id="column-2"></div>
+    </div>
 
     <div class="back-nav">
       <h3>thank you, Alice</h3> 
@@ -205,8 +243,9 @@
   <navigation-menu></navigation-menu>
 
   <script>
-    const gallery = document.getElementById('main-gallery');
-    const totalPhotos = 35;
+    const col1 = document.getElementById('column-1');
+    const col2 = document.getElementById('column-2');
+    const totalPhotos = 36;
     const basePath = "../images/concerts/2025/";
 
     const lightbox = document.getElementById('lightbox');
@@ -216,21 +255,44 @@
     for (let i = 1; i <= totalPhotos; i++) {
       const card = document.createElement('div');
       card.className = 'photo-card';
+      card.style.order = i;
+
+      const formattedNum = i < 10 ? '0' + i : i;
+
+      const topMeta = document.createElement('div');
+      topMeta.className = 'film-meta-top';
+      topMeta.innerHTML = `<span>FRAME [${formattedNum}]</span><span>2025</span>`;
+
+      const filmInner = document.createElement('div');
+      filmInner.className = 'film-inner';
 
       const img = document.createElement('img');
-      img.src = `${basePath}${i}.webp`;
+
+      if (i === 36) {
+        img.src = "../rip.webp";
+      } else {
+        img.src = `${basePath}${i}.webp`;
+      }
+      
       img.alt = `Concert Photo ${i}`;
       img.className = "trackable-img";
       img.loading = "lazy"; 
 
-      const num = document.createElement('span');
-      num.className = 'photo-number';
-      num.textContent = i < 10 ? '0' + i : i;
+      filmInner.appendChild(img);
 
-      card.appendChild(img);
-      card.appendChild(num);
-      gallery.appendChild(card);
+      const bottomMeta = document.createElement('div');
+      bottomMeta.className = 'film-meta-bottom';
+      bottomMeta.innerHTML = `<span>mb</span><span>digital</span>`;
 
+      card.appendChild(topMeta);
+      card.appendChild(filmInner);
+      card.appendChild(bottomMeta);
+
+      if (i % 2 !== 0) {
+        col1.appendChild(card);
+      } else {
+        col2.appendChild(card);
+      }
     
       card.addEventListener('click', () => {
         lightboxImg.src = img.src;
@@ -238,7 +300,6 @@
       });
     }
 
-  
     lightboxClose.addEventListener('click', () => {
       lightbox.classList.remove('active');
     });
