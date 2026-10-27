@@ -13,6 +13,16 @@
   <script src="../navigation.js" defer></script>
   
   <style>
+    
+            
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+
+body {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
+  color: #a0a0a0;
+}
     html { scrollbar-gutter: stable; overflow-y: scroll; }
     body {
       margin: 0; padding: 0;
@@ -21,7 +31,7 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
-      font-family: 'JetBrains Mono', monospace;
+
       overflow-x: hidden;
       padding-top: 10vh;
     }
@@ -267,7 +277,7 @@
       filmInner.className = 'film-inner';
 
       const img = document.createElement('img');
-
+      // Dla ostatniego zdjęcia (36) ustawiamy ścieżkę do pliku rip.webp w root-cie (poziom wyżej)
       if (i === 36) {
         img.src = "../rip.webp";
       } else {
