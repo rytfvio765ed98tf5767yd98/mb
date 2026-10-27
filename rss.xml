@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<?xml-stylesheet type="text/css" href="rss-style.css"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
     <title>maja braumberger</title>
-    <description>a poke in the eye with a light beam. subscribe: https://majabraumberger.com/rss.xml</description>
+    <link>https://majabraumberger.com</link>
+    <description>a poke in the eye with a light beam</description>
     <language>en-us</language>
     <atom:link href="https://majabraumberger.com/rss.xml" rel="self" type="application/rss+xml" />
 
@@ -14,7 +14,5 @@
         <pubDate>Thu, 23 Jul 2026 00:00:00 +0200</pubDate>
         <guid>https://majabraumberger.com/works/posters1.html</guid>
     </item>
-
-    <link>https://majabraumberger.com/index.html</link>
 </channel>
 </rss>
