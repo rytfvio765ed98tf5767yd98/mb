@@ -6,7 +6,6 @@ rss > channel > item > link {
     display: none;
 }
 
-
 rss {
     display: flex;
     justify-content: center;
@@ -26,7 +25,6 @@ channel {
     width: 100%;
 }
 
-
 channel > title {
     display: block;
     color: #ffffff;
@@ -37,17 +35,19 @@ channel > title {
     margin-bottom: 8px;
 }
 
+
 channel > description {
     display: block;
-    font-size: 14px;
-    color: #888888;
-    text-transform: lowercase;
+    background: #141414;
+    border: 1px solid #262626;
+    padding: 18px 20px;
+    border-radius: 0px;
+    font-size: 13px;
+    color: #999999;
+    margin-top: 16px;
     margin-bottom: 40px;
-    padding-bottom: 32px;
-    border-bottom: 1px solid #222222;
+    line-height: 1.5;
 }
-
-
 item {
     display: block;
     background: #121212;
@@ -89,4 +89,23 @@ item > description {
     line-height: 1.65;
     color: #b0b0b0;
     font-weight: 400;
+}
+
+channel > link {
+    display: inline-block;
+    margin-top: 28px;
+    color: #777777;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    transition: color 0.2s ease;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+channel > link:hover {
+    color: #ffffff;
+}
+
+channel > link::before {
+    content: "← return to ";
 }
