@@ -15,9 +15,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <title>sitemap | maja braumberger</title>
 <style>
-  
-      
-        
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
 
 body {
@@ -25,181 +22,175 @@ body {
   font-size: 0.85rem;
   letter-spacing: 0.05em;
   color: #a0a0a0;
-}
-  
-    body {
-      margin: 0;
-      background: #0a0a0a; 
-      height: 100dvh; 
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      font-family: Arial, sans-serif;
-    }
-
-    
-    main {
-      display: flex;
-      width: 100%;
-      height: 100dvh;
-    }
-
-    
-    .sitemap-visual {
-      flex: 1;
-      background: url('bg.webp') no-repeat center center;
-      background-size: cover;
-      height: 100%;
-      border-right: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-   
-    .sitemap-content {
-      flex: 1;
-      height: 100%;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 60px 10% 30px 10%;
-      box-sizing: border-box;
-      background: linear-gradient(to right, rgba(20, 20, 20, 0.8), rgba(10, 10, 10, 0.9));
-    }
-
-    
-    .sitemap-inner {
-      margin-top: auto;
-      margin-bottom: auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      flex-grow: 1;
-    }
-
-    .sitemap-header {
-         font-family: 'Alte Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
-      font-size: 16px;
-      letter-spacing: 8px;
-      color: #b0b0b0;
-      text-transform: uppercase;
-      margin-bottom: 30px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
-      padding-bottom: 12px;
-      font-weight: 500;
-    }
-
-
-    .sitemap-tree {
-      font-family: 'Roboto Mono', monospace;
-      font-size: 16px;
-      line-height: 1.2;
-      color: #b8b8b8;
-      user-select: none;
-    }
-
-    .tree-root {
-      color: #ffffff;
-      font-weight: bold;
-      letter-spacing: 1px;
-      margin-bottom: 5px;
-      display: block;
-    }
-
-    .tree-node {
-      display: flex;
-      align-items: baseline;
-      white-space: pre;
-    }
-
-    .tree-branch {
-      color: rgba(255, 255, 255, 0.35); 
-      transition: color 0.2s ease;
-    }
-
-    .tree-folder {
-      color: #d1d1d1; 
-      text-transform: uppercase;
-      font-size: 13px;
-      letter-spacing: 2px;
-      font-weight: 500;
-    }
-
-    .sitemap-link {
-      color: #e0e0e0; 
-      text-decoration: none;
-      opacity: 0.8; 
-      transition: opacity 0.2s, color 0.2s, ;
-      padding-left: 2px;
-    }
-
-
-.tree-node {
+  margin: 0;
+  background: #0a0a0a; 
+  height: 100dvh; 
   display: flex;
-  align-items: baseline;
-  white-space: pre;
-  position: relative; 
+  flex-direction: column;
+  overflow: hidden;
 }
-
-
-.tree-node:hover .tree-branch {
-  color: #fff;
-  transform: none; 
-}
-
-
-.tree-node:hover::before {
-  content: ">";
-  color: rgba(255, 0, 0, 0.72);
-  position: absolute;
-  left: -15px; 
-  font-family: monospace;
-}
-
-.tree-node:hover .sitemap-link {
-  opacity: 1;
-  color: #fff;
-  padding-left: 8px;
-  transition: padding-left;
-}
-
-    footer { 
-      width: 100%; 
-      text-align: center; 
-      color: #777; 
-      font-family: 'Roboto Mono', monospace; 
-      font-size: 11px; 
-      margin-top: 40px;
-      padding-top: 15px;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-    }
-    footer p { margin: 0; }
-
   
-    #preloader { 
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-      background-color: #000000; display: flex; justify-content: center; align-items: center; 
-      z-index: 999999 !important; 
-      transition: opacity 1.5s ease, visibility 1.5s; 
-    }
-    #preloader.hidden { opacity: 0; visibility: hidden; }
-    .loader-bar { width: 0%; height: 2px; background-color: white; animation: loading 2s ease-in-out forwards 0.5s; }
-    .loader-container { width: 90vw; max-width: 600px; height: 2px; background-color: rgba(255, 255, 255, 0.1); margin-top: 40px; }
-    
-    @keyframes loading { 0% { width: 0%; } 100% { width: 100%; } }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  main {
+    display: flex;
+    width: 100%;
+    height: 100dvh;
+  }
 
+  .sitemap-visual {
+    flex: 1;
+    background: url('bg.webp') no-repeat center center;
+    background-size: cover;
+    height: 100%;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .sitemap-content {
+    flex: 1;
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px 10% 30px 10%;
+    box-sizing: border-box;
+    background: linear-gradient(to right, rgba(20, 20, 20, 0.8), rgba(10, 10, 10, 0.9));
+  }
+
+  .sitemap-inner {
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+  }
+
+  .sitemap-header {
+    font-family: 'Alte Haas Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    letter-spacing: 8px;
+    color: #b0b0b0;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .sitemap-tree {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 16px;
+    line-height: 1.2;
+    color: #b8b8b8;
+    user-select: none;
+  }
+
+  .tree-root {
+    color: #ffffff;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    display: block;
+  }
+
+  .tree-node {
+    display: flex;
+    align-items: baseline;
+    white-space: pre;
+    position: relative; 
+  }
+
+  .tree-branch {
+    color: rgba(255, 255, 255, 0.35); 
+    transition: color 0.2s ease;
+  }
+
+  .tree-folder {
+    color: #d1d1d1; 
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-weight: 500;
+  }
+
+  .sitemap-link {
+    color: #e0e0e0; 
+    text-decoration: none;
+    opacity: 0.8; 
+    transition: opacity 0.2s, color 0.2s;
+    padding-left: 2px;
+  }
+
+  /* Styl dla wyszarzonej daty */
+  .sitemap-date {
+    color: #555555;
+    font-size: 0.85em;
+    padding-left: 10px;
+    opacity: 0.7;
+    transition: color 0.2s, opacity 0.2s;
+  }
+
+  .tree-node:hover .tree-branch {
+    color: #fff;
+    transform: none; 
+  }
+
+  .tree-node:hover::before {
+    content: ">";
+    color: rgba(255, 0, 0, 0.72);
+    position: absolute;
+    left: -15px; 
+    font-family: monospace;
+  }
+
+  .tree-node:hover .sitemap-link {
+    opacity: 1;
+    color: #fff;
+    padding-left: 8px;
+    transition: padding-left;
+  }
+
+  /* Po najechaniu na linijkę daty również delikatnie jaśnieją, żeby pasowało */
+  .tree-node:hover .sitemap-date {
+    color: #888888;
+    opacity: 1;
+  }
+
+  footer { 
+    width: 100%; 
+    text-align: center; 
+    color: #777; 
+    font-family: 'Roboto Mono', monospace; 
+    font-size: 11px; 
+    margin-top: 40px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  footer p { margin: 0; }
+
+  #preloader { 
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    background-color: #000000; display: flex; justify-content: center; align-items: center; 
+    z-index: 999999 !important; 
+    transition: opacity 1.5s ease, visibility 1.5s; 
+  }
+  #preloader.hidden { opacity: 0; visibility: hidden; }
+  .loader-bar { width: 0%; height: 2px; background-color: white; animation: loading 2s ease-in-out forwards 0.5s; }
+  .loader-container { width: 90vw; max-width: 600px; height: 2px; background-color: rgba(255, 255, 255, 0.1); margin-top: 40px; }
   
-    #ascii-fade-overlay {
-      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: transparent; z-index: 9999999; pointer-events: none; overflow: hidden; display: none; transition: background-color 0.3s ease; 
-    }
-    #ascii-canvas {
-      margin: 0; padding: 0; width: 100%; height: 100%; background: transparent; color: #000000; font-family: 'Roboto Mono', 'Courier New', monospace; font-size: 16px; line-height: 16px; letter-spacing: 0px; white-space: pre; user-select: none;
-    }
+  @keyframes loading { 0% { width: 0%; } 100% { width: 100%; } }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-    .mobile-top-bar { display: none; }
+  #ascii-fade-overlay {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: transparent; z-index: 9999999; pointer-events: none; overflow: hidden; display: none; transition: background-color 0.3s ease; 
+  }
+  #ascii-canvas {
+    margin: 0; padding: 0; width: 100%; height: 100%; background: transparent; color: #000000; font-family: 'Roboto Mono', 'Courier New', monospace; font-size: 16px; line-height: 16px; letter-spacing: 0px; white-space: pre; user-select: none;
+  }
 
+  .mobile-top-bar { display: none; }
 
- @media (max-width: 768px) {
+  @media (max-width: 768px) {
     body {
       overflow-y: auto;
       height: auto;
@@ -230,7 +221,6 @@ body {
       background: #0a0a0a;
     }
 
-   
     .sitemap-tree {
       font-size: 11px; 
       letter-spacing: 0.5px; 
@@ -245,11 +235,6 @@ body {
       font-size: 11px;
       letter-spacing: 1px;
     }
-
-    
-    .tree-node {
-      white-space: pre; 
-    }
  
     .mobile-top-bar {
       display: flex; 
@@ -259,15 +244,11 @@ body {
       z-index: 9999;
     }
     
-    
     footer {
       margin-top: 40px;
       font-size: 9px;
     }
   }
-      
-  html, body {
-
 
   ::-webkit-scrollbar { width: 10px; }
   ::-webkit-scrollbar-track { background: #111; }
@@ -294,15 +275,15 @@ body {
         
         <div class="sitemap-tree">
         
-          
           <div class="tree-node"><span class="tree-branch">├── </span><a href="index.html" class="sitemap-link">HOME</a></div>
           <div class="tree-node"><span class="tree-branch">│   │ </span></div>
         
           <div class="tree-node"><span class="tree-branch">│   ├── </span><a href="works.html" class="sitemap-link">works</a></div>
-          <div class="tree-node"><span class="tree-branch">│   │   ├───── </span><a href="works/posters1.html" class="sitemap-link">first half of 2026 in posters</a></div>
-          <div class="tree-node"><span class="tree-branch">│   │   ├───── </span><a href="works/2025.html" class="sitemap-link">a look back at 2025 </a></div>
-          <div class="tree-node"><span class="tree-branch">│   │   ├───── </span><a href="works/survivalmachines.html" class="sitemap-link">survival machines</a></div>
-          <div class="tree-node"><span class="tree-branch">│   │   └───── </span><a href="works/backtodayone.html" class="sitemap-link">back to day one</a></div>
+                    <div class="tree-node"><span class="tree-branch">│   │   ├───── </span><a href="works/posters2.html" class="sitemap-link">second batch of posters!</a><span class="sitemap-date">26.10.2026</span></div>
+          <div class="tree-node"><span class="tree-branch">│   │   ├───── </span><a href="works/posters1.html" class="sitemap-link">first half of 2026 in posters</a><span class="sitemap-date">23.07.2026</span></div>
+          <div class="tree-node"><span class="tree-branch">│   │   ├───── </span><a href="works/2025.html" class="sitemap-link">a look back at 2025 </a><span class="sitemap-date">30.01.2026</span></div>
+          <div class="tree-node"><span class="tree-branch">│   │   ├───── </span><a href="works/survivalmachines.html" class="sitemap-link">survival machines</a><span class="sitemap-date">29.11.2024</span></div>
+          <div class="tree-node"><span class="tree-branch">│   │   └───── </span><a href="works/backtodayone.html" class="sitemap-link">back to day one</a><span class="sitemap-date">27.06.2024</span></div>
 
           <div class="tree-node"><span class="tree-branch">│   │ </span></div>
           <div class="tree-node"><span class="tree-branch">│   ├── </span><a href="writings.html" class="sitemap-link">writings</a></div>
@@ -328,11 +309,8 @@ body {
           <div class="tree-node"><span class="tree-branch">    │ </span></div>
           <div class="tree-node"><span class="tree-branch">    └── </span><a href="directory.html" target="_blank" class="sitemap-link">personal directory</a></div>
           
-          
-          
-          
           <br><br><br><br><br><br><br>
-                    <div class="tree-node"><span class="tree-branch">           - </span><a href="/lichen.html" target="_blank" class="sitemap-link">???</a></div>
+                    <div class="tree-node"><span class="tree-branch">            - </span><a href="/lichen.html" target="_blank" class="sitemap-link">???</a></div>
         </div>
       </div> 
 
@@ -341,7 +319,6 @@ body {
       </footer>
     </div>
   </main>
-
 
   <script>
     function initAsciiFade() {
