@@ -11,9 +11,8 @@
 
   <script src="../navigation.js" defer></script>
   
+  <script src="https://u.widget.st/ar.js"></script>
   <style>
-    
-            
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
 
 body {
@@ -74,6 +73,17 @@ body {
       border-bottom: 1px solid #2a2a2a;
       padding-bottom: 30px;
     }
+
+   
+    .project-header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
     .project-header h1 { 
       background-color: #222222; 
       font-size: 24px; 
@@ -152,7 +162,6 @@ body {
       color: #fff;
       margin: 0;
       letter-spacing: 0.5px;
-
       font-weight: 500;
     }
 
@@ -313,12 +322,14 @@ body {
 
       <main class="blog-main">
         <header class="project-header">
-        
-          <h1>first half of 2026 in posters</h1>
-          <br><br>23.07.2026 | GRAPHIC ART<br><br>
+          <div class="project-header-top">
+            <h1>first half of 2026 in posters</h1>
+            <ws-widget type="like" iid="24352"></ws-widget>
+          </div>
+          
+          <br>23.07.2026 | GRAPHIC ART<br><br>
           <h5>this is my first collection of posters created for concert events on commission. screw ai, never surrender!</h5> 
           <div class="project-meta">
-    
             Created with substantial help from <span class="highlight">Kazimierz Walczak</span> (<a href="https://www.instagram.com/kwbookings" target="_blank" rel="noopener noreferrer">KW BOOKINGS</a>)
           </div>
         </header>
