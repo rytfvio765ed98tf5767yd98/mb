@@ -2,7 +2,7 @@ class NavigationMenu extends HTMLElement {
   connectedCallback() {
     this.innerHTML = `
       <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@0,400;0,700&display=swap');
 
         .wide-strip {
           position: absolute;
@@ -42,9 +42,26 @@ class NavigationMenu extends HTMLElement {
         .tile:hover { color: #fff; }
 
         .secondary-anchors { position: absolute; right: 0; top: 100%; width: 33.33%; display: flex; flex-direction: column; align-items: center; pointer-events: none; }
-        .guestbook-tab { pointer-events: auto; text-decoration: none; background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.1); border-top: none; padding: 10px 20px; width: fit-content; min-width: 140px; border-radius: 0; mix-blend-mode: difference; transition: background 0.3s, transform 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; }
-        .guestbook-tab:hover { background: rgba(255, 255, 255, 0.15); transform: translateY(2px); }
-        .guestbook-tab .label-part { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; color: white; text-transform: uppercase; opacity: 0.8; }
+        
+   
+        .guestbook-tab { 
+          pointer-events: auto; 
+          text-decoration: none; 
+          background: #1a1a1a; 
+          border: 1px solid rgba(255, 255, 255, 0.15); 
+          border-top: none; 
+          padding: 10px 20px; 
+          width: fit-content; 
+          min-width: 140px; 
+          border-radius: 0; 
+          transition: background 0.3s, transform 0.3s; 
+          display: flex; 
+          align-items: center; 
+          justify-content: center; 
+          gap: 10px; 
+        }
+        .guestbook-tab:hover { background: #2a2a2a; }
+        .guestbook-tab .label-part { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 2px; color: white; text-transform: uppercase; opacity: 0.9; }
 
         .mobile-menu-checkbox, .mobile-top-bar, .mobile-nav-overlay { display: none; }
 
@@ -135,19 +152,20 @@ class NavigationMenu extends HTMLElement {
             border-color: rgba(204, 204, 204, 0.59);
           }
 
+          /* Zmieniono tło na pełny, ciemnoszary kolor zamiast przezroczystości */
           .tile-directory {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px dashed rgba(255, 255, 255, 0.3);
-            color: #b3b3b3;
+            background: #1c1c1c;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #ffffff;
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 2px;
           }
 
           .tile-directory:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: #2a2a2a;
             color: #fff;
-            border-style: solid;
+            border-color: rgba(255, 255, 255, 0.5);
           }
 
           .mobile-guestbook, .mobile-bonus { display: none; }
@@ -191,12 +209,10 @@ class NavigationMenu extends HTMLElement {
 
       <div class="mobile-nav-overlay">
         <nav class="mobile-primary-links">
-          <!-- Zmieniona kolejność, aby pasowała do siatki 2x3 -->
           <a href="/works.html" class="tile-main">WORKS</a>
           <a href="/writings.html" class="tile-main">WRITINGS</a>
           <a href="/about.html" class="tile-main">ABOUT</a>
           <a href="/contact.html" class="tile-main">CONTACT</a>
-          <!-- Nowe, wystylizowane kafelki na dole siatki -->
           <a href="https://annoise.atabook.org" target="_blank" class="tile-guestbook">✎ GUESTBOOK</a>
           <a href="/directory.html" class="tile-directory">⟡ DIRECTORY</a>
         </nav>
