@@ -29,6 +29,7 @@ body {
   letter-spacing: 0.01em;
   color: #a0a0a0;
   margin: 0;
+
   background: black url('images/website/maja-braumberger-bg.webp') no-repeat center center;
   background-size: cover;
   min-height: 100dvh;
@@ -44,46 +45,45 @@ main {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  
 }
 
+
 .video-hero {
-  width: 560px; 
-  max-width: 90vw; 
-  aspect-ratio: 16 / 9; 
-  border-radius: 20px; 
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 33%; 
+  max-width: none;
+  height: 100dvh;
+  aspect-ratio: auto;
+  border-radius: 0;
   overflow: hidden;
-  position: relative;
-  z-index: 2;
+  z-index: 1; 
   cursor: crosshair;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0;
 }
 
-.video-hero video {
+.video-hero video, .slide video, .slide img {
   width: 100%; 
   height: 100%;
   object-fit: cover; 
   display: block; 
   opacity: 1;
+  
 }
 
 .webrings-corner {
-  position: fixed;
-  bottom: 20px;
-  left: 15px; 
-  z-index: 2000;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.webrings-row {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
+  margin-bottom: 25px;
+  z-index: 2000;
 }
 
 #recent-writings-widget { 
@@ -99,6 +99,12 @@ main {
   backdrop-filter: blur(4px); 
 }
 
+.widget-status-container {
+  margin-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 10px;
+}
+
 #recent-writings-widget h4 { 
   margin: 0 0 10px 0; 
   font-size: 14px; 
@@ -106,7 +112,7 @@ main {
   color: #767676; 
   text-transform: uppercase; 
   border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
-  padding-bottom: 5px; 
+  padding-bottom: 6px; 
 }
 
 .widget-item { 
@@ -172,15 +178,15 @@ main {
   
 footer { 
   position: fixed; 
-  bottom: 4px; 
+  bottom: 0px; 
   left: 0; 
   width: 100%; 
   text-align: center; 
   color: #ffffff; 
-  font-size: 11px; 
+  font-size: 10px; 
   z-index: 5; 
   pointer-events: none; 
-  mix-blend-mode: difference; 
+
   padding: 0px 0;
 }
 
@@ -202,7 +208,9 @@ footer {
   text-align: center; 
 }
 
-.activity-handle { display: none !important; }
+.activity-handle { 
+  display: none; 
+}
 
 .rss-button { 
   display: flex; 
@@ -250,39 +258,6 @@ footer {
   visibility: visible;
 }
 
-.slide video, .slide img {
-  width: 100%; 
-  height: 100%;
-  object-fit: cover; 
-  display: block; 
-}
-
-.slider-dots {
-  display: flex;
-  gap: 12px;
-  pointer-events: auto; 
-  flex-direction: row;
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.1s ease;
-}
-
-.dot:hover {
-  background: rgba(255, 255, 255, 0.7);
-}
-
-.dot.active {
-  background: rgba(255, 255, 255, 1);
-  transform: scale(1.2);
-}
-
 #ascii-fade-overlay {
   position: fixed;
   top: 0; left: 0; width: 100vw; height: 100vh;
@@ -309,31 +284,6 @@ footer {
   user-select: none;
 }
 
-ws-widget {
-  position: fixed;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
-  pointer-events: auto;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
-  transition: opacity 0.3s ease;
-}
-
-.guestbook-gif-link {
-  transform: scale(1.4);
-  display: block;
-  transition: transform 0.3s ease, filter 0.3s ease;
-  filter: grayscale(100%) invert(100%);
-  width: fit-content;
-  margin-left: 30px;
-}
-
-.guestbook-gif-link:hover {
-  transform: scale(1.5);
-  filter: grayscale(100%);
-}
-
 @keyframes pulseRed {
   0% { background-color: rgba(180, 50, 50, 0.10); }
   86% { background-color: rgba(180, 50, 50, 0.21); }
@@ -350,6 +300,7 @@ ws-widget {
     justify-content: center;
     overflow-y: auto; 
     height: 100dvh;
+    background-position: -690px center;
   }
 
   #preloader > div {
@@ -366,36 +317,86 @@ ws-widget {
     box-sizing: border-box;
     padding-bottom: 40px;
   }
+    
+  .video-hero {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 30%; 
+    max-width: none;
+    height: 100dvh;
+    aspect-ratio: auto;
+    border-radius: 0;
+    overflow: hidden;
+    z-index: 1; 
+    cursor: crosshair;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+  }
 
   #recent-writings-widget {
     position: fixed;
-    bottom: 68px;            
-    left: 50%;
-    transform: translateX(-50%) !important;
-    width: 85vw;               
-    max-width: 240px;      
+    bottom: 75px;           
+    right: -230px;          
+    width: 230px;           
     margin: 0; 
-    background: rgba(0, 0, 0, 0.9); 
-    padding: 8px 12px;         
-    z-index: 2000;               
+    background: rgba(0, 0, 0, 0.98); 
+    padding: 12px;          
+    z-index: 2000;              
     box-sizing: border-box;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-right: none;     
+    transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
+  }
+
+  #recent-writings-widget.active {
+    right: 0;
   }
 
   .activity-handle { 
-    display: none !important; 
+    display: flex !important; 
+    position: absolute;
+    left: -26px;           
+    top: 0;                 
+    height: 80%;           
+    background: rgba(0, 0, 0, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-right: none;     
+    color: #ffffff;         
+    padding: 0 4px;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    cursor: pointer;
+    font-size: 11px;
+    letter-spacing: 2px;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border-radius: 0;       
+    box-shadow: -8px 0 20px rgba(0,0,0,0.6);
+  }
+
+  .activity-handle span:first-child {
+    transform: rotate(0deg); 
+    transition: transform 0.3s ease;
+  }
+
+  #recent-writings-widget.active .activity-handle span:first-child {
+    transform: rotate(180deg); 
   }
 
   #recent-writings-widget h4 {
-    font-size: 10px;           
-    margin-bottom: 4px;
-    padding-bottom: 3px;
-    color: #555;
+    font-size: 11px;            
+    margin-bottom: 8px;
+    padding-bottom: 4px;
+    color: #aaa;            
   }
   
   .widget-item {
-    padding: 4px 0;           
-    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    padding: 6px 4px;           
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
   
   .widget-item:last-child {
@@ -404,31 +405,35 @@ ws-widget {
 
   .widget-title {
     font-size: 11px;  
-    white-space: nowrap;   
+    white-space: nowrap;    
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
   .widget-date {
-    display: none !important;
-  }
-  
-  .webrings-corner { display: none !important; } 
-
-  .video-hero { 
-    width: 90vw; 
-    margin-top: 0px; 
-  }
-  
-  ws-widget {
-    bottom: 35px;
-    align-items: center;
+    display: block !important;
+    font-size: 10px;
+    color: #888;
+    margin-top: 2px;
   }
 
-  .guestbook-gif-link {
-    visibility: hidden;
+
+  footer {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    left: auto;
+    width: 300px;
+    text-align: right;
+    padding: 0;
+  }
+
+  footer .webrings-corner {
+    justify-content: flex-end !important;
+    gap: 5px;
   }
 }
+
 </style>
 </head>
 <body>
@@ -465,14 +470,16 @@ ws-widget {
     </div>
 
   </div>
-
-  <div class="slider-dots" id="sliderDots"></div>
 </div>
 
     <div id="recent-writings-widget">
       <div class="activity-handle" onclick="document.getElementById('recent-writings-widget').classList.toggle('active')">
         <span>◀</span>
         <span class="activity-handle-text">RECENT ACTIVITY</span>
+      </div>
+
+      <div class="widget-status-container">
+        <ws-widget type="status" iid="24560"></ws-widget>
       </div>
 
       <h4 style="display: flex; justify-content: space-between; align-items: center;">
@@ -484,69 +491,39 @@ ws-widget {
       <div id="widget-content"></div>
     </div>
 
-    
-<div class="webrings-corner">
-  
-  <a href="https://annoise.atabook.org" target="_blank" rel="noopener noreferrer" class="guestbook-gif-link">
-    <img src="guestbook.gif" alt="Sign my Guestbook">
-  </a>
-  
-  <div class="webrings-row">
-    
-<map name="noaimini1">
-<area href="https://baccyflap.com/noai" shape="rect" coords="16,2,71,28" target="_blank" alt="no ai webring" title="no ai webring">
-<area href="https://baccyflap.com/noai/?prv&s=mbx" target="_top" shape="rect" coords="2,9,13,21" alt="previous" title="previous">
-<area href="https://baccyflap.com/noai/?rnd" target="_top" shape="rect" coords="79,22,85,28" alt="random" title="random">
-<area href="https://baccyflap.com/noai/?nxt&s=mbx" target="_top" shape="rect" coords="74,9,85,21" alt="next" title="next">
-</map>
-<img usemap="#noaimini1" src="https://baccyflap.com/noai/miniwidget1.gif" alt="">
-
-    <div id="ncring">
-      <script src="https://neocreatives.neocities.org/onionring-variables.js"></script>
-      <script src="https://neocreatives.neocities.org/onionring-widget.js"></script>
-    </div>
-  </div>
-</div>
-
     <navigation-menu></navigation-menu>
-    
-    <ws-widget type="hc" iid="4578"></ws-widget>
   </main>
   
   <footer>
-    <p>© 2026 maja braumberger. all rights reserved.</p>
+    <div class="webrings-corner" style="justify-content: center; margin-bottom: 6px; pointer-events: auto;">
+      <map name="noaimini1">
+        <area href="https://baccyflap.com/noai" shape="rect" coords="16,2,71,28" target="_blank" alt="no ai webring" title="no ai webring">
+        <area href="https://baccyflap.com/noai/?prv&s=mbx" target="_top" shape="rect" coords="2,9,13,21" alt="previous" title="previous">
+        <area href="https://baccyflap.com/noai/?rnd" target="_top" shape="rect" coords="79,22,85,28" alt="random" title="random">
+        <area href="https://baccyflap.com/noai/?nxt&s=mbx" target="_top" shape="rect" coords="74,9,85,21" alt="next" title="next">
+      </map>
+      <img usemap="#noaimini1" src="https://baccyflap.com/noai/miniwidget1.gif" alt="">
+
+      <div id="ncring">
+        <script src="https://neocreatives.neocities.org/onionring-variables.js"></script>
+        <script src="https://neocreatives.neocities.org/onionring-widget.js"></script>
+      </div>
+    </div>
+    <p>© 2026 maja braumberger.&nbsp; all rights reserved.</p>
   </footer>
 
   <script>
     const slider = document.getElementById('featuredSlider');
     const slides = slider.querySelectorAll('.slide');
-    const dotsContainer = document.getElementById('sliderDots');
     let currentIndex = 0;
     let slideInterval;
     const intervalTime = 5000;
 
-    if (dotsContainer && slides.length > 0) {
-      slides.forEach((_, index) => {
-        const dot = document.createElement('div');
-        dot.classList.add('dot');
-        if (index === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => goToSlide(index));
-        dotsContainer.appendChild(dot);
-      });
-    }
-
-    const dots = dotsContainer.querySelectorAll('.dot');
-
     function goToSlide(index) {
-      if (!slides[currentIndex] || !dots[currentIndex]) return;
-      
+      if (!slides[currentIndex]) return;
       slides[currentIndex].classList.remove('active');
-      dots[currentIndex].classList.remove('active');
-      
       currentIndex = index;
-      
       slides[currentIndex].classList.add('active');
-      dots[currentIndex].classList.add('active');
     }
 
     function nextSlide() {
