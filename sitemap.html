@@ -28,12 +28,14 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  overflow-x: hidden; 
 }
   
   main {
     display: flex;
     width: 100%;
     height: 100dvh;
+    overflow-x: hidden; 
   }
 
   .sitemap-visual {
@@ -48,6 +50,7 @@ body {
     flex: 1;
     height: 100%;
     overflow-y: auto;
+    overflow-x: auto; 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -83,6 +86,7 @@ body {
     line-height: 1.2;
     color: #b8b8b8;
     user-select: none;
+    white-space: nowrap; 
   }
 
   .tree-root {
@@ -96,7 +100,7 @@ body {
   .tree-node {
     display: flex;
     align-items: baseline;
-    white-space: pre;
+    white-space: nowrap; 
     position: relative; 
   }
 
@@ -121,7 +125,7 @@ body {
     padding-left: 2px;
   }
 
-  /* Styl dla wyszarzonej daty */
+
   .sitemap-date {
     color: #555555;
     font-size: 0.85em;
@@ -150,7 +154,6 @@ body {
     transition: padding-left;
   }
 
-  /* Po najechaniu na linijkę daty również delikatnie jaśnieją, żeby pasowało */
   .tree-node:hover .sitemap-date {
     color: #888888;
     opacity: 1;
@@ -193,12 +196,14 @@ body {
   @media (max-width: 768px) {
     body {
       overflow-y: auto;
+      overflow-x: hidden;
       height: auto;
     }
 
     main {
       flex-direction: column;
       height: auto;
+      overflow-x: hidden;
     }
 
     .sitemap-visual {
@@ -217,6 +222,7 @@ body {
       flex: none;
       width: 100%;
       height: auto;
+      overflow-x: auto; 
       padding: 20px 15px 30px 15px;
       background: #0a0a0a;
     }
@@ -250,7 +256,7 @@ body {
     }
   }
 
-  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar { width: 10px; height: 6px; }
   ::-webkit-scrollbar-track { background: #111; }
   ::-webkit-scrollbar-thumb { background-color: #444; border-radius: 5px; border: 2px solid #111; }
 </style>
@@ -279,10 +285,15 @@ body {
           <div class="tree-node"><span class="tree-branch">│   │ </span></div>
         
           <div class="tree-node"><span class="tree-branch">│   ├── </span><a href="works.html" class="sitemap-link">works</a></div>
-                    <div class="tree-node"><span class="tree-branch">│   │   ├───── </span><a href="works/posters2.html" class="sitemap-link">second batch of posters!</a><span class="sitemap-date">26.10.2026</span></div>
+          <div class="tree-node"><span class="tree-branch">│   │   |</span></div>
+          <div class="tree-node"><span class="tree-branch">│   │   ├───── </span><a href="works/posters2.html" class="sitemap-link">second batch of posters!</a><span class="sitemap-date">26.10.2026</span></div>
+          <div class="tree-node"><span class="tree-branch">│   │   |</span></div>
           <div class="tree-node"><span class="tree-branch">│   │   ├───── </span><a href="works/posters1.html" class="sitemap-link">first half of 2026 in posters</a><span class="sitemap-date">23.07.2026</span></div>
+          <div class="tree-node"><span class="tree-branch">│   │   |</span></div>
           <div class="tree-node"><span class="tree-branch">│   │   ├───── </span><a href="works/2025.html" class="sitemap-link">a look back at 2025 </a><span class="sitemap-date">30.01.2026</span></div>
+          <div class="tree-node"><span class="tree-branch">│   │   |</span></div>
           <div class="tree-node"><span class="tree-branch">│   │   ├───── </span><a href="works/survivalmachines.html" class="sitemap-link">survival machines</a><span class="sitemap-date">29.11.2024</span></div>
+          <div class="tree-node"><span class="tree-branch">│   │   |</span></div>
           <div class="tree-node"><span class="tree-branch">│   │   └───── </span><a href="works/backtodayone.html" class="sitemap-link">back to day one</a><span class="sitemap-date">27.06.2024</span></div>
 
           <div class="tree-node"><span class="tree-branch">│   │ </span></div>
@@ -305,12 +316,12 @@ body {
           <div class="tree-node"><span class="tree-branch">│   ├── </span><a href="https://baccyflap.com/noai" target="_blank" class="sitemap-link">no ai webring</a></div>
           <div class="tree-node"><span class="tree-branch">│   └── </span><a href="https://lunar-webring.neocities.org" target="_blank" class="sitemap-link">lunar webring</a></div>  
           <div class="tree-node"><span class="tree-branch">│ </span></div>
-                    <div class="tree-node"><span class="tree-branch">└── </span><span class="tree-folder">|resources</span></div>
+                              <div class="tree-node"><span class="tree-branch">└── </span><span class="tree-folder">|resources</span></div>
           <div class="tree-node"><span class="tree-branch">    │ </span></div>
           <div class="tree-node"><span class="tree-branch">    └── </span><a href="directory.html" target="_blank" class="sitemap-link">personal directory</a></div>
           
           <br><br><br><br><br><br><br>
-                    <div class="tree-node"><span class="tree-branch">            - </span><a href="/lichen.html" target="_blank" class="sitemap-link">???</a></div>
+                              <div class="tree-node"><span class="tree-branch">            - </span><a href="/lichen.html" target="_blank" class="sitemap-link">???</a></div>
         </div>
       </div> 
 
