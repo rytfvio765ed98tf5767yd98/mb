@@ -54,7 +54,7 @@ main {
   position: fixed;
   top: 0;
   left: 0;
-  width: 33%; 
+  width: 34%; 
   max-width: none;
   height: 100dvh;
   aspect-ratio: auto;
@@ -463,8 +463,8 @@ footer {
   <div class="video-hero" id="featuredSlider">
     
     <div class="slide active">
-      <video autoplay muted loop playsinline poster="index.webm">
-        <source src="index.webm" type="video/webm">
+      <video autoplay muted loop playsinline poster=" ">
+        <source src=" " type="video/webm">
       </video>
     </div>
         
@@ -526,7 +526,7 @@ footer {
     const slides = slider.querySelectorAll('.slide');
     let currentIndex = 0;
     let slideInterval;
-    const intervalTime = 5000;
+    const intervalTime = 2000;
 
     function goToSlide(index) {
       if (!slides[currentIndex]) return;
