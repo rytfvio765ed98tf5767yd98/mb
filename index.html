@@ -35,33 +35,69 @@ body {
   min-height: 100dvh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   overflow-y: auto; 
   overflow-x: hidden; 
+  position: relative;
+}
+
+/* Pełny, płynny gradient pokrywający całe tło podczas scrollowania */
+body::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.75) 75%, rgba(0, 0, 0, 1) 100%);
+  pointer-events: none;
+  z-index: 1;
 }
 
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 100dvh;
+  position: relative;
+  z-index: 2; /* Treść strony znajduje się nad warstwą gradientu */
 }
 
-
-.video-hero {
-
-  position: fixed;
+.hero-wrapper {
+  position: absolute;
   top: 0;
   left: 0;
   width: 34%; 
-  max-width: none;
   height: 100dvh;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-wrapper::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.video-hero {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 100%;
+  max-width: none;
   aspect-ratio: auto;
   border-radius: 0;
   overflow: hidden;
-  z-index: 1; 
-  cursor: crosshair;
+  cursor: default;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,7 +110,19 @@ main {
   object-fit: cover; 
   display: block; 
   opacity: 1;
-  
+}
+
+/* Miejsce na embed na dole strony */
+.mobile-embed-section {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  background-color: #000000;
+  z-index: 2;
+  margin-top: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .webrings-corner {
@@ -186,7 +234,6 @@ footer {
   font-size: 10px; 
   z-index: 5; 
   pointer-events: none; 
-
   padding: 0px 0;
 }
 
@@ -231,15 +278,6 @@ footer {
 
 #ncring { transform: scale(1.1); transform-origin: center; }
 #ncring table, #ncring td { font-size: 12px !important; }
-
-.hero-wrapper {
-  display: flex;
-  align-items: center;
-  position: relative;
-  z-index: 2;
-  flex-direction: column; 
-  gap: 15px;
-}
 
 .slide {
   position: absolute;
@@ -296,10 +334,11 @@ footer {
 
 @media (max-width: 768px) {
   body {
-    align-items: center; 
-    justify-content: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     overflow-y: auto; 
-    height: 100dvh;
+    min-height: 100dvh;
+    height: auto;
     background-position: -460px center;
   }
 
@@ -309,43 +348,28 @@ footer {
 
   main {
     width: 100%;
-    height: 100%;
+    min-height: 100dvh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     box-sizing: border-box;
-    padding-bottom: 40px;
+    position: relative;
   }
     
-  .video-hero {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 45%; 
-    max-width: none;
-    height: 100dvh;
-    aspect-ratio: auto;
-    border-radius: 0;
-    overflow: hidden;
-    z-index: 1; 
-    cursor: crosshair;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
+  .hero-wrapper {
+    width: 100%; 
   }
-
   
   #recent-writings-widget {
     position: fixed;
     bottom: 75px;            
-    right: -200px;         
-    width: 200px;         
+    right: -200px;           
+    width: 200px;          
     margin: 0; 
     background: rgba(0, 0, 0, 0.98); 
-    padding: 8px 10px;     
-    z-index: 2000;                 
+    padding: 8px 10px;         
+    z-index: 2000;                     
     box-sizing: border-box;
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-right: none;      
@@ -360,22 +384,22 @@ footer {
     display: flex !important; 
     position: absolute;
     left: -24px;            
-    top: 0;                    
-    height: 99%;               
+    top: 0;                            
+    height: 99%;                   
     background: rgba(0, 0, 0, 0.98);
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-right: none;      
-    color: #ffffff;           
+    color: #ffffff;            
     padding: 0 3px;
     writing-mode: vertical-rl;
     text-orientation: mixed;
     cursor: pointer;
-    font-size: 10px;       
+    font-size: 10px;            
     letter-spacing: 1.5px;
     align-items: center;
     justify-content: center;
     gap: 10px;
-    border-radius: 0;         
+    border-radius: 0;          
     box-shadow: -8px 0 20px rgba(0,0,0,0.6);
   }
 
@@ -394,7 +418,7 @@ footer {
   }
 
   #recent-writings-widget h4 {
-    font-size: 10px;           
+    font-size: 10px;            
     margin-bottom: 6px;
     padding-bottom: 3px;
     color: #aaa;            
@@ -418,11 +442,10 @@ footer {
 
   .widget-date {
     display: block !important;
-    font-size: 9px;         
+    font-size: 9px;            
     color: #888;
     margin-top: 1px;
   }
-
 
   footer {
     position: fixed;
@@ -442,7 +465,10 @@ footer {
     transform-origin: right bottom;
   }
 }
-
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: #000; }
+    ::-webkit-scrollbar-thumb { background-color: #454545; border-radius: 5px; border: 2px solid #000; }
+  
 </style>
 </head>
 <body>
@@ -461,8 +487,6 @@ footer {
     
 <div class="hero-wrapper">
   <div class="video-hero" id="featuredSlider">
-    
-        
     <div class="slide active">
       <video autoplay muted loop playsinline poster="saw.mp4">
         <source src="../images/projects/saw/saw.mp4" type="video/mp4">
@@ -477,12 +501,9 @@ footer {
       <img src="images/index/2.webp" alt="Hero WebP">
     </div>
     
-    
     <div class="slide">
       <img src="images/index/3.webp" alt="Hero WebP">
     </div>
-  
-
   </div>
 </div>
 
@@ -506,6 +527,11 @@ footer {
     </div>
 
     <navigation-menu></navigation-menu>
+
+  
+    <div class="mobile-embed-section">
+
+    </div>
   </main>
   
   <footer>
