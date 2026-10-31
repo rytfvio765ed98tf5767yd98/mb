@@ -9,7 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="favicon.png" type="image/png">
   <meta name="description" content="the unveiling of light's feverish dreams">
-  <meta name="keywords" content="dark art, dark photography, monochrome art, black and white photography, fine art photography, conceptual art, existential themes, surreal imagery, psychological art, poetic visuals, visual storytelling, emotional photography, moody art, minimalistic art, atmospheric photography, introspective art, art of solitude, abstract photography, contemporary fine art, artistic expression, dark surrealism">
+  <meta name="keywords" content="dark art, dark photography, monochrome art, black and white photography, fine art photography, conceptual art, existential themes, surreal imagery, psychological art, poetic visuals, visual storytelling, emotional photography, moody art, minimalistic art, atmospheric photography, introspective art, abstract photography, contemporary fine art, artistic expression, dark surrealism">
   <meta name="author" content="Maja Braumberger">
   <meta http-equiv="refresh" content="180">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,18 +29,17 @@ body {
   letter-spacing: 0.01em;
   color: #a0a0a0;
   margin: 0;
-
-  background: black url('images/website/maja-braumberger-bg.webp') no-repeat center center;
-  background-size: cover;
+  background: black url('images/website/maja-braumberger-bg.webp') no-repeat top center;
+  background-size: auto 100vh; 
   min-height: 100dvh;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column; 
+  justify-content: flex-start;
+  align-items: center;
   overflow-y: auto; 
   overflow-x: hidden; 
   position: relative;
 }
-
 
 body::after {
   content: '';
@@ -49,7 +48,6 @@ body::after {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.75) 75%, rgba(0, 0, 0, 1) 100%);
   pointer-events: none;
   z-index: 1;
 }
@@ -61,6 +59,7 @@ main {
   justify-content: flex-start;
   width: 100%;
   min-height: 100dvh;
+  flex: 1; 
   position: relative;
   z-index: 2; 
 }
@@ -69,22 +68,10 @@ main {
   position: absolute;
   top: 0;
   left: 0;
-  width: 34%; 
-  height: 100dvh;
+  width: 40%; 
+  height: 80dvh;
   z-index: 1;
   pointer-events: none;
-}
-
-.hero-wrapper::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 150px;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
-  pointer-events: none;
-  z-index: 2;
 }
 
 .video-hero {
@@ -106,11 +93,147 @@ main {
 
 .video-hero video, .slide video, .slide img {
   width: 100%; 
-  height: 100%;
+  height: 100%; 
   object-fit: cover; 
   display: block; 
   opacity: 1;
 }
+
+
+.horizontal-film-strip-section {
+  position: relative;
+  width: 100%;
+  margin-top: 80dvh; 
+  background-color: #0c0c0c;
+  padding: 0px 0px;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.horizontal-film-strip {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap; 
+  gap: 6px;
+  width: 100%;
+  max-width: 3000px;
+  background-color: #000;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 30px;
+  box-sizing: border-box;
+  overflow-x: auto; 
+}
+
+.horizontal-film-card {
+  position: relative;
+  background-color: #000;
+  border-left: 2px solid #111;
+  border-right: 2px solid #111;
+  padding: 16px 0;
+  cursor: pointer;
+  flex: 1 1 0;
+  min-width: 200px;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+}
+
+.horizontal-film-card:hover {
+  background-color: #080808;
+}
+
+.horizontal-film-card::before,
+.horizontal-film-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background-image: repeating-linear-gradient(
+    to right,
+    #111 0px,
+    #111 10px,
+    #000 10px,
+    #000 20px
+  );
+  z-index: 2;
+}
+.horizontal-film-card::before { top: 2px; }
+.horizontal-film-card::after { bottom: 2px; }
+
+.horizontal-film-inner {
+  position: relative;
+  overflow: hidden;
+  background-color: #000;
+}
+
+.horizontal-film-card img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(1);
+  transition: filter 0.5s ease;
+}
+
+.horizontal-film-card:hover img {
+  filter: grayscale(0);
+}
+
+.film-meta-top, .film-meta-bottom {
+  font-size: 9px;
+  color: #777;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 6px;
+  user-select: none;
+  background-color: #040404;
+}
+.film-meta-top { border-bottom: 1px solid #1a1a1a; margin-bottom: 4px; }
+.film-meta-bottom { border-top: 1px solid #1a1a1a; margin-top: 4px; }
+
+/* Lightbox */
+#lightbox {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s;
+}
+#lightbox.active {
+  opacity: 1;
+  visibility: visible;
+}
+#lightbox img {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+}
+#lightbox-close {
+  position: absolute;
+  top: 30px;
+  right: 40px;
+  color: #aaa;
+  font-size: 24px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 2px;
+  transition: 0.3s;
+}
+#lightbox-close:hover { color: #fff; }
 
 
 .mobile-embed-section {
@@ -119,7 +242,6 @@ main {
   height: 250px;
   background-color: #000000;
   z-index: 2;
-  margin-top: 100dvh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -225,16 +347,13 @@ main {
 }
   
 footer { 
-  position: fixed; 
-  bottom: 0px; 
-  left: 0; 
   width: 100%; 
-  text-align: center; 
+  text-align: left;
   color: #ffffff; 
   font-size: 10px; 
   z-index: 5; 
-  pointer-events: none; 
-  padding: 0px 0;
+  padding: 15px 20px; 
+  box-sizing: border-box;
 }
 
 @keyframes loading { 0% { width: 0%; } 100% { width: 100%; } }
@@ -339,6 +458,7 @@ footer {
     overflow-y: auto; 
     min-height: 100dvh;
     height: auto;
+    background-size: cover; 
     background-position: -460px center;
   }
 
@@ -358,7 +478,12 @@ footer {
   }
     
   .hero-wrapper {
-    width: 100%; 
+    width: 100vw; 
+    height: 80dvh;
+  }
+
+  .horizontal-film-strip-section {
+    margin-top: 80dvh;
   }
   
   #recent-writings-widget {
@@ -368,7 +493,7 @@ footer {
     width: 200px;          
     margin: 0; 
     background: rgba(0, 0, 0, 0.98); 
-    padding: 8px 10px;         
+    padding: 8px 10px;           
     z-index: 2000;                     
     box-sizing: border-box;
     border: 1px solid rgba(255, 255, 255, 0.25);
@@ -384,8 +509,8 @@ footer {
     display: flex !important; 
     position: absolute;
     left: -24px;            
-    top: 0;                            
-    height: 99%;                   
+    top: 0;                                                   
+    height: 99%;                                    
     background: rgba(0, 0, 0, 0.98);
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-right: none;      
@@ -448,21 +573,18 @@ footer {
   }
 
   footer {
-    position: fixed;
+    position: relative; 
     font-size: 8px;
-    bottom: 0px;
-    right: 10px;
-    left: auto;
-    width: 140px;
-    text-align: right;
-    padding: 0;
+    width: 100%;
+    text-align: left;
+    padding: 10px;
   }
 
   footer .webrings-corner {
-    justify-content: flex-end !important;
+    justify-content: flex-start !important;
     gap: 5px;
-    transform: scale(0.67);
-    transform-origin: right bottom;
+    transform: scale(0.85);
+    transform-origin: left bottom;
   }
 }
     ::-webkit-scrollbar { width: 10px; }
@@ -485,27 +607,34 @@ footer {
 
   <main>
     
-<div class="hero-wrapper">
-  <div class="video-hero" id="featuredSlider">
-    <div class="slide active">
-      <video autoplay muted loop playsinline poster="saw.mp4">
-        <source src="../images/projects/saw/saw.mp4" type="video/mp4">
-      </video>
+    <div class="hero-wrapper">
+      <div class="video-hero" id="featuredSlider">
+        <div class="slide active">
+          <video autoplay muted loop playsinline poster="saw.mp4">
+            <source src="../images/projects/saw/saw.mp4" type="video/mp4">
+          </video>
+        </div>
+        
+        <div class="slide">
+          <img src="images/index/1.webp" alt="Hero WebP">
+        </div>
+        
+        <div class="slide">
+          <img src="images/index/2.webp" alt="Hero WebP">
+        </div>
+        
+        <div class="slide">
+          <img src="images/index/3.webp" alt="Hero WebP">
+        </div>
+      </div>
     </div>
-    
-    <div class="slide">
-      <img src="images/index/1.webp" alt="Hero WebP">
+
+    <!-- TAŚMA FILMOWA: DOKŁADNIE 4 KLATKI -->
+    <div class="horizontal-film-strip-section">
+      <div class="horizontal-film-strip" id="horizontal-gallery">
+        <!-- Generowane automatycznie (dokładnie 4 klatki) -->
+      </div>
     </div>
-    
-    <div class="slide">
-      <img src="images/index/2.webp" alt="Hero WebP">
-    </div>
-    
-    <div class="slide">
-      <img src="images/index/3.webp" alt="Hero WebP">
-    </div>
-  </div>
-</div>
 
     <div id="recent-writings-widget">
       <div class="activity-handle" onclick="document.getElementById('recent-writings-widget').classList.toggle('active')">
@@ -528,14 +657,17 @@ footer {
 
     <navigation-menu></navigation-menu>
 
-  
-    <div class="mobile-embed-section">
-
-    </div>
+    <div class="mobile-embed-section"></div>
   </main>
+
+ 
+  <div id="lightbox">
+    <button id="lightbox-close">x</button>
+    <img id="lightbox-img" src="" alt="Enlarged Photo">
+  </div>
   
   <footer>
-    <div class="webrings-corner" style="justify-content: center; margin-bottom: 6px; pointer-events: auto;">
+    <div class="webrings-corner" style="justify-content: flex-start; margin-bottom: 6px; pointer-events: auto;">
       <map name="noaimini1">
         <area href="https://baccyflap.com/noai" shape="rect" coords="16,2,71,28" target="_blank" alt="no ai webring" title="no ai webring">
         <area href="https://baccyflap.com/noai/?prv&s=mbx" target="_top" shape="rect" coords="2,9,13,21" alt="previous" title="previous">
@@ -584,6 +716,74 @@ footer {
 
     slider.addEventListener('mouseenter', stopSlider);
     slider.addEventListener('mouseleave', startSlider);
+
+    // GENEROWANIE DOKŁADNIE 4 KLATEK NA TAŚMIE
+    const horizontalGallery = document.getElementById('horizontal-gallery');
+    const totalHorizontalPhotos = 3; // Ustawione na 4
+    const horizontalBasePath = "images/index/";
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxClose = document.getElementById('lightbox-close');
+
+    if (horizontalGallery) {
+      for (let i = 1; i <= totalHorizontalPhotos; i++) {
+        const card = document.createElement('div');
+        card.className = 'horizontal-film-card';
+
+        const formattedNum = i < 10 ? '0' + i : i;
+
+        const topMeta = document.createElement('div');
+        topMeta.className = 'film-meta-top';
+        topMeta.innerHTML = `<span>FRAME [${formattedNum}]</span><span>2025</span>`;
+
+        const filmInner = document.createElement('div');
+        filmInner.className = 'horizontal-film-inner';
+
+        const img = document.createElement('img');
+        const imgIndex = ((i - 1) % 3) + 1;
+        img.src = `${horizontalBasePath}${imgIndex}.webp`; 
+        img.alt = `Film Frame ${i}`;
+        img.loading = "lazy";
+
+        filmInner.appendChild(img);
+
+        const bottomMeta = document.createElement('div');
+        bottomMeta.className = 'film-meta-bottom';
+        bottomMeta.innerHTML = `<span>mb</span><span>digital</span>`;
+
+        card.appendChild(topMeta);
+        card.appendChild(filmInner);
+        card.appendChild(bottomMeta);
+
+        card.addEventListener('click', () => {
+          lightboxImg.src = img.src;
+          lightbox.classList.add('active');
+        });
+
+        horizontalGallery.appendChild(card);
+      }
+    }
+
+    if (lightboxClose) {
+      lightboxClose.addEventListener('click', () => {
+        lightbox.classList.remove('active');
+      });
+    }
+
+    if (lightbox) {
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+          lightbox.classList.remove('active');
+        }
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox) {
+        lightbox.classList.remove('active');
+      }
+    });
     
 async function fetchRandomQuote() {
   const quoteDisplay = document.getElementById("quote-display");
