@@ -29,7 +29,7 @@ body {
   letter-spacing: 0.01em;
   color: #a0a0a0;
   margin: 0;
-  background: black url('images/website/maja-braumberger-bg.webp') no-repeat top center;
+background: black url('images/website/maja-braumberger-bg.webp') no-repeat calc(70% + 100px) -20px;
   background-size: auto 100vh; 
   min-height: 100dvh;
   display: flex;
@@ -459,7 +459,7 @@ footer {
     min-height: 100dvh;
     height: auto;
     background-size: cover; 
-    background-position: -460px center;
+    background-position: -420px center;
   }
 
   #preloader > div {
@@ -510,7 +510,7 @@ footer {
     position: absolute;
     left: -24px;            
     top: 0;                                                   
-    height: 99%;                                    
+    height: 99;                                   
     background: rgba(0, 0, 0, 0.98);
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-right: none;      
@@ -550,7 +550,7 @@ footer {
   }
   
   .widget-item {
-    padding: 4px 3px;        
+    padding: 4px 3px;       
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
   
@@ -717,9 +717,9 @@ footer {
     slider.addEventListener('mouseenter', stopSlider);
     slider.addEventListener('mouseleave', startSlider);
 
-    // GENEROWANIE DOKŁADNIE 4 KLATEK NA TAŚMIE
+    
     const horizontalGallery = document.getElementById('horizontal-gallery');
-    const totalHorizontalPhotos = 3; // Ustawione na 4
+    const totalHorizontalPhotos = 3; 
     const horizontalBasePath = "images/index/";
 
     const lightbox = document.getElementById('lightbox');
