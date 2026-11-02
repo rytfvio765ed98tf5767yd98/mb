@@ -242,12 +242,11 @@ main {
   object-fit: cover;
   display: block;
   border: none;
+  transition: opacity 0.4s ease-in-out;
 }
-
 
 .horizontal-film-inner iframe {
   opacity: 0;
-  transition: opacity 0.4s ease-in-out;
 }
 
 .horizontal-film-inner iframe.loaded {
@@ -256,7 +255,7 @@ main {
 
 .horizontal-film-card img {
   filter: grayscale(1);
-  transition: filter 0.5s ease;
+  transition: filter 0.5s ease, opacity 0.4s ease-in-out;
 }
 
 .horizontal-film-card:hover img {
@@ -288,7 +287,6 @@ main {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.4s ease, visibility 0.4s;
-  
 }
 #lightbox.active {
   opacity: 1;
@@ -315,7 +313,6 @@ main {
   transition: 0.3s;
 }
 #lightbox-close:hover { color: #fff; }
-
 
 .mobile-embed-section {
   position: relative;
@@ -377,7 +374,6 @@ main {
 #recent-writings-widget.glitch-active .widget-glitch-layer {
   opacity: 1;
 }
-
 
 #recent-writings-widget.scroll-hidden {
   transform: translateY(120px);
@@ -607,7 +603,7 @@ footer {
   #recent-writings-widget {
     position: fixed;
     bottom: 75px;            
-    right: -200px;           
+    right: -200px;            
     width: 200px;            
     margin: 0; 
     background: rgba(0, 0, 0, 0.98); 
@@ -619,7 +615,6 @@ footer {
     transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s ease, opacity 0.3s ease; 
   }
 
-  
   #recent-writings-widget.active {
     right: 0;
   }
@@ -630,13 +625,12 @@ footer {
     pointer-events: none;
   }
 
- 
   .activity-handle { 
     display: flex !important; 
     position: absolute;
     left: -28px;               
     top: 0;                                                                            
-    height: 60%;           
+    height: 60%;            
     background: rgba(0, 0, 0, 0.98);
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-right: none;      
@@ -918,7 +912,6 @@ footer {
       }
     }
 
-
 function initLichenEmbedScroll() {
   const middleInner = document.getElementById('middle-film-inner');
   if (!middleInner) return;
@@ -928,20 +921,27 @@ function initLichenEmbedScroll() {
 
   function loadLichen() {
     const existingIframe = middleInner.querySelector('iframe');
+    const initialImg = middleInner.querySelector('img');
 
     if (existingIframe) {
-    
+
       existingIframe.style.opacity = '0';
       setTimeout(() => {
         existingIframe.src = `lichen.html?t=${Date.now()}`;
-        
         existingIframe.onload = () => {
           existingIframe.style.opacity = '1';
         };
-      }, 300); 
-    } else {
-   
-      middleInner.innerHTML = `<iframe src="lichen.html?t=${Date.now()}" title="Lichen" class="loaded"></iframe>`;
+      }, 300);
+    } else if (initialImg) {
+
+      initialImg.style.opacity = '0';
+      setTimeout(() => {
+        middleInner.innerHTML = `<iframe src="lichen.html?t=${Date.now()}" title="Lichen"></iframe>`;
+        const iframe = middleInner.querySelector('iframe');
+        iframe.onload = () => {
+          iframe.classList.add('loaded');
+        };
+      }, 400);
     }
   }
 
@@ -950,12 +950,10 @@ function initLichenEmbedScroll() {
     const rect = middleInner.getBoundingClientRect();
     const windowHeight = window.innerHeight;
 
-  
-    if (rect.top <= windowHeight * 0.7 && rect.bottom >= windowHeight * 0.3) {
+    if (rect.top <= windowHeight * 0.5 && rect.bottom >= 0) {
       loaded = true;
-      loadLichen(); // Pierwsze załadowanie
+      loadLichen();
 
- 
       refreshInterval = setInterval(loadLichen, 10000);
     }
   }, { passive: true });
@@ -1128,7 +1126,6 @@ function initAsciiFade() {
     }, 30);
   });
 }
-
 
 function initScrollWidgetHide() {
   const widget = document.getElementById('recent-writings-widget');
