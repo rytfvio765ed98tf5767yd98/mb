@@ -232,13 +232,29 @@ main {
   position: relative;
   overflow: hidden;
   background-color: #000;
+  aspect-ratio: 16 / 9; 
 }
 
-.horizontal-film-card img {
+.horizontal-film-card img, .horizontal-film-inner iframe {
   width: 100%;
+  height: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
   display: block;
+  border: none;
+}
+
+
+.horizontal-film-inner iframe {
+  opacity: 0;
+  transition: opacity 0.4s ease-in-out;
+}
+
+.horizontal-film-inner iframe.loaded {
+  opacity: 1;
+}
+
+.horizontal-film-card img {
   filter: grayscale(1);
   transition: filter 0.5s ease;
 }
@@ -592,17 +608,18 @@ footer {
     position: fixed;
     bottom: 75px;            
     right: -200px;           
-    width: 200px;          
+    width: 200px;            
     margin: 0; 
     background: rgba(0, 0, 0, 0.98); 
     padding: 8px 10px;            
-    z-index: 2000;                                
+    z-index: 2000;                        
     box-sizing: border-box;
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-right: none;      
     transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s ease, opacity 0.3s ease; 
   }
 
+  
   #recent-writings-widget.active {
     right: 0;
   }
@@ -613,17 +630,18 @@ footer {
     pointer-events: none;
   }
 
+ 
   .activity-handle { 
     display: flex !important; 
     position: absolute;
-    left: -24px;            
-    top: 0;                                                 
-    height: 99;                                             
+    left: -28px;               
+    top: 0;                                                                            
+    height: 60%;           
     background: rgba(0, 0, 0, 0.98);
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-right: none;      
     color: #ffffff;            
-    padding: 0 3px;
+    padding: 0 4px;
     writing-mode: vertical-rl;
     text-orientation: mixed;
     cursor: pointer;
@@ -721,7 +739,7 @@ footer {
       <div class="video-hero" id="featuredSlider">
         <div class="slide active">
           <video autoplay muted loop playsinline poster="saw.mp4">
-            <source src="../images/projects/saw/saw.mp4" type="video/mp4">
+            <source src="images/projects/saw/saw.mp4" type="video/mp4">
           </video>
         </div>
         
@@ -761,6 +779,7 @@ footer {
       <!-- Warstwa efektu glitch ASCII -->
       <div class="widget-glitch-layer" id="widget-glitch-text"></div>
 
+      <!-- Długi, pionowy przycisk/uchwyt -->
       <div class="activity-handle" onclick="document.getElementById('recent-writings-widget').classList.toggle('active')">
         <span>◀</span>
         <span class="activity-handle-text">RECENT ACTIVITY&nbsp;</span>
@@ -861,18 +880,31 @@ footer {
 
         const topMeta = document.createElement('div');
         topMeta.className = 'film-meta-top';
-        topMeta.innerHTML = `<span>FRAME [${formattedNum}]</span><span>2026</span>`;
+        topMeta.innerHTML = `<span>FRAME |${formattedNum}|</span><span>2026</span>`;
 
         const filmInner = document.createElement('div');
         filmInner.className = 'horizontal-film-inner';
 
-        const img = document.createElement('img');
-        const imgIndex = ((i - 1) % 3) + 1;
-        img.src = `${horizontalBasePath}${imgIndex}.webp`; 
-        img.alt = `Film Frame ${i}`;
-        img.loading = "lazy";
+      if (i === 2) {
+          filmInner.id = 'middle-film-inner';
+          const img = document.createElement('img');
+          img.src = `${horizontalBasePath}2.webp`;
+          img.alt = `Film Frame ${i}`;
+          img.loading = "lazy";
+          filmInner.appendChild(img);
+        } else {
+          const img = document.createElement('img');
+          const imgIndex = ((i - 1) % 3) + 1;
+          img.src = `${horizontalBasePath}${imgIndex}.webp`; 
+          img.alt = `Film Frame ${i}`;
+          img.loading = "lazy";
+          filmInner.appendChild(img);
 
-        filmInner.appendChild(img);
+          card.addEventListener('click', () => {
+            lightboxImg.src = img.src;
+            lightbox.classList.add('active');
+          });
+        }
 
         const bottomMeta = document.createElement('div');
         bottomMeta.className = 'film-meta-bottom';
@@ -882,14 +914,52 @@ footer {
         card.appendChild(filmInner);
         card.appendChild(bottomMeta);
 
-        card.addEventListener('click', () => {
-          lightboxImg.src = img.src;
-          lightbox.classList.add('active');
-        });
-
         horizontalGallery.appendChild(card);
       }
     }
+
+
+function initLichenEmbedScroll() {
+  const middleInner = document.getElementById('middle-film-inner');
+  if (!middleInner) return;
+
+  let loaded = false;
+  let refreshInterval = null;
+
+  function loadLichen() {
+    const existingIframe = middleInner.querySelector('iframe');
+
+    if (existingIframe) {
+    
+      existingIframe.style.opacity = '0';
+      setTimeout(() => {
+        existingIframe.src = `lichen.html?t=${Date.now()}`;
+        
+        existingIframe.onload = () => {
+          existingIframe.style.opacity = '1';
+        };
+      }, 300); 
+    } else {
+   
+      middleInner.innerHTML = `<iframe src="lichen.html?t=${Date.now()}" title="Lichen" class="loaded"></iframe>`;
+    }
+  }
+
+  window.addEventListener('scroll', () => {
+    if (loaded) return;
+    const rect = middleInner.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+  
+    if (rect.top <= windowHeight * 0.7 && rect.bottom >= windowHeight * 0.3) {
+      loaded = true;
+      loadLichen(); // Pierwsze załadowanie
+
+ 
+      refreshInterval = setInterval(loadLichen, 10000);
+    }
+  }, { passive: true });
+}
 
     if (lightboxClose) {
       lightboxClose.addEventListener('click', () => {
@@ -910,7 +980,7 @@ footer {
         lightbox.classList.remove('active');
       }
     });
-    
+      
 async function fetchRandomQuote() {
   const quoteDisplay = document.getElementById("quote-display");
   try {
@@ -1131,7 +1201,8 @@ window.addEventListener('load', function() {
   fetchRecentActivity(); 
   initAsciiFade(); 
   initScrollWidgetHide();
-  setTimeout(() => { if(preloader) preloader.classList.add('hidden'); }, 5000);
+  initLichenEmbedScroll(); 
+  setTimeout(() => { if(preloader) preloader.classList.add('hidden'); }, 4000);
 });
   </script>
 </body>
