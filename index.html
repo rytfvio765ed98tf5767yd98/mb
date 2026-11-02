@@ -317,7 +317,7 @@ main {
   flex-direction: row;
   align-items: center;
   gap: 8px;
-  margin-bottom: 25px;
+  margin-bottom: 0;
   z-index: 2000;
 }
 
@@ -332,6 +332,41 @@ main {
   z-index: 2000; 
   box-shadow: 0 10px 30px rgba(0,0,0,0.5); 
   backdrop-filter: blur(4px); 
+  transition: transform 0.3s ease, opacity 0.3s ease, right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.widget-glitch-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  color: #a0a0a0;
+  font-family: 'Space Mono', monospace;
+  font-size: 39px;
+  line-height: 47px;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  letter-spacing: 2px;
+  transition: opacity 0.1s ease;
+}
+
+#recent-writings-widget.glitch-active .widget-glitch-layer {
+  opacity: 1;
+}
+
+
+#recent-writings-widget.scroll-hidden {
+  transform: translateY(120px);
+  opacity: 0;
+  pointer-events: none;
 }
 
 .widget-status-container {
@@ -413,11 +448,13 @@ main {
   
 footer { 
   width: 100%; 
-  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   color: #ffffff; 
   font-size: 10px; 
   z-index: 5; 
-  padding: 15px 20px; 
+  padding: 0px 15px; 
   box-sizing: border-box;
 }
 
@@ -559,23 +596,29 @@ footer {
     margin: 0; 
     background: rgba(0, 0, 0, 0.98); 
     padding: 8px 10px;            
-    z-index: 2000;                       
+    z-index: 2000;                                
     box-sizing: border-box;
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-right: none;      
-    transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
+    transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s ease, opacity 0.3s ease; 
   }
 
   #recent-writings-widget.active {
     right: 0;
   }
 
+  #recent-writings-widget.scroll-hidden {
+    transform: translateX(200px);
+    opacity: 0;
+    pointer-events: none;
+  }
+
   .activity-handle { 
     display: flex !important; 
     position: absolute;
     left: -24px;            
-    top: 0;                                                   
-    height: 99;                                    
+    top: 0;                                                 
+    height: 99;                                             
     background: rgba(0, 0, 0, 0.98);
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-right: none;      
@@ -589,7 +632,7 @@ footer {
     align-items: center;
     justify-content: center;
     gap: 10px;
-    border-radius: 0;          
+    border-radius: 0;            
     box-shadow: -8px 0 20px rgba(0,0,0,0.6);
   }
 
@@ -641,13 +684,15 @@ footer {
     position: relative; 
     font-size: 8px;
     width: 100%;
+  
+    gap: 10px;
     text-align: left;
-    padding: 10px;
+    padding: 0px;
   }
 
   footer .webrings-corner {
     justify-content: flex-start !important;
-    gap: 5px;
+    gap: 10px;
     transform: scale(0.85);
     transform-origin: left bottom;
   }
@@ -713,6 +758,9 @@ footer {
     </div>
 
     <div id="recent-writings-widget">
+      <!-- Warstwa efektu glitch ASCII -->
+      <div class="widget-glitch-layer" id="widget-glitch-text"></div>
+
       <div class="activity-handle" onclick="document.getElementById('recent-writings-widget').classList.toggle('active')">
         <span>◀</span>
         <span class="activity-handle-text">RECENT ACTIVITY&nbsp;</span>
@@ -733,7 +781,7 @@ footer {
 
     <navigation-menu></navigation-menu>
 
-    <div class="mobile-embed-section"></div>
+
     
   </main>
 
@@ -744,8 +792,7 @@ footer {
   </div>
   
   <footer>
-    
-    <div class="webrings-corner" style="justify-content: flex-start; margin-bottom: 6px; pointer-events: auto;">
+    <div class="webrings-corner" style="justify-content: flex-start; pointer-events: auto;">
       <map name="noaimini1">
         <area href="https://baccyflap.com/noai" shape="rect" coords="16,2,71,28" target="_blank" alt="no ai webring" title="no ai webring">
         <area href="https://baccyflap.com/noai/?prv&s=mbx" target="_top" shape="rect" coords="2,9,13,21" alt="previous" title="previous">
@@ -758,9 +805,9 @@ footer {
         <script src="https://neocreatives.neocities.org/onionring-variables.js"></script>
         <script src="https://neocreatives.neocities.org/onionring-widget.js"></script>
       </div>
-      <ws-widget type="hc" iid="4578"></ws-widget>
+      
     </div>
-    <p>© 2026 maja braumberger. all rights reserved.</p>
+    <p style="margin: 0; text-align: right;">© 2026 maja braumberger. all rights reserved.</p>
   </footer>
 
   <script>
@@ -988,8 +1035,8 @@ function initAsciiFade() {
       const changesPerTick = Math.ceil(totalCells * 0.12); 
 
       for (let i = 0; i < changesPerTick; i++) {
-        const r = Math.floor(Math.random() * rows);
-        const c = Math.floor(Math.random() * cols);
+        let r = Math.floor(Math.random() * rows);
+        let c = Math.floor(Math.random() * cols);
         
         if (matrix[r][c] < asciiShades.length - 1) {
           matrix[r][c]++;
@@ -1011,12 +1058,79 @@ function initAsciiFade() {
     }, 30);
   });
 }
+
+
+function initScrollWidgetHide() {
+  const widget = document.getElementById('recent-writings-widget');
+  const glitchLayer = document.getElementById('widget-glitch-text');
+  if (!widget || !glitchLayer) return;
+
+  let lastScrollTop = 0;
+  const scrollThreshold = 30;
+  let glitchInterval = null;
+  const glitchChars = "#$%*+?!=_\\/~░▒▓█";
+
+  function startGlitch() {
+    widget.classList.add('glitch-active');
+    if (glitchInterval) clearInterval(glitchInterval);
+    
+    glitchInterval = setInterval(() => {
+      let text = "";
+      for (let i = 0; i < 45; i++) {
+        text += glitchChars[Math.floor(Math.random() * glitchChars.length)];
+        if (i % 15 === 0 && i > 0) text += "\n";
+      }
+      glitchLayer.textContent = text;
+    }, 45);
+  }
+
+  function stopGlitch() {
+    if (glitchInterval) {
+      clearInterval(glitchInterval);
+      glitchInterval = null;
+    }
+    widget.classList.remove('glitch-active');
+    glitchLayer.textContent = "";
+  }
+
+  window.addEventListener('scroll', function() {
+    let currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const isNearBottom = (window.innerHeight + currentScrollTop) >= (document.documentElement.scrollHeight - 120);
+
+    if (isNearBottom) {
+      if (!widget.classList.contains('scroll-hidden')) {
+        startGlitch();
+        widget.classList.add('scroll-hidden');
+        setTimeout(stopGlitch, 350);
+      }
+      return;
+    }
+
+    if (currentScrollTop > lastScrollTop && currentScrollTop > scrollThreshold) {
+      if (!widget.classList.contains('scroll-hidden')) {
+        startGlitch();
+        widget.classList.add('scroll-hidden');
+        setTimeout(stopGlitch, 350);
+      }
+    } 
+    else if (currentScrollTop < lastScrollTop) {
+      if (widget.classList.contains('scroll-hidden')) {
+        widget.classList.remove('scroll-hidden');
+        startGlitch();
+        setTimeout(stopGlitch, 350);
+      }
+    }
+
+    lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+  }, { passive: true });
+}
     
 window.addEventListener('load', function() {
   const preloader = document.getElementById('preloader');
   fetchRandomQuote();
   fetchRecentActivity(); 
   initAsciiFade(); 
+  initScrollWidgetHide();
   setTimeout(() => { if(preloader) preloader.classList.add('hidden'); }, 5000);
 });
   </script>
