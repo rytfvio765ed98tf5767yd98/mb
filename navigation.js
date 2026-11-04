@@ -47,7 +47,7 @@ class NavigationMenu extends HTMLElement {
         .guestbook-tab { 
           pointer-events: auto; 
           text-decoration: none; 
-          background: #1a1a1a; 
+          background: rgba(26, 26, 26, 0.75); 
           border: 1px solid rgba(255, 255, 255, 0.15); 
           border-top: none; 
           padding: 10px 20px; 
