@@ -334,6 +334,10 @@ main {
   gap: 8px;
   margin-bottom: 0;
   z-index: 2000;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  pointer-events: auto;
 }
 
 #recent-writings-widget { 
@@ -464,12 +468,12 @@ main {
 footer { 
   width: 100%; 
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   color: #ffffff; 
   font-size: 10px; 
   z-index: 5; 
-  padding: 0px 15px; 
+  padding: 13px 15px; 
   box-sizing: border-box;
 }
 
@@ -631,8 +635,8 @@ footer {
   .activity-handle { 
     display: flex !important; 
     position: absolute;
-    left: -28px;                            
-    top: 0;                                                                                                                                              
+    left: -28px;                                                                                                                                                                                                                                                                                           
+    top: 0;                                                                                                                                                                                                                                                                                                 
     height: 60%;            
     background: rgba(0, 0, 0, 0.98);
     border: 1px solid rgba(255, 255, 255, 0.25);
@@ -672,7 +676,7 @@ footer {
   }
   
   .widget-item {
-    padding: 4px 3px;        
+    padding: 4px 3px;       
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
   
@@ -698,15 +702,18 @@ footer {
     position: relative; 
     font-size: 8px;
     width: 100%;
-  
+    justify-content: center;
     gap: 10px;
-    text-align: left;
+    text-align: center;
     padding: 0px;
   }
 
   footer .webrings-corner {
-    justify-content: flex-start !important;
-    gap: 10px;
+    display: none;
+  }
+
+  .video-hero .webrings-corner {
+    display: flex !important;
     transform: scale(0.85);
     transform-origin: left bottom;
   }
@@ -749,6 +756,21 @@ footer {
         
         <div class="slide">
           <img src="images/index/3.webp" alt="Hero WebP">
+        </div>
+      </div>
+      
+      <div class="webrings-corner">
+        <map name="noaimini1">
+          <area href="https://baccyflap.com/noai" shape="rect" coords="16,2,71,28" target="_blank" alt="no ai webring" title="no ai webring">
+          <area href="https://baccyflap.com/noai/?prv&s=mbx" target="_top" shape="rect" coords="2,9,13,21" alt="previous" title="previous">
+          <area href="https://baccyflap.com/noai/?rnd" target="_top" shape="rect" coords="79,22,85,28" alt="random" title="random">
+          <area href="https://baccyflap.com/noai/?nxt&s=mbx" target="_top" shape="rect" coords="74,9,85,21" alt="next" title="next">
+        </map>
+        <img usemap="#noaimini1" src="https://baccyflap.com/noai/miniwidget1.gif" alt="">
+
+        <div id="ncring">
+          <script src="https://neocreatives.neocities.org/onionring-variables.js"></script>
+          <script src="https://neocreatives.neocities.org/onionring-widget.js"></script>
         </div>
       </div>
     </div>
@@ -806,22 +828,7 @@ footer {
   </div>
   
   <footer>
-    <div class="webrings-corner" style="justify-content: flex-start; pointer-events: auto;">
-      <map name="noaimini1">
-        <area href="https://baccyflap.com/noai" shape="rect" coords="16,2,71,28" target="_blank" alt="no ai webring" title="no ai webring">
-        <area href="https://baccyflap.com/noai/?prv&s=mbx" target="_top" shape="rect" coords="2,9,13,21" alt="previous" title="previous">
-        <area href="https://baccyflap.com/noai/?rnd" target="_top" shape="rect" coords="79,22,85,28" alt="random" title="random">
-        <area href="https://baccyflap.com/noai/?nxt&s=mbx" target="_top" shape="rect" coords="74,9,85,21" alt="next" title="next">
-      </map>
-      <img usemap="#noaimini1" src="https://baccyflap.com/noai/miniwidget1.gif" alt="">
-
-      <div id="ncring">
-        <script src="https://neocreatives.neocities.org/onionring-variables.js"></script>
-        <script src="https://neocreatives.neocities.org/onionring-widget.js"></script>
-      </div>
-      
-    </div>
-    <p style="margin: 0; text-align: right;">© 2026 maja braumberger. all rights reserved.</p>
+    <p style="margin: 0; text-align: center;">© 2026 maja braumberger. all rights reserved.</p>
   </footer>
 
   <script>
