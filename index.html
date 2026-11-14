@@ -635,8 +635,8 @@ footer {
   .activity-handle { 
     display: flex !important; 
     position: absolute;
-    left: -28px;                                                                                                                                                                                                                                                                                           
-    top: 0;                                                                                                                                                                                                                                                                                                 
+    left: -28px;                                                                                                                                                                                                                                                                                                                                                                                                                       
+    top: 0;                                                                                                                                                                                                                                                                                                                                                                                                                       
     height: 60%;            
     background: rgba(0, 0, 0, 0.98);
     border: 1px solid rgba(255, 255, 255, 0.25);
@@ -676,7 +676,7 @@ footer {
   }
   
   .widget-item {
-    padding: 4px 3px;       
+    padding: 4px 3px;        
     border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
   
@@ -792,6 +792,8 @@ footer {
         </video>
       </div>
     </div>
+
+   <div id="dynamic-content-container" style="width: 100%; min-height: 0px;"></div>
 
     <div id="recent-writings-widget">
       <div class="widget-glitch-layer" id="widget-glitch-text"></div>
@@ -1204,10 +1206,16 @@ window.addEventListener('load', function() {
   const preloader = document.getElementById('preloader');
   fetchRandomQuote();
   fetchRecentActivity(); 
-  initAsciiFade(); 
+  initAsciiFade();
+  initLichenEmbedScroll();
   initScrollWidgetHide();
-  initLichenEmbedScroll(); 
-  setTimeout(() => { if(preloader) preloader.classList.add('hidden'); }, 4000);
+  
+  if (preloader) {
+   
+    setTimeout(() => {
+      preloader.classList.add('hidden');
+    }, 4500);
+  }
 });
   </script>
 </body>
