@@ -16,7 +16,7 @@
   <meta http-equiv="refresh" content="180">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<meta name="robots" content="nosnippet">
+
   
   <title>home | maja braumberger</title>
   
@@ -880,11 +880,11 @@ footer {
         const card = document.createElement('div');
         card.className = 'horizontal-film-card';
 
-        const formattedNum = i < 10 ? '0' + i : i;
+        const formattedNum = i < 10 ? '' + i : i;
 
         const topMeta = document.createElement('div');
         topMeta.className = 'film-meta-top';
-        topMeta.innerHTML = `<span>FRAME |${formattedNum}|</span><span>2026</span>`;
+        topMeta.innerHTML = `<span>${formattedNum}</span><span>2026</span>`;
 
         const filmInner = document.createElement('div');
         filmInner.className = 'horizontal-film-inner';
